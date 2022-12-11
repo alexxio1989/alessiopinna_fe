@@ -5,3 +5,26 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.vh-100 {
+    min-height: 100vh;
+}
+
+.mat-drawer-inner-container {
+    width: 200px !important;
+    height: 100%;
+    overflow: auto;
+    z-index: 999999 !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+mat-drawer-content{
+    margin-left: 0px !important;
+}
+
+
+.mat-drawer {
+    z-index: 999999 !important;
+    box-shadow: 5px 0 5px -5px #333;
+}

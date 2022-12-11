@@ -25,8 +25,6 @@ export class HomeComponent implements OnInit {
       } else{
         this.drawerComp.close()
       }
-
-      
     })
   }
 
