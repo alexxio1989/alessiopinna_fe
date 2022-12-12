@@ -7,6 +7,10 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.mt-10 {
+    margin-top: 4rem !important;
+}
+
 .vh-100 {
     min-height: 100vh;
 }
@@ -31,4 +35,38 @@ mat-drawer-content{
 
 ml-signin{
     margin-left: 55px !important;
+}
+
+.blockquote-footer {
+    margin-top: -1rem;
+    margin-bottom: 1.1rem;
+    font-size: 1.1em;
+    color: #6c757d;
+}
+
+.blockquote-footer::before {
+    content: "  ";
+}
+
+.h1-custom { 
+    color: rgb(66, 66, 66); 
+    font-family: 'Helvetica Neue', sans-serif !important; 
+    font-size: 20vh !important; 
+    font-weight: bold !important; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    text-align: left !important; 
+    margin-bottom: 0.4em !important;
+}
+
+
+.h2-custom {
+    color: #424242;
+    font-family: "Helvetica Neue", sans-serif !important;
+    font-size: 4vh !important;
+    font-weight: bold !important;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: left !important;
+    margin-left: 20px !important;
 }
