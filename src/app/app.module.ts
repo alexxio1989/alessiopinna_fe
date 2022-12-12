@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BioComponent } from './bio/bio.component';
 import { CardCorsoComponent } from './card-corso/card-corso.component';
+import {MatButtonModule} from '@angular/material/button';
+
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent }
@@ -26,7 +28,8 @@ export const AppRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
     BrowserAnimationsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
