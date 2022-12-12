@@ -7,6 +7,7 @@ import { RouterModule,Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { BioComponent } from './bio/bio.component';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent }
@@ -16,7 +17,8 @@ export const AppRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    BioComponent
   ],
   imports: [
     BrowserModule,
