@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BioComponent } from './bio/bio.component';
+import { CardCorsoComponent } from './card-corso/card-corso.component';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent }
@@ -18,7 +19,8 @@ export const AppRoutes: Routes = [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    BioComponent
+    BioComponent,
+    CardCorsoComponent
   ],
   imports: [
     BrowserModule,
