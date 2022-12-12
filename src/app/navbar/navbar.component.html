@@ -1,27 +1,30 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-nav-bar pr-3 pl-3">
   <img src="/assets/logo.png" width="100px" alt="image">
-    <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" (click)="openSideBar()" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse text-right" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        
-      </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Prenota online</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Il mio percorso</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contatti</a>
-        </li>
-        <li style="margin-left: 55px;" class="nav-item ml-signin">
-          <a class="nav-link" href="#"><strong>Accedi  |  Registrati</strong></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" (click)="openSideBar()" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-right" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Prenota online</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Il mio percorso</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contatti</a>
+      </li>
+      <li style="margin-left: 55px;" class="nav-item ml-signin">
+        <a class="nav-link" href="#"><strong>Accedi | Registrati</strong></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div *ngIf="openSide top_bottom"  class=" top-bar bg-light">
+ 
+</div>
