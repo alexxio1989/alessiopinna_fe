@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Utente } from '../dto/utente';
+import { UtenteService } from '../service/utente.service';
 
 @Component({
   selector: 'app-card-corso',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardCorsoComponent implements OnInit {
 
-  constructor() { }
+  userLogged : Utente;
+  isUtenteLogged = false;
+
+  constructor(private user_service:UtenteService) { }
 
   ngOnInit(): void {
+    this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
+      this.userLogged = next;
+      this.isUtenteLogged = next !== undefined && next !== null;
+    })
+
+    this.userLogged = this.user_service.getUtente();
+    this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
   }
 
 }

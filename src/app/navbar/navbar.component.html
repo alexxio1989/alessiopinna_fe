@@ -9,7 +9,7 @@
 
     </ul>
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li *ngIf="isUtenteLogged" class="nav-item active">
         <a class="nav-link" href="#">Prenota online</a>
       </li>
       <li class="nav-item">
@@ -18,7 +18,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Contatti</a>
       </li>
-      <li style="margin-left: 55px;" class="nav-item ml-signin">
+      <li style="margin-left: 55px;" *ngIf="!isUtenteLogged" class="nav-item ml-signin">
         <a class="nav-link" href="#"><strong>Accedi | Registrati</strong></a>
       </li>
     </ul>
@@ -27,10 +27,10 @@
 
 <div *ngIf="openSide" class=" top-bar bg-light d-flex justify-content-end top_bottom_top_bar">
   <ul class="navbar-nav delay_one_sec">
-    <li class="nav-item ml-signin">
+    <li *ngIf="!isUtenteLogged" class="nav-item ml-signin">
       <a class="nav-link" href="#"><strong>Accedi | Registrati</strong></a>
     </li>
-    <li class="nav-item active">
+    <li *ngIf="isUtenteLogged" class="nav-item active">
       <a class="nav-link" href="#">Prenota online</a>
     </li>
     <li class="nav-item">
