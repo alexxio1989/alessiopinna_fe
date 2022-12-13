@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.corso_service.getCorsi().subscribe(next=>{
-      this.corsi = next;
+      this.corsi = next.corsi;
+    },error =>{
+      console.log(error)
     })
   }
 

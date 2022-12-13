@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Corso } from '../dto/corso';
 import CorsiJson from '../../assets/mock/Corsi.json';
+import { HttpClient } from '@angular/common/http';
+import { ResponseCorso } from '../dto/responseCorso';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,13 +12,10 @@ import CorsiJson from '../../assets/mock/Corsi.json';
 })
 export class CorsoService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getCorsi(): Observable<Corso[]>{
+  getCorsi(): Observable<any>{
 
-    const corsiMock = CorsiJson;
-    return new Observable(obs => {
-      obs.next(corsiMock)
-    })
+    return this.http.get(environment.getCorsi);
   }
 }

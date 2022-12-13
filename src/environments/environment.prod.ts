@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  getCorsi: "http://alessiopinna-be.herokuapp.com/corso/all"
 };
