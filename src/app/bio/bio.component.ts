@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-bio',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BioComponent implements OnInit {
 
-  constructor() { }
+
+  isMobile: boolean;
+
+  constructor(private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
+    this.isMobile = this.deviceService.isMobile();
   }
 
 }

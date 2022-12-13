@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Corso } from '../dto/corso';
 import { Utente } from '../dto/utente';
 import { UtenteService } from '../service/utente.service';
 
@@ -11,6 +12,8 @@ export class CardCorsoComponent implements OnInit {
 
   userLogged : Utente;
   isUtenteLogged = false;
+
+  @Input() corso: Corso;
 
   constructor(private user_service:UtenteService) { }
 

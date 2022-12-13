@@ -1,0 +1,22 @@
+
+
+[
+    {
+        "titolo":"Lezioni di Java base",
+        "descrizione":"",
+        "imgName":"java",
+        "tipo":{
+            "codice":"BE",
+            "descrizione":"LEZIONI DI BACK-END"
+        }
+    },
+    {
+        "titolo":"Lezioni di Angular",
+        "descrizione":"",
+        "imgName":"angular",
+        "tipo":{
+            "codice":"FE",
+            "descrizione":"LEZIONI DI FRONT-END"
+        }
+    }
+]
