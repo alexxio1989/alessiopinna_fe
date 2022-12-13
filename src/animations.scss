@@ -1,12 +1,21 @@
 
   
-.top_bottom{
-    background:lightblue;
-    height:1000px;
-    -webkit-animation: expand 5s;
+.top_bottom_top_bar{
+    --height: 150px;
+    -webkit-animation: animation_top_bottom 1s;
 }
 
-  @-webkit-keyframes run_top_bottom{
-    0%{height:0px}
-    100%{height:1000px}
+@keyframes animation_top_bottom {
+  from {height: 0px;}
+  to {height: var(--height)}
+}
+
+
+.delay_one_sec {
+  animation: animation_delay 0s 1s forwards;
+  visibility: hidden;
+}
+
+@keyframes animation_delay {
+  to   { visibility: visible; }
 }
