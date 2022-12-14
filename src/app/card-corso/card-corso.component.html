@@ -1,9 +1,25 @@
 
 
+
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="/assets/{{corso.imgName}}.png" alt="Card image cap">
-    <div *ngIf="isUtenteLogged" class="card-body bg-light pb-1 pt-1">
-      <button mat-button>Prenota ora</button>
-      
+  <img class="img_corso" src="/assets/{{corso.imgName}}.png" alt="Card image cap">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="card-title"><strong>{{corso.titolo}}</strong></h3>
+      </div>
+      <div class="col-2">
+        <mat-icon>calendar_today</mat-icon>
+      </div>
+      <div class="col-10">
+        <p class="card-text giorniOra">{{corso.giorniOrari}}</p>
+      </div>
+      <div class="col-12 mt-2">
+        <p class="card-text"><strong>TUTOR ONLINE</strong></p>
+      </div>
+      <div class="col-12 d-flex justify-content-end pl-0 pr-0 py-0">
+        <button mat-button >Prenota ora</button>
+      </div>
     </div>
+  </div>
 </div>

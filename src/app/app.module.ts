@@ -12,6 +12,8 @@ import { CardCorsoComponent } from './card-corso/card-corso.component';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import {MatIconModule} from '@angular/material/icon';
+
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent }
@@ -32,7 +34,8 @@ export const AppRoutes: Routes = [
     MatSidenavModule,
     MatButtonModule,
     HttpClientModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

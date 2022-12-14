@@ -1,5 +1,14 @@
-
-.card{
-    border-width: 10px;
+.img_corso{
+    border-width: 2px !important;
+    border-color: rgb(212, 212, 212) !important;
+    border-radius: 0.375rem !important;
 }
-  
+
+img {
+    border: 5px solid #555;
+  }
+
+  .giorniOra{
+    margin-left: -10px;
+    margin-top: 5px;
+  }
