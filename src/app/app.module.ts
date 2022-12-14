@@ -11,7 +11,7 @@ import { BioComponent } from './bio/bio.component';
 import { CardCorsoComponent } from './card-corso/card-corso.component';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent }
@@ -31,7 +31,8 @@ export const AppRoutes: Routes = [
     BrowserAnimationsModule,
     MatSidenavModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
