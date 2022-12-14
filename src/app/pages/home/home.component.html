@@ -1,15 +1,19 @@
-
 <app-bio></app-bio>
 
+<div class="row">
+  <div class="col-12">
+    <div class="slick-wrapper">
 
-<div class="slick-wrapper">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+        (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+        (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let corso of corsi" class="slide p-2">
+          <app-card-corso [corso]="corso"></app-card-corso>
+        </div>
+      </ngx-slick-carousel>
 
-<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
-  (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-  <div ngxSlickItem *ngFor="let corso of corsi" class="slide p-2">
-    <app-card-corso [corso] = "corso"></app-card-corso>
+    </div>
   </div>
-</ngx-slick-carousel>
-
 </div>
+
 
