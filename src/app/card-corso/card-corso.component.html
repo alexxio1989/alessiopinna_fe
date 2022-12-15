@@ -1,7 +1,7 @@
 
 
 
-<div class="card" style="width: 17rem;">
+<div class="card card-corso">
   <img class="img_corso" src="/assets/{{corso.imgName}}.png" alt="Card image cap">
   <div class="card-body">
     <div class="row">
@@ -9,13 +9,15 @@
         <h3 class="card-title"><strong>{{corso.titolo}}</strong></h3>
       </div>
       <div class="col-2">
-        <mat-icon>calendar_today</mat-icon>
+        <mat-icon class="giorniOraColor">calendar_today</mat-icon>
       </div>
       <div class="col-10">
-        <p class="card-text giorniOra">{{corso.giorniOrari}}</p>
+        <p class="card-text giorniOra giorniOraColor">{{corso.giorniOrari}}</p>
       </div>
       <div class="col-12 mt-2">
-        <p class="card-text"><strong>TUTOR ONLINE</strong></p>
+        <div class="infoTutorOnline">
+          <p class="card-text"><strong>TUTOR ONLINE</strong></p>
+        </div>
       </div>
       <div class="col-12 d-flex justify-content-end pl-0 pr-0 py-0">
         <button mat-button >Prenota ora</button>
