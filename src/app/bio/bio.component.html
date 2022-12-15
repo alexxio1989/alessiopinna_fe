@@ -1,17 +1,19 @@
-<div class="row mt-5 mb-5 scale-up-center">
-    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-flex d-flex justify-content-center">
+<div class="row mt-5 mb-5 scale-up-center p-3 border">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-flex d-flex justify-content-center my-auto">
        
             <img src="/assets/bio.png" *ngIf="isMobile" width="200px" height="200px" alt="image">
             <img src="/assets/bio.png" *ngIf="!isMobile" width="400px" height="400px" alt="image">
      
     </div>
   
-    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pt-5">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pt-5 my-auto">
         <div class="col-12">
-            <h1 class="h1-custom">Ciao</h1>
+            <h1 *ngIf="isMobile" class="h1-custom-sm">Ciao</h1>
+            <h1 *ngIf="!isMobile" class="h1-custom">Ciao</h1>
         </div>
         <div class="col-12">
-            <h1 class="h2-custom">Mi chiamo Alessio </h1>
+            <h1 *ngIf="!isMobile" class="h2-custom">Mi chiamo Alessio </h1>
+            <h1 *ngIf="isMobile" class="h2-custom-sm">Mi chiamo Alessio </h1>
         </div>
         <div class="col-12 mb-2 mt-5">
             <blockquote class="blockquote-footer text-center">

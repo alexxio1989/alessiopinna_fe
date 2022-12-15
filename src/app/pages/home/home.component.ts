@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
 
   isMobile = false
 
+  mapCorsi = new Map();
+
   slideConfig = {
   };
   

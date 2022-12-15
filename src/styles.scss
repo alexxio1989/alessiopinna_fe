@@ -49,6 +49,17 @@ ml-signin{
     content: "  ";
 }
 
+.h1-custom-sm{
+    color: rgb(66, 66, 66); 
+    font-family: 'Helvetica Neue', sans-serif !important; 
+    font-size: 15vh !important; 
+    font-weight: bold !important; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    text-align: left !important; 
+    margin-bottom: 0.4em !important;
+}
+
 .h1-custom { 
     color: rgb(66, 66, 66); 
     font-family: 'Helvetica Neue', sans-serif !important; 
@@ -60,6 +71,16 @@ ml-signin{
     margin-bottom: 0.4em !important;
 }
 
+.h2-custom-sm {
+    color: #424242;
+    font-family: "Helvetica Neue", sans-serif !important;
+    font-size: 3vh !important;
+    font-weight: bold !important;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: left !important;
+    margin-left: 20px !important;
+}
 
 .h2-custom {
     color: #424242;

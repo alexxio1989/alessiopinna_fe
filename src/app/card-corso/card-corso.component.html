@@ -23,7 +23,7 @@
           <p class="card-text"><strong>TUTOR ONLINE</strong></p>
         </div>
       </div>
-      <div class="col-12 d-flex justify-content-end pl-0 pr-0 py-0">
+      <div *ngIf="isUtenteLogged" class="col-12 d-flex justify-content-end pl-0 pr-0 py-0">
         <button mat-button >Prenota ora</button>
       </div>
     </div>
