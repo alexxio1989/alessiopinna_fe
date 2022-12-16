@@ -5,7 +5,7 @@ export class Corso{
     titolo:string;
     descrizione:string;
     imgName:string;
-    tipo:string;
+    tipo:Dominio;
     giorniOrari:string;
     prezzo:number;
     dataCreazione:Date;
