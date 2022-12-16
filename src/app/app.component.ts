@@ -21,7 +21,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.ds.sbjErrorsNotification.asObservable().subscribe(next => {
-      this._snackBar.open(next);
+      this._snackBar.open(next,'',
+        { 
+          duration: 2000
+      });
     })
     this.ds.sbjSpinner.asObservable().subscribe(next => {
       if(next){

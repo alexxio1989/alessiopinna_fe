@@ -15,6 +15,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import {MatIconModule} from '@angular/material/icon';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogLoginComponent } from './dialog/dialog-login/dialog-login.component';
 
 
 export const AppRoutes: Routes = [
@@ -27,7 +29,8 @@ export const AppRoutes: Routes = [
     HomeComponent,
     NavbarComponent,
     BioComponent,
-    CardCorsoComponent
+    CardCorsoComponent,
+    DialogLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ export const AppRoutes: Routes = [
     SlickCarouselModule,
     MatIconModule,
     NgxSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
 
   ],
   providers: [],

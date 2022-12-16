@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogLoginComponent } from '../dialog/dialog-login/dialog-login.component';
 import { Utente } from '../dto/utente';
 import { SidebarService } from '../service/sidebar.service';
 import { UtenteService } from '../service/utente.service';
@@ -15,7 +17,7 @@ export class NavbarComponent implements OnInit {
   userLogged : Utente;
   isUtenteLogged = false;
 
-  constructor(private navService: SidebarService,private user_service:UtenteService) { }
+  constructor(private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -30,6 +32,10 @@ export class NavbarComponent implements OnInit {
   openSideBar(){
     this.openSide = !this.openSide;
     this.navService.sbjOpenSide.next(this.openSide)
+  }
+
+  openLogin(){
+    this.dialog.open(DialogLoginComponent);
   }
 
 }
