@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-nav-bar pr-3 pl-3">
-  <img src="/assets/logo.png" width="100px" alt="image">
+  <img src="/assets/logo.png" width="90px" alt="image">
   <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" (click)="openSideBar()" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Contatti</a>
       </li>
-      <li style="margin-left: 55px;" *ngIf="!isUtenteLogged" class="nav-item ml-signin">
+      <li style="margin-left: 55px;" *ngIf="!isUtenteLogged" class="nav-item ml-55">
         <a class="nav-link" href="#"><strong>Accedi | Registrati</strong></a>
       </li>
     </ul>
@@ -27,7 +27,7 @@
 
 <div *ngIf="openSide" class=" top-bar bg-light d-flex justify-content-end top_bottom_top_bar">
   <ul class="navbar-nav delay_one_sec">
-    <li *ngIf="!isUtenteLogged" class="nav-item ml-signin">
+    <li *ngIf="!isUtenteLogged" class="nav-item ml-55">
       <a class="nav-link" href="#"><strong>Accedi | Registrati</strong></a>
     </li>
     <li *ngIf="isUtenteLogged" class="nav-item active">

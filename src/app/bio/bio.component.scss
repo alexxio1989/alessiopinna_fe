@@ -1,0 +1,59 @@
+
+.yellow-span{
+    height: 30px;
+    padding: 2px;
+    background-color: rgb(239, 236, 66);
+}
+
+.green-span{
+    height: 30px;
+    padding: 2px;
+    background-color: rgb(45, 255, 126);
+}
+
+.red-span{
+    height: 30px;
+    padding: 2px;
+    background-color: rgba(255, 40, 50, 0.624);
+}
+
+
+
+.blockquote-footer {
+    margin-top: -1rem;
+    margin-bottom: 1.1rem;
+    font-size: 1.1em;
+    color: #6c757d;
+}
+
+.blockquote-footer::before {
+    content: "  ";
+}
+
+
+.h1-custom { 
+    color: rgb(66, 66, 66); 
+    font-size: 80px !important; 
+    font-weight: bold !important; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    text-align: left !important; 
+    margin-bottom: 0px !important;
+    margin-left: 20px !important;
+}
+
+
+.h2-custom {
+    color: #424242;
+    font-size: 25px !important;
+    font-weight: bold !important;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: left !important;
+    margin-left: 27px !important;
+}
+
+p{
+    font-size: 15px;
+    line-height: 1.6;
+}
