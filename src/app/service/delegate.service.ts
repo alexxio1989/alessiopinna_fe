@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class DelegateService {
 
   sbjSpinner = new Subject<boolean>();
-  sbjErrorsNotification = new Subject<String>();
+  sbjErrorsNotification = new Subject<string>();
 
   constructor() { }
 }

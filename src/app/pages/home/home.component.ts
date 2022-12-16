@@ -78,8 +78,12 @@ export class HomeComponent implements OnInit {
         }
       });
       this.ds.sbjSpinner.next(false)
+      if(!next.success){
+        this.ds.sbjErrorsNotification.next(next.error)
+      }
     },error =>{
-      console.log(error)
+      this.ds.sbjSpinner.next(false)
+      this.ds.sbjErrorsNotification.next("Errore durante il recupero delle lezioni")
     })
   }
 

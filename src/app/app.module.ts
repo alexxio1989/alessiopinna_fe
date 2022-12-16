@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import {MatIconModule} from '@angular/material/icon';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 export const AppRoutes: Routes = [
@@ -37,7 +38,9 @@ export const AppRoutes: Routes = [
     HttpClientModule,
     SlickCarouselModule,
     MatIconModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatSnackBarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
