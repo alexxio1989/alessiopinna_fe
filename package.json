@@ -33,6 +33,7 @@
     "jquery": "^3.6.2",
     "ngx-device-detector": "^2.0.6",
     "ngx-slick-carousel": "^0.5.1",
+    "ngx-spinner": "^9.0.2",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "slick-carousel": "^1.8.1",

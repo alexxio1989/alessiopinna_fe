@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RequestLogin } from '../dto/requestLogin';
 import { Utente } from '../dto/utente';
 import { Subject } from "rxjs";
+import { DelegateService } from './delegate.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UtenteService {
 
   notifyUtenteLogged = new Subject<Utente>();
 
-  constructor() { }
+  constructor(private ds:DelegateService) { }
 
   getUtente(): Utente{
     const user = localStorage.getItem('USER');
@@ -22,7 +23,11 @@ export class UtenteService {
     return this.utente;
   }
 
-  login(req:RequestLogin){
+  signin(req:RequestLogin){
+    this.ds.sbjSpinner.next(true)
+  }
 
+  login(req:RequestLogin){
+    this.ds.sbjSpinner.next(true)
   }
 }

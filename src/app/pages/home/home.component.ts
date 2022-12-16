@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Corso } from 'src/app/dto/corso';
 import { CorsoService } from 'src/app/service/corso.service';
+import { DelegateService } from 'src/app/service/delegate.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   };
   
 
-  constructor(private corso_service: CorsoService , private deviceService: DeviceDetectorService) { }
+  constructor(private corso_service: CorsoService , private deviceService: DeviceDetectorService , private ds:DelegateService) { }
 
   ngOnInit(): void {
     this.isMobile = this.deviceService.isMobile();
@@ -76,6 +77,7 @@ export class HomeComponent implements OnInit {
           this.mapCorsi.set(corso.tipo.descrizione,newListFiltred);
         }
       });
+      this.ds.sbjSpinner.next(false)
     },error =>{
       console.log(error)
     })
