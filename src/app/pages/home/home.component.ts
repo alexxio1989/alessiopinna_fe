@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   isMobile = false
 
-  mapCorsi = new Map();
+  mapCorsi = new Map<string, Corso[]>();
 
   slideConfig = {
   };
@@ -66,6 +66,16 @@ export class HomeComponent implements OnInit {
     };
     this.corso_service.getCorsi().subscribe(next=>{
       this.corsi = next.corsi;
+      this.corsi .forEach(corso => {
+        const listFiltred = this.mapCorsi.get(corso.tipo.descrizione);
+        if(listFiltred){
+          listFiltred.push(corso)
+        } else {
+          let newListFiltred = [];
+          newListFiltred.push(corso)
+          this.mapCorsi.set(corso.tipo.descrizione,newListFiltred);
+        }
+      });
     },error =>{
       console.log(error)
     })

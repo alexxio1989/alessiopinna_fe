@@ -17,7 +17,11 @@ body { margin: 0; font-family: 'Custom'}
     box-shadow: none;
 }
 
-
+.slick-dots li.slick-active button:before {
+    color: black;
+    opacity: 0.75;
+    font-size: 9px;
+}
 
 .card {
     --bs-card-border-width: 0px !important;

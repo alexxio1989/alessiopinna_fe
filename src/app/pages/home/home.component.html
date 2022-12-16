@@ -1,13 +1,17 @@
 <app-bio></app-bio>
 
-<div class="row">
-  <div class="col-12">
+<div *ngFor="let value of mapCorsi | keyvalue" class="row mb-4">
+  <div  class="col-12 d-flex justify-content-center">
+    <p class="fst-italic Bio-font tipo-corso"><strong>LEZIONI DI {{value.key}}</strong></p>
+  </div>
+  <div  class="col-12">
+
     <div class="slick-wrapper">
 
       <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
         (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
         (beforeChange)="beforeChange($event)">
-        <div ngxSlickItem *ngFor="let corso of corsi" class="slide p-2">
+        <div ngxSlickItem *ngFor="let corso of value.value" class="slide p-2">
           <app-card-corso [corso]="corso"></app-card-corso>
         </div>
       </ngx-slick-carousel>
