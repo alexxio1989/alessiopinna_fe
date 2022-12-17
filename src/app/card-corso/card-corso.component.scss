@@ -14,9 +14,14 @@ img {
   border: 5px solid #555;
 }
 
+.giorniOra-icon {
+  font-size: 25px;
+}
+
 .giorniOra {
   margin-left: -10px;
   margin-top: 5px;
+  font-size: 12px;
 }
 
 .giorniOraColor{
@@ -24,9 +29,8 @@ img {
 }
 .infoTutorOnline{
   height: 30px;
-  width: 120px;
+  width: 110px;
   padding-top: 5px;
-  padding-left: 10px;
   border-radius: 10px;
   background-color: rgba(244, 177, 84, 0.457);
 }
