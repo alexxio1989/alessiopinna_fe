@@ -11,19 +11,19 @@
     <div class="col-12 px-0">
       <!-- Pills navs -->
 
-      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab-group (selectedTabChange)="getTab($event)" mat-stretch-tabs="false" mat-align-tabs="start">
         <mat-tab label="Accedi">
-          <form>
+         
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="loginName" class="form-control" />
+              <input type="email" id="loginName" [(ngModel)]="utente.email" class="form-control" />
               <label class="form-label" for="loginName">Email</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="loginPassword" class="form-control" />
+              <input type="password" [(ngModel)]="requestLogin.password" id="loginPassword" class="form-control" />
               <label class="form-label" for="loginPassword">Password</label>
             </div>
 
@@ -43,44 +43,36 @@
               </div>
             </div>
 
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Accedi</button>
-
-            
-          </form>
 
         </mat-tab>
         <mat-tab label="Registrati">
-          <form>
-
+       
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="registerEmail" class="form-control" />
+              <input type="email" id="registerEmail"  [(ngModel)]="utente.email" class="form-control" />
               <label class="form-label" for="registerEmail">Email</label>
             </div>
 
             <!-- Username input -->
             <div class="form-outline mb-4">
-              <input type="text" id="registerSkype" class="form-control" />
+              <input type="text" id="registerSkype"  [(ngModel)]="utente.skypeID" class="form-control" />
               <label class="form-label" for="registerUsername">skypeID</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="registerPassword" class="form-control" />
+              <input type="password" id="registerPassword" [(ngModel)]="requestLogin.password" class="form-control" />
               <label class="form-label" for="registerPassword">Password</label>
             </div>
 
             <!-- Repeat Password input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="registerRepeatPassword" class="form-control" />
-              <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+            <div *ngIf="requestLogin.password !== undefined &&
+            requestLogin.password !== null &&
+             '' !== requestLogin.password" class="form-outline mb-4">
+              <input type="password" id="registerRepeatPassword" [(ngModel)]="passwordConfirm" class="form-control" />
+              <label class="form-label" for="registerRepeatPassword">Ripeti password</label>
             </div>
 
-
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-3">Registrati</button>
-          </form>
 
         </mat-tab>
       </mat-tab-group>
@@ -90,4 +82,11 @@
   </div>
 
 
+</div>
+
+<div  mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annulla</button>
+  
+  <button mat-button *ngIf="login && enableLogin" color="primary" cdkFocusInitial>Accedi</button>
+  <button mat-button *ngIf="!login && enableSignin" >Registrati</button>
 </div>

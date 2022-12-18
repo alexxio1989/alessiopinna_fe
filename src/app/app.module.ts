@@ -18,7 +18,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogLoginComponent } from './dialog/dialog-login/dialog-login.component';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import { FormsModule } from '@angular/forms';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent }
@@ -45,7 +45,8 @@ export const AppRoutes: Routes = [
     NgxSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
 
   ],
   providers: [],
