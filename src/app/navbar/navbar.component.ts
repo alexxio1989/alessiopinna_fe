@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
       });
     } else {
       this.dialog.open(DialogLoginComponent, {
-        height: '80%',
+        height: '82%',
         width: '60%'
       });
     }

@@ -28,7 +28,7 @@
 <div *ngIf="openSide" class=" top-bar bg-light d-flex justify-content-end top_bottom_top_bar">
   <ul class="navbar-nav delay_one_sec">
     <li *ngIf="!isUtenteLogged" class="nav-item ml-55">
-      <a class="nav-link" (click)="openLogin()" ><strong>Accedi | Registrati</strong></a>
+      <a class="nav-link" (click)="openLogin() ; openSide = false" ><strong>Accedi | Registrati</strong></a>
     </li>
     <li *ngIf="isUtenteLogged" class="nav-item active">
       <a class="nav-link" href="#">Prenota online</a>
