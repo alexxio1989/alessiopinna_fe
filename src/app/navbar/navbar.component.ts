@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { DialogLoginComponent } from '../dialog/dialog-login/dialog-login.component';
 import { Utente } from '../dto/utente';
 import { SidebarService } from '../service/sidebar.service';
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
   userLogged : Utente;
   isUtenteLogged = false;
 
-  constructor(private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog) { }
+  constructor(private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog , private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -35,7 +36,17 @@ export class NavbarComponent implements OnInit {
   }
 
   openLogin(){
-    this.dialog.open(DialogLoginComponent);
+    if(this.deviceService.isMobile()){
+      this.dialog.open(DialogLoginComponent, {
+        width: '90%'
+      });
+    } else {
+      this.dialog.open(DialogLoginComponent, {
+        height: '80%',
+        width: '60%'
+      });
+    }
+    
   }
 
 }

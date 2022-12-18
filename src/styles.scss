@@ -30,3 +30,14 @@ body { margin: 0; font-family: 'Custom'}
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: #dba96c;
 }
+
+
+.mat-dialog-container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+app-dialog-login{
+    min-height: 100%;
+}
