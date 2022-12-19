@@ -2,7 +2,7 @@
   
 .top_bottom_top_bar{
     --height: 150px;
-    -webkit-animation: animation_top_bottom 1s;
+    -webkit-animation: animation_top_bottom 0.5s;
 }
 
 @keyframes animation_top_bottom {
@@ -12,7 +12,7 @@
 
 
 .delay_one_sec {
-  animation: animation_delay 0s 1s forwards;
+  animation: animation_delay 0s 0.5s forwards;
   visibility: hidden;
 }
 
