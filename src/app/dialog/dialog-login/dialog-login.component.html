@@ -7,14 +7,16 @@
     </div>
 
     <p class="text-center">oppure con email:</p>
+
     
     <div class="col-12 px-0">
       <!-- Pills navs -->
 
-      <mat-tab-group (selectedTabChange)="getTab($event)" mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab-group [(selectedIndex)]="maintab" (selectedTabChange)="getTab($event)" mat-stretch-tabs="false" mat-align-tabs="start">
         <mat-tab label="Accedi">
          
 
+          
             <!-- Email input -->
             <div class="form-outline mb-4">
               <input type="email" id="loginName" [(ngModel)]="utente.email" class="form-control" />

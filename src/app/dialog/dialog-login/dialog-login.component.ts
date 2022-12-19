@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RequestLogin } from 'src/app/dto/requestLogin';
 import { Utente } from 'src/app/dto/utente';
 import { DelegateService } from 'src/app/service/delegate.service';
@@ -16,9 +17,11 @@ export class DialogLoginComponent implements OnInit {
   utente:Utente
   passwordConfirm = ''
 
+  maintab = 0;
+
   login = true
 
-  constructor(private user_service:UtenteService,private ds:DelegateService) { }
+  constructor(private user_service:UtenteService,private ds:DelegateService , public dialogRef: MatDialogRef<DialogLoginComponent>) { }
 
   getValidPassword():boolean{
     return this.requestLogin.password !== undefined &&
@@ -67,6 +70,7 @@ export class DialogLoginComponent implements OnInit {
       } else {
         this.ds.sbjErrorsNotification.next("Login avvenuta con successo")
         this.user_service.setUtente(next.utente)
+        this.dialogRef.close();
       }
     }, error => {
       this.ds.sbjSpinner.next(false)
@@ -79,8 +83,10 @@ export class DialogLoginComponent implements OnInit {
     this.user_service.signin(this.requestLogin).subscribe(next => {
       this.ds.sbjSpinner.next(false)
       if(!next.success){
-        this.ds.sbjErrorsNotification.next("Registrazione avvenuta con successo")
         this.ds.sbjErrorsNotification.next(next.error)
+      } else {
+        this.maintab = 0
+        this.ds.sbjErrorsNotification.next("Registrazione avvenuta con successo")
       }
     }, error => {
       this.ds.sbjSpinner.next(false)
