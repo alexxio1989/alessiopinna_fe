@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestLogin } from 'src/app/dto/requestLogin';
 import { Utente } from 'src/app/dto/utente';
+import { DelegateService } from 'src/app/service/delegate.service';
+import { UtenteService } from 'src/app/service/utente.service';
 
 @Component({
   selector: 'app-dialog-login',
@@ -16,7 +18,7 @@ export class DialogLoginComponent implements OnInit {
 
   login = true
 
-  constructor() { }
+  constructor(private user_service:UtenteService,private ds:DelegateService) { }
 
   getValidPassword():boolean{
     return this.requestLogin.password !== undefined &&
@@ -54,6 +56,36 @@ export class DialogLoginComponent implements OnInit {
   getTab(event:any){
     this.login = event.index === 0 ? true : false
     console.log(event)
+  }
+
+  loginUser(){
+    this.requestLogin.utente = this.utente;
+    this.user_service.login(this.requestLogin).subscribe(next => {
+      this.ds.sbjSpinner.next(false)
+      if(!next.success){
+        this.ds.sbjErrorsNotification.next(next.error)
+      } else {
+        this.ds.sbjErrorsNotification.next("Login avvenuta con successo")
+        this.user_service.setUtente(next.utente)
+      }
+    }, error => {
+      this.ds.sbjSpinner.next(false)
+      this.ds.sbjErrorsNotification.next("Errore durante la login")
+    })
+  }
+
+  signinUser(){
+    this.requestLogin.utente = this.utente;
+    this.user_service.signin(this.requestLogin).subscribe(next => {
+      this.ds.sbjSpinner.next(false)
+      if(!next.success){
+        this.ds.sbjErrorsNotification.next("Registrazione avvenuta con successo")
+        this.ds.sbjErrorsNotification.next(next.error)
+      }
+    }, error => {
+      this.ds.sbjSpinner.next(false)
+      this.ds.sbjErrorsNotification.next("Errore durante la signin")
+    })
   }
 
 }

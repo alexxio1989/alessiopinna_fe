@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  getCorsi: "http://alessiopinna-be.herokuapp.com/corso/all",
-  signin: "http://alessiopinna-be.herokuapp.com/utente/signin",
-  login: "http://alessiopinna-be.herokuapp.com/utente/login"
+  getCorsi: "http://localhost:8080/corso/all",
+  signin: "http://localhost:8080/utente/signin",
+  login: "http://localhost:8080/utente/login"
 };
 
 /*

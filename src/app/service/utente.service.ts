@@ -17,6 +17,12 @@ export class UtenteService {
 
   constructor(private http: HttpClient , private ds:DelegateService) { }
 
+  setUtente(utente: Utente){
+    localStorage.setItem('USER',JSON.stringify(utente))
+    this.notifyUtenteLogged.next(utente)
+  }
+
+
   getUtente(): Utente{
     const user = localStorage.getItem('USER');
     if(user){
@@ -25,12 +31,17 @@ export class UtenteService {
     return this.utente;
   }
 
+  removeUtente(){
+    localStorage.removeItem('USER');
+    this.notifyUtenteLogged.next(undefined)
+  }
+
   signin(req:RequestLogin): Observable<any>{
     this.ds.sbjSpinner.next(true)
     return this.http.post(environment.signin,req);
   }
 
-  login(req:RequestLogin){
+  login(req:RequestLogin): Observable<any>{
     this.ds.sbjSpinner.next(true)
     return this.http.post(environment.login,req); 
   }

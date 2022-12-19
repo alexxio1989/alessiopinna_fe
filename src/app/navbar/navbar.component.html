@@ -21,6 +21,9 @@
       <li style="margin-left: 55px;" *ngIf="!isUtenteLogged" class="nav-item ml-55">
         <a class="nav-link" (click)="openLogin()"><strong>Accedi | Registrati</strong></a>
       </li>
+      <li *ngIf="isUtenteLogged" class="nav-item">
+        <button mat-button (click)="logout()">Disconnetti</button>
+      </li>
     </ul>
   </div>
 </nav>
@@ -38,6 +41,10 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Contatti</a>
+    </li>
+
+    <li *ngIf="isUtenteLogged" class="nav-item">
+      <button mat-button (click)="logout()">Disconnetti</button>
     </li>
     
   </ul>
