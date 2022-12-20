@@ -1,16 +1,77 @@
 
-
-[
-    {
-        "titolo":"Lezioni di Java base",
-        "descrizione":"",
-        "imgName":"java",
-        "tipo":"LEZIONI DI BACK-END"
-    },
-    {
-        "titolo":"Lezioni di Angular",
-        "descrizione":"",
-        "imgName":"angular",
-        "tipo":"LEZIONI DI FRONT-END"
-    }
-]
+{
+	"success": true,
+	"error": null,
+	"corsi": [
+		{
+			"id": 3,
+			"titolo": "Lezioni di Java base",
+			"descrizione": "",
+			"imgName": "java",
+			"tipo": {
+				"id": 1,
+				"codice": "BE",
+				"descrizione": "BACK-END"
+			},
+			"giorniOrari": "LUN - GIO , 17.00 PM - 20.00 PM",
+			"prezzo": 9.50,
+			"dataCreazione": null
+		},
+		{
+			"id": 4,
+			"titolo": "Lezioni di Angular base",
+			"descrizione": "",
+			"imgName": "angular",
+			"tipo": {
+				"id": 2,
+				"codice": "FE",
+				"descrizione": "FRONT-END"
+			},
+			"giorniOrari": "VEN - SAB , 17.00 PM - 20.00 PM",
+			"prezzo": 9.90,
+			"dataCreazione": null
+		},
+		{
+			"id": 5,
+			"titolo": "Lezioni test",
+			"descrizione": "",
+			"imgName": "default",
+			"tipo": {
+				"id": 2,
+				"codice": "FE",
+				"descrizione": "FRONT-END"
+			},
+			"giorniOrari": "GIORNI PROVA",
+			"prezzo": 999.00,
+			"dataCreazione": null
+		},
+		{
+			"id": 6,
+			"titolo": "Lezioni test 02",
+			"descrizione": "",
+			"imgName": "default",
+			"tipo": {
+				"id": 2,
+				"codice": "FE",
+				"descrizione": "FRONT-END"
+			},
+			"giorniOrari": "GIORNI PROVA",
+			"prezzo": 999.00,
+			"dataCreazione": null
+		},
+		{
+			"id": 7,
+			"titolo": "Lezioni test 03",
+			"descrizione": "",
+			"imgName": "default",
+			"tipo": {
+				"id": 2,
+				"codice": "FE",
+				"descrizione": "FRONT-END"
+			},
+			"giorniOrari": "GIORNI PROVA",
+			"prezzo": 999.00,
+			"dataCreazione": null
+		}
+	]
+}

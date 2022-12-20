@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   getCorsi: "http://localhost:8080/corso/all",
   signin: "http://localhost:8080/utente/signin",
-  login: "http://localhost:8080/utente/login"
+  login: "http://localhost:8080/utente/login",
+  mock:true
 };
 
 /*

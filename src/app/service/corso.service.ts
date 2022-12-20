@@ -17,6 +17,13 @@ export class CorsoService {
 
   getCorsi(): Observable<any>{
     this.ds.sbjSpinner.next(true)
-    return this.http.get(environment.getCorsi);
+    if(environment.mock){
+      const corsi = CorsiJson
+      return new Observable(obs => {
+        obs.next(corsi)
+      })
+    } else {
+      return this.http.get(environment.getCorsi);
+    }
   }
 }

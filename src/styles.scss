@@ -7,7 +7,7 @@
 @import 'styles/util.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Custom'}
+body { margin: 0; font-family: Poppins,sans-serif !important}
 
 
 .navbar-toggler:focus,
@@ -45,4 +45,8 @@ app-dialog-login{
     padding-top: 15px !important;
     padding-right: 15px !important;
     padding-left: 15px !important;
+}
+
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+    font-weight: 700 !important;
 }

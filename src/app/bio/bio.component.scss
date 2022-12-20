@@ -57,3 +57,28 @@ p{
     font-size: 15px;
     line-height: 1.6;
 }
+
+.container-image{
+    padding: 10px;
+    background-color: white;
+    max-width: 300px;
+    border-radius: 50%;
+    margin-left: 40px;
+}
+
+.container-image img{
+    width: 100%;
+}
+
+
+.container-image-sm{
+    padding: 10px;
+    background-color: white;
+    max-width: 200px;
+    border-radius: 50%;
+    margin-left: 40px;
+}
+
+.container-image-sm img{
+    width: 100%;
+}
