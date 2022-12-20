@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
     this.openSide = false;
     if(this.deviceService.isMobile()){
       this.dialog.open(DialogLoginComponent, {
-        height: '61%',
+        height: 'auto',
         width: '95%',
         maxWidth:'95vw'
 
