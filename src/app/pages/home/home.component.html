@@ -24,7 +24,10 @@
   </div>
   
   <div *ngIf="'BACK-END' === value.key" class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12  inner-info d-flex justify-content-center">
-    <img role="presentation" alt="" width="150" src="/assets/svg/be.svg">
+    
+    <div class="container-image">
+      <img role="presentation" alt="" src="/assets/svg/be.svg">
+    </div>
   </div>
   <div *ngIf="'BACK-END' === value.key" class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12  inner-info">
     <h3 class="text-h3">Chi è il Back-End developer ?</h3>
@@ -33,7 +36,9 @@
 
   </div>
   <div *ngIf="'FRONT-END' === value.key" class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12  inner-info d-flex justify-content-center">
-    <img role="presentation" alt="" width="150" src="/assets/svg/fe.svg">
+    <div class="container-image">
+      <img role="presentation" alt="" src="/assets/svg/fe.svg">
+    </div>
   </div>
   <div *ngIf="'FRONT-END' === value.key" class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12  inner-info">
     <h3 class="text-h3">Chi è il Front-End developer ?</h3>
