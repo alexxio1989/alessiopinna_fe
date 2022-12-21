@@ -20,6 +20,11 @@ import { DialogLoginComponent } from './dialog/dialog-login/dialog-login.compone
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { DetailCorsoComponent } from './pages/detail-corso/detail-corso.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +39,8 @@ export const AppRoutes: Routes = [
     BioComponent,
     CardCorsoComponent,
     DialogLoginComponent,
-    DetailCorsoComponent
+    DetailCorsoComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,13 @@ export const AppRoutes: Routes = [
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    FlatpickrModule.forRoot(),
+    NgbModalModule
 
   ],
   providers: [],
