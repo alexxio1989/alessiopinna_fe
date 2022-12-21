@@ -1,19 +1,19 @@
 
 
 
-<div class="card card-corso">
+<div class="card card-corso" (click) = "goToDetail()">
   <div class="price-box">
     <p class="price">€ {{corso.prezzo}}</p>
     <p class="info-price"> / h</p>
   </div>
-  <img class="img_corso" src="/assets/svg/{{corso.imgName}}.svg" alt="Card image cap">
+  <img class="img_corso img-shadow " src="/assets/svg/{{corso.imgName}}.svg" alt="Card image cap">
   <div class="card-body pt-1 pb-1">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <h3 class="card-title mb-0 mt-2"><strong>{{corso.titolo}}</strong></h3>
       </div>
       <div class="col-2 mt-1">
-        <mat-icon class="giorniOraColor giorniOra-icon">calendar_today</mat-icon>
+        <img src="/assets/svg/calendar.svg" width="25" alt="Card image cap">
       </div>
       <div class="col-10 mt-1">
         <p class="card-text giorniOra giorniOraColor">{{corso.giorniOrari}}</p>
@@ -23,9 +23,7 @@
           <p class="card-text p-small"><strong>TUTOR ONLINE</strong></p>
         </div>
       </div>
-      <div *ngIf="isUtenteLogged" class="col-12 d-flex justify-content-end pl-0 pr-0 py-0">
-        <button mat-button >Prenota ora</button>
-      </div>
+      
     </div>
   </div>
 </div>

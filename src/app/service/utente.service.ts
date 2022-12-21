@@ -25,7 +25,7 @@ export class UtenteService {
 
   getUtente(): Utente{
     const user = localStorage.getItem('USER');
-    if(user){
+    if(user){ 
       this.utente = JSON.parse(JSON.stringify(user));
     }
     return this.utente;

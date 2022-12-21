@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Corso } from '../dto/corso';
 import { Utente } from '../dto/utente';
+import { CorsoService } from '../service/corso.service';
 import { UtenteService } from '../service/utente.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class CardCorsoComponent implements OnInit {
 
   @Input() corso: Corso;
 
-  constructor(private user_service:UtenteService) { }
+  constructor(private user_service:UtenteService , private corso_service:CorsoService ,private route: Router) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -25,6 +27,12 @@ export class CardCorsoComponent implements OnInit {
 
     this.userLogged = this.user_service.getUtente();
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
+  }
+
+  goToDetail(){
+    this.corso_service.rmvCorso();
+    this.corso_service.setCorso(this.corso)
+    this.route.navigate(['/detail']);
   }
 
 }

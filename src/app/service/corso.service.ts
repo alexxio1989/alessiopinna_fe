@@ -13,6 +13,8 @@ import { DelegateService } from './delegate.service';
 })
 export class CorsoService {
 
+  private corso: Corso;
+
   constructor(private http: HttpClient ,  private ds:DelegateService) { }
 
   getCorsi(): Observable<any>{
@@ -25,5 +27,22 @@ export class CorsoService {
     } else {
       return this.http.get(environment.getCorsi);
     }
+  }
+
+  setCorso(corso: Corso){
+    localStorage.setItem('CORSO',JSON.stringify(corso));
+  }
+
+  rmvCorso(){
+    localStorage.removeItem('CORSO');
+  }
+
+  getCorso(): Corso{
+    const corso = localStorage.getItem('CORSO');
+    if(corso){ 
+      this.corso = JSON.parse(corso);
+    }
+    return this.corso;
+    
   }
 }

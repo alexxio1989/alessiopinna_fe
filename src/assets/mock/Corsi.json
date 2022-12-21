@@ -6,7 +6,7 @@
 		{
 			"id": 3,
 			"titolo": "Java base",
-			"descrizione": "",
+			"descrizione": "<h3>COSA VEDREMO IN QUESTO MODULO</h3><p>- Preparazione Ambiente di Sviluppo<br />- Introduzione al linguaggio di programmazione ad oggetti<br />- Le classi vs oggetti<br />- La struttura di una classe : i metodi di classe , il costruttore <br />- Operatori di visibilit&agrave;<br />- I package<br />- Variabili e primitivi <br />- Differenza tra primitivi ed oggetti<br />- Operatori Aritmetici<br />- Operatori logici<br />- Struttura If else<br />- Strutture cicli for , while , switch<br />- Uso di equals e instanceOf<br />- Gli Array<br />- Static<br />- Incapsulamento<br />- Ereditariet&agrave;<br />- Polimorfismo<br />- Classi astratte <br />- Interfacce<br />- Le collections<br />- Gli Errori e le eccezioni<br />- I generics<br />- I patterns pi&ugrave; comuni : singleton , mvc , facade , observer , factory ecc.</p>",
 			"imgName": "java",
 			"tipo": {
 				"id": 1,

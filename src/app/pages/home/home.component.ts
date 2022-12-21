@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private corso_service: CorsoService , private deviceService: DeviceDetectorService , private ds:DelegateService) { }
 
   ngOnInit(): void {
+    this.corso_service.rmvCorso();
     this.isMobile = this.deviceService.isMobile();
     this.slideConfig = {
       "slidesToShow": 3,

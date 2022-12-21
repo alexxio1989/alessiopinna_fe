@@ -19,9 +19,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogLoginComponent } from './dialog/dialog-login/dialog-login.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
+import { DetailCorsoComponent } from './pages/detail-corso/detail-corso.component';
 
 export const AppRoutes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  { path: 'detail', component: DetailCorsoComponent }
 ];
 
 @NgModule({
@@ -31,7 +33,8 @@ export const AppRoutes: Routes = [
     NavbarComponent,
     BioComponent,
     CardCorsoComponent,
-    DialogLoginComponent
+    DialogLoginComponent,
+    DetailCorsoComponent
   ],
   imports: [
     BrowserModule,
