@@ -5,7 +5,7 @@
 	"corsi": [
 		{
 			"id": 3,
-			"titolo": "Lezioni di Java base",
+			"titolo": "Java base",
 			"descrizione": "",
 			"imgName": "java",
 			"tipo": {
@@ -19,7 +19,7 @@
 		},
 		{
 			"id": 4,
-			"titolo": "Lezioni di Angular base",
+			"titolo": "Angular base",
 			"descrizione": "",
 			"imgName": "angular",
 			"tipo": {
@@ -42,7 +42,7 @@
 				"descrizione": "FRONT-END"
 			},
 			"giorniOrari": "GIORNI PROVA",
-			"prezzo": 999.00,
+			"prezzo": 0.00,
 			"dataCreazione": null
 		},
 		{
@@ -56,7 +56,7 @@
 				"descrizione": "FRONT-END"
 			},
 			"giorniOrari": "GIORNI PROVA",
-			"prezzo": 999.00,
+			"prezzo": 0.00,
 			"dataCreazione": null
 		},
 		{
@@ -70,7 +70,7 @@
 				"descrizione": "FRONT-END"
 			},
 			"giorniOrari": "GIORNI PROVA",
-			"prezzo": 999.00,
+			"prezzo": 0.00,
 			"dataCreazione": null
 		}
 	]

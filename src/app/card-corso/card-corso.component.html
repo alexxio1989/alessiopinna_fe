@@ -6,10 +6,10 @@
     <p class="price">€ {{corso.prezzo}}</p>
     <p class="info-price"> / h</p>
   </div>
-  <img class="img_corso" src="/assets/{{corso.imgName}}.png" alt="Card image cap">
+  <img class="img_corso" src="/assets/svg/{{corso.imgName}}.svg" alt="Card image cap">
   <div class="card-body pt-1 pb-1">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 d-flex justify-content-center">
         <h3 class="card-title mb-0 mt-2"><strong>{{corso.titolo}}</strong></h3>
       </div>
       <div class="col-2 mt-1">
@@ -18,7 +18,7 @@
       <div class="col-10 mt-1">
         <p class="card-text giorniOra giorniOraColor">{{corso.giorniOrari}}</p>
       </div>
-      <div class="col-12 mt-2">
+      <div class="col-12 mt-2 d-flex justify-content-center">
         <div class="infoTutorOnline d-flex justify-content-center">
           <p class="card-text p-small"><strong>TUTOR ONLINE</strong></p>
         </div>
