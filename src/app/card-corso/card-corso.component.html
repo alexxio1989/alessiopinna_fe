@@ -3,7 +3,7 @@
 
 <div class="card card-corso" (click) = "goToDetail()">
   <div class="price-box">
-    <p class="price">€ {{corso.prezzo}}</p>
+    <p class="price">{{corso.prezzo | currency:'EUR':true }}</p>
     <p class="info-price"> / h</p>
   </div>
   <img class="img_corso img-shadow " src="/assets/svg/{{corso.imgName}}.svg" alt="Card image cap">

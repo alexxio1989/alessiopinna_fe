@@ -61,16 +61,16 @@
 		},
 		{
 			"id": 7,
-			"titolo": "Lezioni test 03",
+			"titolo": "I database relazionali",
 			"descrizione": "",
-			"imgName": "default",
+			"imgName": "sql",
 			"tipo": {
-				"id": 2,
-				"codice": "FE",
-				"descrizione": "FRONT-END"
+				"id": 1,
+				"codice": "BE",
+				"descrizione": "BACK-END"
 			},
-			"giorniOrari": "GIORNI PROVA",
-			"prezzo": 0.00,
+			"giorniOrari": "LUN - GIO , 17.00 PM - 20.00 PM",
+			"prezzo": 4.50,
 			"dataCreazione": null
 		}
 	]
