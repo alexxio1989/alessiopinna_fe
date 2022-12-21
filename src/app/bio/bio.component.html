@@ -1,18 +1,41 @@
-<div class="row mt-5 mb-5 scale-up-center p-3 bg-light rounded">
-    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 d-flex d-flex justify-content-center my-auto">
-       
-        <div *ngIf="isMobile" class="container-image-sm mb-3">
-            <img src="/assets/bio.png"  alt="image">
-        </div>
+<div *ngIf="!isMobile" class="row mt-5 mb-5 scale-up-center p-3 bg-light rounded">
+    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
 
-        <div *ngIf="!isMobile" class="container-image">
+    </div>
+    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 px-0 ">
+        <div class="container-image bottom-shadow ">
             <img src="/assets/bio.png"  alt="image">
         </div>
-            
-     
     </div>
   
-    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 my-auto bg-white pt-2">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 my-auto bg-white pt-2 bottom-shadow rounded-end rounded-bottom">
+        <div class="col-12">
+            <h1  class="h1-custom Bio-font">Ciao</h1>
+        </div>
+        <div class="col-12">
+            <h1 class="h2-custom Bio-font">Mi chiamo Alessio </h1>
+        </div>
+        <div class="col-12 mb-2 mt-5">
+            <blockquote class="blockquote-footer text-center">
+                <p class="fst-italic Bio-font"><span class="yellow-span">Sono uno sviluppatore web con esperienza pluriennale</span> in molteplici aziende IT come Accenture e Capgemini ed in consulenza su progetti importanti presso Generali ed Alleanza assicurazioni , Sisal , Banca Monte dei Paschi , BPER banca . </p>
+                <p class="fst-italic Bio-font mt-3">Sono partito da zero nel mondo della programmazione attraverso un master durato oltre un anno in Elis a Roma ( una scuola di alta formazione ) . <span class="green-span">La costanza e la determinazione mi hanno aiutato a superare le difficoltà ed ad apprendere la mentalità della programmazione</span>.</p>
+                <p class="fst-italic Bio-font mt-3">Lavorare come programmatore ti garantisce ad oggi un posto di <span class="red-span">lavoro sicuro e nella maggior parte dei casi contratti a tempo indeterminato</span> con uno stipendio importante</p>
+    
+            </blockquote>
+        </div>
+    </div>
+</div> 
+
+
+<div *ngIf="isMobile" class="row mt-5 mb-5 scale-up-center p-3 bg-light rounded">
+   
+    <div class="col-sm-12 col-12 d-flex flex-row-reverse px-0">
+        <div class="container-image-sm">
+            <img src="/assets/bio.png"  alt="image">
+        </div>
+    </div>
+  
+    <div class="col-sm-12 col-12 my-auto bg-white pt-2 bottom-shadow rounded-start rounded-bottom">
         <div class="col-12">
             <h1  class="h1-custom Bio-font">Ciao</h1>
         </div>
