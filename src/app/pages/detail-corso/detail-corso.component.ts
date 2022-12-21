@@ -18,6 +18,7 @@ export class DetailCorsoComponent implements OnInit {
   constructor(private corso_service:CorsoService,private route: Router ,private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.corso = this.corso_service.getCorso(); 
     this.isMobile = this.deviceService.isMobile();
   }
