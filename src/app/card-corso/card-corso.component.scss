@@ -54,9 +54,14 @@ z-index: 8;
 .info-price{
   margin-left: 66px;
   margin-top: -25px;
-  color: #555;
+  color: rgb(134, 134, 134);
 }
 
 .img-shadow {
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+.title-ext{
+  color: rgb(110, 110, 110);
+  text-align: center;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { DialogLoginComponent } from '../dialog/dialog-login/dialog-login.component';
 import { Utente } from '../dto/utente';
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit {
   userLogged : Utente;
   isUtenteLogged = false;
 
-  constructor(private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog , private deviceService: DeviceDetectorService) { }
+  constructor(private route: Router,private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog , private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -55,6 +56,14 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.user_service.removeUtente();
+  }
+
+  goTo(path:string){
+    if('' !== path){
+      this.route.navigate(['/' + path]);
+    } else {
+      this.route.navigate(['']);
+    }
   }
 
 

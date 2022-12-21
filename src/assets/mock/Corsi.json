@@ -6,6 +6,7 @@
 		{
 			"id": 3,
 			"titolo": "Java base",
+			"titoloExt": "Impara le basi di questo linguaggio di programmazione , il più usato per i progetti di Back-End ... poca teoria tanta pratica",
 			"descrizione": "<h3>COSA VEDREMO IN QUESTO MODULO</h3><p>- Preparazione Ambiente di Sviluppo<br />- Introduzione al linguaggio di programmazione ad oggetti<br />- Le classi vs oggetti<br />- La struttura di una classe : i metodi di classe , il costruttore <br />- Operatori di visibilit&agrave;<br />- I package<br />- Variabili e primitivi <br />- Differenza tra primitivi ed oggetti<br />- Operatori Aritmetici<br />- Operatori logici<br />- Struttura If else<br />- Strutture cicli for , while , switch<br />- Uso di equals e instanceOf<br />- Gli Array<br />- Static<br />- Incapsulamento<br />- Ereditariet&agrave;<br />- Polimorfismo<br />- Classi astratte <br />- Interfacce<br />- Le collections<br />- Gli Errori e le eccezioni<br />- I generics<br />- I patterns pi&ugrave; comuni : singleton , mvc , facade , observer , factory ecc.</p>",
 			"imgName": "java",
 			"tipo": {
@@ -20,6 +21,7 @@
 		{
 			"id": 4,
 			"titolo": "Angular base",
+			"titoloExt": "Impara le basi di uno dei framework piu' utilizzati nello sviluppo di applicazioni web.",
 			"descrizione": "",
 			"imgName": "angular",
 			"tipo": {
@@ -34,6 +36,7 @@
 		{
 			"id": 5,
 			"titolo": "Lezioni test",
+			"titoloExt": "",
 			"descrizione": "",
 			"imgName": "default",
 			"tipo": {
@@ -48,6 +51,7 @@
 		{
 			"id": 6,
 			"titolo": "Lezioni test 02",
+			"titoloExt": "",
 			"descrizione": "",
 			"imgName": "default",
 			"tipo": {
@@ -62,6 +66,7 @@
 		{
 			"id": 7,
 			"titolo": "I database relazionali",
+			"titoloExt": "Corso pratico per imparare da zero il linguaggio SQL e progettare database relazionali ",
 			"descrizione": "",
 			"imgName": "sql",
 			"tipo": {
