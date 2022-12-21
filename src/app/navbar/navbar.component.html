@@ -10,44 +10,31 @@
     </ul>
     <ul class="navbar-nav">
       <li *ngIf="isUtenteLogged" class="nav-item active">
-        <button mat-button ><strong>Il mio profilo </strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/user-com.svg"></button>
+        <button mat-button><strong>Il mio profilo </strong> <img class="img-button" width="20" height="20"
+            src="/assets/icons/svgs/regular/user-com.svg"></button>
       </li>
       <li *ngIf="isUtenteLogged" class="nav-item">
-        <button mat-button (click)="logout()">Disconnetti <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/logout.svg"></button>
-      </li>
-    
-      <li class="nav-item">
-        <button mat-stroked-button class="custom-strokerd-button" ><strong>Contatti</strong> <img class="img-button custom-color-img" width="20" height="20" src="/assets/icons/svgs/regular/support.svg"></button>
-
+        <button mat-button (click)="logout()">Disconnetti <img class="img-button" width="20" height="20"
+            src="/assets/icons/svgs/regular/logout.svg"></button>
       </li>
       <li style="margin-left: 55px;" *ngIf="!isUtenteLogged" class="nav-item ml-55">
-        <button mat-stroked-button (click)="openLogin()"><strong>Accedi | Registrati</strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/login.svg"></button>
+        <button mat-stroked-button (click)="openLogin()"><strong>Accedi | Registrati</strong> <img class="img-button"
+            width="20" height="20" src="/assets/icons/svgs/regular/login.svg"></button>
       </li>
-      
     </ul>
   </div>
 </nav>
 
-<div *ngIf="openSide" class=" top-bar bg-light d-flex justify-content-end top_bottom_top_bar">
-  <ul class="navbar-nav delay_one_sec">
+<div *ngIf="openSide" class=" top-bar bg-light d-flex my-auto  justify-content-end top_bottom_top_bar">
+  <ul class="navbar-nav delay_one_sec my-auto ">
     <li *ngIf="!isUtenteLogged" class="nav-item ml-55">
-      
       <button mat-button (click)="openLogin()"><strong>Accedi | Registrati</strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/login.svg"></button>
     </li>
     <li *ngIf="isUtenteLogged" class="nav-item active">
       <button mat-button ><strong>Il mio profilo </strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/user-com.svg"></button>
-
     </li>
     <li *ngIf="isUtenteLogged" class="nav-item">
       <button mat-button (click)="logout()">Disconnetti <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/logout.svg"></button>
     </li>
-   
-    <li class="nav-item">
-      <button mat-button ><strong>Contatti</strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/support.svg"></button>
-
-    </li>
-
-   
-    
   </ul>
 </div>
