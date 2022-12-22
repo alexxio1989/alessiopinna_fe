@@ -57,8 +57,7 @@ export class CalendarComponent  {
   viewDate: Date = new Date();
 
   modalData: {
-    action: string;
-    event: CalendarEvent;
+    event: CalendarEvent
   };
 
   actions: CalendarEventAction[] = [
@@ -164,7 +163,7 @@ export class CalendarComponent  {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
+    this.modalData = { event };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
@@ -201,12 +200,13 @@ export class CalendarComponent  {
 
   conferma(event: CalendarEvent<EventInfo>){
     event.meta.confirmed = true
+    let endDate = addHours(event.start,event.meta.ore)
     this.events = [
       ...this.events,
       {
         title: 'Lezione online ' + this.corso.titolo,
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        start: event.start,
+        end: endDate,
         color: colors.red,
         draggable: true,
         resizable: {
@@ -222,9 +222,16 @@ export class CalendarComponent  {
     ];
   }
 
+  addHours(date:Date, hours:number):Date {
+    date.setHours(date.getHours() + hours);
+  
+    return date;
+  }
+
   deleteEvent(eventToDelete: CalendarEvent<EventInfo>) {
     this.eventsNotConfirmed = this.eventsNotConfirmed.filter(event => event.meta.id !== eventToDelete.meta.id);
     this.events = this.events.filter(event => event.meta.id !== eventToDelete.meta.id);
+    this.activeDayIsOpen = false
   }
 
   setView(view: CalendarView) {
@@ -246,4 +253,5 @@ export class CalendarComponent  {
 
      return allConfirmed;
   }
+
 }

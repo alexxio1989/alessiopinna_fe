@@ -10,16 +10,16 @@
  
 
  <div *ngIf="eventsNotConfirmed.length > 0" class="row mt-4">
-  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-8 col-8 px-3">
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-7 col-7 px-3">
     <p class="fst-italic Bio-font">Data / ora inizio lezione</p>
 
   </div>
-  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-4 col-4 px-3">
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5 px-3">
     <p class="fst-italic Bio-font">N° ore richieste</p>
   </div>
  </div>
   <div  *ngFor="let event of eventsNotConfirmed" class="row">
-    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-8 col-8 py-0 row-height">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-7 col-7 py-0 row-height">
       <input
               class="form-control input-calendar"
               type="text"
@@ -37,14 +37,15 @@
 
             
     </div>
-    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-4 col-4 py-0 row-height">
-      <app-incrementer [value]="0" [step]="0.5" [min]="0" [max]="10" ></app-incrementer>
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5 py-0 row-height">
+      <app-incrementer *ngIf="!event.meta.confirmed" (counterEmitter) = "event.meta.ore = $event" [value]="0" [step]="0.5" [min]="0" [max]="10" ></app-incrementer>
+      <p *ngIf="event.meta.confirmed" class="fst-italic Bio-font mt-3 ml-3">{{event.meta.ore}} ore</p>
     </div>
     <div class="col-12 ">
       <button mat-button color="accent" (click)="deleteEvent(event)">
         Rimuovi
       </button>
-      <button *ngIf="!event.meta.confirmed" mat-button color="primary" (click)="conferma(event)">
+      <button *ngIf="!event.meta.confirmed && event.meta.ore > 0" mat-button color="primary" (click)="conferma(event)">
         Conferma
       </button>
     </div>
@@ -61,11 +62,15 @@
     <div class="modal-body">
       <div>
         Action:
-        <pre>{{ modalData?.action }}</pre>
+        <pre>{{ modalData?.event.title }}</pre>
       </div>
       <div>
-        Event:
-        <pre>{{ modalData?.event | json }}</pre>
+        Inizio:
+        <pre>{{ modalData?.event.start | date:'medium' }}</pre>
+      </div>
+      <div>
+        Fine:
+        <pre>{{ modalData?.event.end | date:'medium' }}</pre>
       </div>
     </div>
     <div class="modal-footer">

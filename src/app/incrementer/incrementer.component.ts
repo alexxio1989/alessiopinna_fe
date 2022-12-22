@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output ,EventEmitter} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,8 @@ export class IncrementerComponent{
   myFormGroup = new FormGroup({
     formField: new FormControl()
   });
+
+  @Output() counterEmitter = new EventEmitter<number>();
 
   _value: number = 0;
   _step: number = 1;
@@ -65,6 +67,7 @@ export class IncrementerComponent{
     }
 
     this._value = inputValue;
+    this.counterEmitter.emit(this._value)
   }
 
   private wrappedValue(inputValue:number): number {
