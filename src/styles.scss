@@ -142,4 +142,8 @@ body { margin: 0; font-family: Poppins,sans-serif !important}
    padding: 0px !important;
 }
 
+::ng-deep.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none !important;
+}
+
 

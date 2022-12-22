@@ -10,7 +10,7 @@
     </div>
     <div class="col-12 h-100 bg-light rounded px-0 container-detail">
 
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab-group [disablePagination] = true [disableRipple] = true mat-stretch-tabs="false" mat-align-tabs="start">
             <mat-tab label="Dettaglio">
                 <div [innerHTML]="corso.descrizione"  class="col-12 bg-white p-4">
         

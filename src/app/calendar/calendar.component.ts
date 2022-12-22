@@ -176,13 +176,14 @@ export class CalendarComponent  {
       count = 1
     }
 
+    let today = new Date();
     
     this.eventsNotConfirmed = [
       ...this.eventsNotConfirmed,
       {
         title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        start: today,
+        end: today,
         color: colors.red,
         draggable: true,
         resizable: {
