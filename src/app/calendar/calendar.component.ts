@@ -25,6 +25,9 @@ import {
 } from 'angular-calendar';
 import { EventInfo } from '../dto/EventInfo';
 import { Corso } from '../dto/corso';
+import { PrenotazioneService } from '../service/prenotazione.service';
+import { Prenotazione } from '../dto/prenotazione';
+import { DelegateService } from '../service/delegate.service';
 
 
 const colors: any = {
@@ -81,7 +84,7 @@ export class CalendarComponent  {
   eventsNotConfirmed: CalendarEvent<EventInfo>[];
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal) {
+  constructor(private modal: NgbModal , private prenotazione_service : PrenotazioneService , private ds:DelegateService) {
     this.initializeYesterday();
     //this.initializeEvents();
     this.events = []
@@ -202,25 +205,43 @@ export class CalendarComponent  {
   conferma(event: CalendarEvent<EventInfo>){
     event.meta.confirmed = true
     let endDate = addHours(event.start,event.meta.ore)
-    this.events = [
-      ...this.events,
-      {
-        title: 'Lezione online ' + this.corso.titolo,
-        start: event.start,
-        end: endDate,
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        },
-        meta:{
-          id:event.meta.id,
-          confirmed:event.meta.confirmed,
-          ore:event.meta.ore
-        }
+    let prenotazione = new Prenotazione();
+    prenotazione.corso = this.corso;
+    prenotazione.dataPrenotazione = event.start;
+    prenotazione.qntOre = event.meta.ore;
+    this.prenotazione_service.save(prenotazione).subscribe(next => {
+      if(!next.success){
+        this.ds.sbjErrorsNotification.next(next.error)
+      } else {
+        this.events = [
+          ...this.events,
+          {
+            title: 'Lezione online ' + this.corso.titolo,
+            start: event.start,
+            end: endDate,
+            color: colors.red,
+            draggable: true,
+            resizable: {
+              beforeStart: true,
+              afterEnd: true
+            },
+            meta:{
+              id:event.meta.id,
+              confirmed:event.meta.confirmed,
+              ore:event.meta.ore
+            }
+          }
+        ];
+        
+        this.ds.sbjErrorsNotification.next("PRENOTAZIONE AVVUNUTA CON SUCCESSO")
       }
-    ];
+      this.ds.sbjSpinner.next(false)
+      
+    }, error => {
+      this.ds.sbjSpinner.next(false)
+      this.ds.sbjErrorsNotification.next("Errore durante il salvataggio della prenotazione")
+    })
+
   }
 
   addHours(date:Date, hours:number):Date {
@@ -230,9 +251,27 @@ export class CalendarComponent  {
   }
 
   deleteEvent(eventToDelete: CalendarEvent<EventInfo>) {
-    this.eventsNotConfirmed = this.eventsNotConfirmed.filter(event => event.meta.id !== eventToDelete.meta.id);
-    this.events = this.events.filter(event => event.meta.id !== eventToDelete.meta.id);
+    
     this.activeDayIsOpen = false
+
+    let prenotazione = new Prenotazione();
+    prenotazione.id = eventToDelete.meta.id;
+    prenotazione.corso = this.corso;
+    prenotazione.dataPrenotazione = eventToDelete.start;
+    prenotazione.qntOre = eventToDelete.meta.ore;
+    this.prenotazione_service.delete(prenotazione).subscribe(next=>{
+      if(!next.success){
+        this.ds.sbjErrorsNotification.next(next.error)
+      } else {
+        this.eventsNotConfirmed = this.eventsNotConfirmed.filter(event => event.meta.id !== eventToDelete.meta.id);
+        this.events = this.events.filter(event => event.meta.id !== eventToDelete.meta.id);
+        this.ds.sbjErrorsNotification.next("ELIMINAZIONE AVVUNUTA CON SUCCESSO")
+      }
+      this.ds.sbjSpinner.next(false)
+    }, error => {
+      this.ds.sbjSpinner.next(false)
+      this.ds.sbjErrorsNotification.next("Errore durante l'eliminazione della prenotazione")
+    })
   }
 
   setView(view: CalendarView) {

@@ -7,6 +7,7 @@ export const environment = {
   getCorsi: mock ? "http://localhost:8080/corso/all" : "https://alessiopinna-be.herokuapp.com/corso/all",
   signin: mock ? "http://localhost:8080/utente/signin" : "https://alessiopinna-be.herokuapp.com/utente/signin",
   login: mock ? "http://localhost:8080/utente/login" : "https://alessiopinna-be.herokuapp.com/utente/login",
+  prenotazione: mock ? "http://localhost:8080/prenotazione" : "https://alessiopinna-be.herokuapp.com/prenotazione",
   mock:true
 };
 
