@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  Input
 } from '@angular/core';
 import {
   startOfDay,
@@ -22,6 +23,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+import { EventInfo } from '../dto/EventInfo';
+import { Corso } from '../dto/corso';
 
 
 const colors: any = {
@@ -46,6 +49,7 @@ const colors: any = {
 })
 export class CalendarComponent  {
 
+  @Input() corso: Corso;
   private yesterday: Date;
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   view: CalendarView = CalendarView.Month;
@@ -74,13 +78,15 @@ export class CalendarComponent  {
   ];
 
   refresh: Subject<any> = new Subject();
-  events: CalendarEvent[];
-  activeDayIsOpen: boolean = true;
+  events: CalendarEvent<EventInfo>[];
+  eventsNotConfirmed: CalendarEvent<EventInfo>[];
+  activeDayIsOpen: boolean = false;
 
   constructor(private modal: NgbModal) {
     this.initializeYesterday();
     //this.initializeEvents();
     this.events = []
+    this.eventsNotConfirmed =[]
   }
 
   private initializeYesterday() {
@@ -163,8 +169,17 @@ export class CalendarComponent  {
   }
 
   addEvent(): void {
-    this.events = [
-      ...this.events,
+
+    let count = 0
+    if(this.events.length > 0){
+      count = this.events[this.events.length -1].meta.id + 1
+    } else {
+      count = 1
+    }
+
+    
+    this.eventsNotConfirmed = [
+      ...this.eventsNotConfirmed,
       {
         title: 'New event',
         start: startOfDay(new Date()),
@@ -174,13 +189,42 @@ export class CalendarComponent  {
         resizable: {
           beforeStart: true,
           afterEnd: true
+        },
+        meta:{
+          id:count,
+          confirmed:false,
+          ore:0
         }
       }
     ];
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter(event => event !== eventToDelete);
+  conferma(event: CalendarEvent<EventInfo>){
+    event.meta.confirmed = true
+    this.events = [
+      ...this.events,
+      {
+        title: 'Lezione online ' + this.corso.titolo,
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        meta:{
+          id:event.meta.id,
+          confirmed:event.meta.confirmed,
+          ore:event.meta.ore
+        }
+      }
+    ];
+  }
+
+  deleteEvent(eventToDelete: CalendarEvent<EventInfo>) {
+    this.eventsNotConfirmed = this.eventsNotConfirmed.filter(event => event.meta.id !== eventToDelete.meta.id);
+    this.events = this.events.filter(event => event.meta.id !== eventToDelete.meta.id);
   }
 
   setView(view: CalendarView) {
@@ -189,5 +233,17 @@ export class CalendarComponent  {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  get allConfirmed():boolean{
+    let allConfirmed : boolean;
+     this.eventsNotConfirmed
+     if(this.eventsNotConfirmed.length === 0){
+      allConfirmed = true
+     } else {
+      allConfirmed = this.eventsNotConfirmed.length === this.eventsNotConfirmed.filter(item => item.meta.confirmed).length;
+     }
+
+     return allConfirmed;
   }
 }

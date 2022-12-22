@@ -25,6 +25,9 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { IncrementerComponent } from './incrementer/incrementer.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,7 +43,8 @@ export const AppRoutes: Routes = [
     CardCorsoComponent,
     DialogLoginComponent,
     DetailCorsoComponent,
-    CalendarComponent
+    CalendarComponent,
+    IncrementerComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ export const AppRoutes: Routes = [
       useFactory: adapterFactory
     }),
     FlatpickrModule.forRoot(),
-    NgbModalModule
+    NgbModalModule,
+    MatFormFieldModule,
+    MatInputModule
 
   ],
   providers: [],
