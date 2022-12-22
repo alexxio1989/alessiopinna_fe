@@ -7,10 +7,19 @@
    </div>
  </div>
   
+ 
 
+ <div *ngIf="eventsNotConfirmed.length > 0" class="row mt-4">
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-8 col-8 px-3">
+    <p class="fst-italic Bio-font">Data / ora inizio lezione</p>
 
+  </div>
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-4 col-4 px-3">
+    <p class="fst-italic Bio-font">N° ore richieste</p>
+  </div>
+ </div>
   <div  *ngFor="let event of eventsNotConfirmed" class="row">
-    <div class="col-6 pt-2 row-height">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-8 col-8 py-0 row-height">
       <input
               class="form-control input-calendar"
               type="text"
@@ -23,11 +32,12 @@
               dateFormat="Y-m-d H:i"
               altFormat="F j, Y H:i"
               placeholder="Not set"
+              [disabled] = "event.meta.confirmed"
             />
 
             
     </div>
-    <div class="col-6 pt-2 row-height">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-4 col-4 py-0 row-height">
       <app-incrementer [value]="0" [step]="0.5" [min]="0" [max]="10" ></app-incrementer>
     </div>
     <div class="col-12 ">
