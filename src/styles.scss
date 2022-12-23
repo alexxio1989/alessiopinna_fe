@@ -146,4 +146,10 @@ body { margin: 0; font-family: Poppins,sans-serif !important}
     display: none !important;
 }
 
+.mat-menu-content:not(:empty) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding: 20px;
+}
+
 

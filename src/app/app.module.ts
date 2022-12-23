@@ -28,6 +28,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { IncrementerComponent } from './incrementer/incrementer.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -67,7 +69,8 @@ export const AppRoutes: Routes = [
     FlatpickrModule.forRoot(),
     NgbModalModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatMenuModule
 
   ],
   providers: [],

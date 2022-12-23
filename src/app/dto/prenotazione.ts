@@ -7,4 +7,5 @@ export class Prenotazione{
     corso:Corso;
     qntOre:number;
     dataPrenotazione:Date;
+    fromDetail:boolean;
 }

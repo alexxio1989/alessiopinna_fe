@@ -4,11 +4,10 @@
 const mock = false
 export const environment = {
   production: false,
-  getCorsi: mock ? "http://localhost:8080/corso/all" : "https://alessiopinna-be.herokuapp.com/corso/all",
-  signin: mock ? "http://localhost:8080/utente/signin" : "https://alessiopinna-be.herokuapp.com/utente/signin",
-  login: mock ? "http://localhost:8080/utente/login" : "https://alessiopinna-be.herokuapp.com/utente/login",
+  corso: mock ? "http://localhost:8080/corso" : "https://alessiopinna-be.herokuapp.com/corso",
+  utente: mock ? "http://localhost:8080/utente" : "https://alessiopinna-be.herokuapp.com/utente",
   prenotazione: mock ? "http://localhost:8080/prenotazione" : "https://alessiopinna-be.herokuapp.com/prenotazione",
-  mock:true
+  mock:false
 };
 
 /*

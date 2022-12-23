@@ -25,7 +25,7 @@ export class CorsoService {
         obs.next(corsi)
       })
     } else {
-      return this.http.get(environment.getCorsi);
+      return this.http.get(environment.corso + '/all');
     }
   }
 
@@ -44,5 +44,10 @@ export class CorsoService {
     }
     return this.corso;
     
+  }
+
+  save(corso:Corso): Observable<any>{
+    this.ds.sbjSpinner.next(true)
+    return this.http.post(environment.corso + '/save' , corso);
   }
 }

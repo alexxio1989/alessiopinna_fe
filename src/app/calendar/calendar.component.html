@@ -2,14 +2,86 @@
   
   
  <div class="row mt-3">
+  <div class="col-12 d-flex justify-content-end">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-2">
+          <div class="btn-group">
+            <div
+              class="btn btn-primary"
+              mwlCalendarPreviousView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()"
+              (click)="$event.stopPropagation();"
+            >
+              Indietro
+            </div>
+            <div
+              class="btn btn-outline-secondary"
+              mwlCalendarToday
+              [(viewDate)]="viewDate"
+              (click)="$event.stopPropagation();"
+            >
+              Oggi
+            </div>
+            <div
+              class="btn btn-primary"
+              mwlCalendarNextView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()"
+              (click)="$event.stopPropagation();"
+            >
+              Avanti
+            </div>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <div class="btn-group">
+            <div
+              class="btn btn-primary"
+              (click)="setView(CalendarView.Month)"
+              [class.active]="view === CalendarView.Month"
+              (click)="$event.stopPropagation();"
+            >
+              Mese
+            </div>
+            <div
+              class="btn btn-primary"
+              (click)="setView(CalendarView.Week)"
+              [class.active]="view === CalendarView.Week"
+              (click)="$event.stopPropagation();"
+            >
+              Settimana
+            </div>
+            <div
+              class="btn btn-primary"
+              (click)="setView(CalendarView.Day)"
+              [class.active]="view === CalendarView.Day"
+              (click)="$event.stopPropagation();"
+            >
+              Giorno
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    </mat-menu>
+  </div>
    <div class="col-12 d-flex justify-content-center">
     <button mat-stroked-button  *ngIf="allConfirmed" color="primary"  (click)="addEvent()">Nuova prenotazione</button>
+
+
    </div>
  </div>
   
  
 
- <div *ngIf="eventsNotConfirmed.length > 0" class="row mt-4">
+ <div *ngIf="eventsNotConfirmed.length > 0" class="row mt-2">
   <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-7 col-7 px-3">
     <p class="fst-italic Bio-font">Data / ora inizio lezione</p>
 
@@ -84,63 +156,11 @@
   <br /><br /><br />
 
 <div class="row text-center mt-4">
-    <div class="col-md-4">
-      <div class="btn-group">
-        <div
-          class="btn btn-primary"
-          mwlCalendarPreviousView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
-        >
-          Indietro
-        </div>
-        <div
-          class="btn btn-outline-secondary"
-          mwlCalendarToday
-          [(viewDate)]="viewDate"
-        >
-          Oggi
-        </div>
-        <div
-          class="btn btn-primary"
-          mwlCalendarNextView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
-        >
-          Avanti
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
+    
+    <div class="col-12 d-flex justify-content-center">
       <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
     </div>
-    <div class="col-md-4">
-      <div class="btn-group">
-        <div
-          class="btn btn-primary"
-          (click)="setView(CalendarView.Month)"
-          [class.active]="view === CalendarView.Month"
-        >
-          Mese
-        </div>
-        <div
-          class="btn btn-primary"
-          (click)="setView(CalendarView.Week)"
-          [class.active]="view === CalendarView.Week"
-        >
-          Settimana
-        </div>
-        <div
-          class="btn btn-primary"
-          (click)="setView(CalendarView.Day)"
-          [class.active]="view === CalendarView.Day"
-        >
-          Giorno
-        </div>
-      </div>
-    </div>
+    
   </div>
   <br />
   <div [ngSwitch]="view">

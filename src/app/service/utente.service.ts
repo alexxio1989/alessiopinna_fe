@@ -26,7 +26,7 @@ export class UtenteService {
   getUtente(): Utente{
     const user = localStorage.getItem('USER');
     if(user){ 
-      this.utente = JSON.parse(JSON.stringify(user));
+      this.utente = JSON.parse(user);
     }
     return this.utente;
   }
@@ -38,11 +38,11 @@ export class UtenteService {
 
   signin(req:RequestLogin): Observable<any>{
     this.ds.sbjSpinner.next(true)
-    return this.http.post(environment.signin,req);
+    return this.http.post(environment.utente + '/signin',req);
   }
 
   login(req:RequestLogin): Observable<any>{
     this.ds.sbjSpinner.next(true)
-    return this.http.post(environment.login,req); 
+    return this.http.post(environment.utente + '/login',req); 
   }
 }
