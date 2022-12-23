@@ -29,11 +29,16 @@ import { IncrementerComponent } from './incrementer/incrementer.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
+import { UserPageComponent } from './pages/user-page/user-page.component';
+import { SuPageComponent } from './pages/su-page/su-page.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'detail', component: DetailCorsoComponent }
+  { path: 'detail', component: DetailCorsoComponent },
+  { path: 'user', component: UserPageComponent },
+  { path: 'su', component: SuPageComponent }
 ];
 
 @NgModule({
@@ -46,7 +51,9 @@ export const AppRoutes: Routes = [
     DialogLoginComponent,
     DetailCorsoComponent,
     CalendarComponent,
-    IncrementerComponent
+    IncrementerComponent,
+    UserPageComponent,
+    SuPageComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +77,8 @@ export const AppRoutes: Routes = [
     NgbModalModule,
     MatFormFieldModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    AngularEditorModule
 
   ],
   providers: [],

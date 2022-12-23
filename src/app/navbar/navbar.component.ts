@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
 
   userLogged : Utente;
   isUtenteLogged = false;
+  isSU = false;
 
   constructor(private route: Router,private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog , private deviceService: DeviceDetectorService) { }
 
@@ -29,6 +30,9 @@ export class NavbarComponent implements OnInit {
 
     this.userLogged = this.user_service.getUtente();
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
+    if(this.isUtenteLogged){
+      this.isSU = 'SU' ===  this.userLogged.tipo.codice
+    } 
   }
 
   openSideBar(){
@@ -65,6 +69,5 @@ export class NavbarComponent implements OnInit {
       this.route.navigate(['']);
     }
   }
-
 
 }

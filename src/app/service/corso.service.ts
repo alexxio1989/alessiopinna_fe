@@ -17,7 +17,7 @@ export class CorsoService {
 
   constructor(private http: HttpClient ,  private ds:DelegateService) { }
 
-  getCorsi(): Observable<any>{
+  getCorsi(full: boolean): Observable<any>{
     this.ds.sbjSpinner.next(true)
     if(environment.mock){
       const corsi = CorsiJson
@@ -25,7 +25,10 @@ export class CorsoService {
         obs.next(corsi)
       })
     } else {
-      return this.http.get(environment.corso + '/all');
+      let basePath = environment.corso
+      let fullPAth = full ? '1' : '0'
+      let url = basePath + '/all/' + fullPAth;
+      return this.http.get(url);
     }
   }
 
@@ -49,5 +52,10 @@ export class CorsoService {
   save(corso:Corso): Observable<any>{
     this.ds.sbjSpinner.next(true)
     return this.http.post(environment.corso + '/save' , corso);
+  }
+
+  delete(corso:Corso): Observable<any>{
+    this.ds.sbjSpinner.next(true)
+    return this.http.delete(environment.corso + '/delete/'+ corso.id);
   }
 }

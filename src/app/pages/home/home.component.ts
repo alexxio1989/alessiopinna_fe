@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
       ]
     
     };
-    this.corso_service.getCorsi().subscribe(next=>{
+    this.corso_service.getCorsi(false).subscribe(next=>{
       this.corsi = next.corsi;
       this.corsi .forEach(corso => {
         const listFiltred = this.mapCorsi.get(corso.tipo.descrizione);

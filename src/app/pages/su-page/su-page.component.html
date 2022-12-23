@@ -1,0 +1,84 @@
+<div class="row mt-5">
+    <div class="col-12">
+        <mat-tab-group [disablePagination] = true [disableRipple] = true mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab label="Prenotazioni">
+                
+            </mat-tab>
+            <mat-tab label="Corsi">
+                
+            </mat-tab>
+            <mat-tab label="Corso editor">
+                <div class="row">
+                    <div class="col-6 d-flex justify-content-center bg-light p-3">
+                        <button mat-stroked-button (click)="reset()" color="accent"><strong>RESET CORSO</strong> </button>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center bg-light p-3">
+                        <button mat-stroked-button color="primary"><strong>SALVA CORSO</strong> </button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6 d-flex justify-content-center bg-light p-3">
+                        <app-card-corso [corso]="corso"></app-card-corso>
+                    </div>
+                    <div class="col-6 bg-light p-3">
+                        <div class="col-12 d-flex justify-content-center ">
+                            ID : {{corso.id}}
+                        </div>
+                      
+                        <div class="col-12 d-flex justify-content-center ">
+                            <mat-form-field class="example-form-field w-100">
+                                <mat-label>Titolo</mat-label>
+                                <input matInput type="text" [(ngModel)]="corso.titolo">
+                                <button *ngIf="corso.titolo" matSuffix mat-icon-button aria-label="Clear" (click)="corso.titolo=''">
+                                  <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-12 d-flex justify-content-center ">
+                            <mat-form-field class="example-form-field w-100">
+                                <mat-label>Titolo Ext</mat-label>
+                                <input matInput type="text" [(ngModel)]="corso.titoloExt">
+                                <button *ngIf="corso.titoloExt" matSuffix mat-icon-button aria-label="Clear" (click)="corso.titoloExt=''">
+                                  <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center ">
+                            <mat-form-field class="example-form-field w-100">
+                                <mat-label>Image</mat-label>
+                                <input matInput type="text" [(ngModel)]="corso.imgName">
+                                <button *ngIf="corso.imgName" matSuffix mat-icon-button aria-label="Clear" (click)="corso.imgName=''">
+                                  <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center ">
+                            <mat-form-field class="example-form-field ">
+                                <mat-label>Prezzo</mat-label>
+                                <input matInput type="number" (ngModelChange)="corso.prezzo = $event" [ngModel]="corso.prezzo">
+                               
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center ">
+                            <button mat-button [matMenuTriggerFor]="menu">Tipi corso</button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="corso.tipo = dominio" *ngFor="let dominio of tplCorsi">{{dominio.descrizione}}</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6 py-0 d-flex justify-content-center">
+                        <angular-editor [(ngModel)]="corso.descrizione" [config]="config"></angular-editor>
+                    </div>
+                    <div class="col-6  bg-light " [innerHTML]="corso.descrizione">
+                        
+                    </div>
+                </div>
+            </mat-tab>
+          </mat-tab-group>
+    </div>
+</div>
