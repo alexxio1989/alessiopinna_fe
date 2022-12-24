@@ -38,3 +38,15 @@
     line-height: 1; 
     margin: 0 0 10px !important;
 }
+
+.info {
+  text-align: center;
+}
+
+.info li::before {
+  content: "::before";
+  background: lightgray;
+  border-radius: 1ch;
+  padding-inline: 1ch;
+  margin-inline-end: 1ch;
+}
