@@ -152,4 +152,23 @@ body { margin: 0; font-family: Poppins,sans-serif !important}
     padding: 20px;
 }
 
+.info ul{
+    list-style-position: inside;
+  }
+
+.info ul li{
+    margin-bottom: 10px;
+}
+
+.info ul font{
+    font: caption;
+}
+
+.info ul li::marker {
+    content: '✓';
+    font-size: 25px;
+    padding: 10px;
+    color: #3db591;
+}
+
 
