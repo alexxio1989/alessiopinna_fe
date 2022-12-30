@@ -14,15 +14,20 @@ import { DelegateService } from './delegate.service';
 export class CorsoService {
 
   private corso: Corso;
+  private corsi : Corso[];
 
   constructor(private http: HttpClient ,  private ds:DelegateService) { }
 
   getCorsi(full: boolean): Observable<any>{
     this.ds.sbjSpinner.next(true)
-    if(environment.mock){
-      const corsi = CorsiJson
+    const corsi = localStorage.getItem('CORSI');
+    if(corsi){ 
+      this.corsi = JSON.parse(corsi);
+      let response = new ResponseCorso();
+      response.corsi = this.corsi;
+      response.success = true
       return new Observable(obs => {
-        obs.next(corsi)
+        obs.next(response)
       })
     } else {
       let basePath = environment.corso

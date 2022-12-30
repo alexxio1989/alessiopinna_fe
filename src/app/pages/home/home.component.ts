@@ -68,6 +68,10 @@ export class HomeComponent implements OnInit {
     };
     this.corso_service.getCorsi(false).subscribe(next=>{
       this.corsi = next.corsi;
+      const corsi = localStorage.getItem('CORSI');
+      if(!corsi){ 
+        localStorage.setItem('CORSI' , JSON.stringify(next.corsi))
+      }
       this.corsi .forEach(corso => {
         const listFiltred = this.mapCorsi.get(corso.tipo.descrizione);
         if(listFiltred){

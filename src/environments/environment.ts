@@ -8,7 +8,7 @@ export const environment = {
   utente: mock ? "http://localhost:8080/utente" : "https://alessiopinna-be.herokuapp.com/utente",
   prenotazione: mock ? "http://localhost:8080/prenotazione" : "https://alessiopinna-be.herokuapp.com/prenotazione",
   tpl: mock ? "http://localhost:8080/tpl" : "https://alessiopinna-be.herokuapp.com/tpl",
-  mock:false
+  mock:true
 };
 
 /*

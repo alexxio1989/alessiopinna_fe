@@ -61,7 +61,10 @@ export class SuPageComponent implements OnInit {
 
       this.corso_service.getCorsi(false).subscribe(next=>{
         this.corsi = next.corsi;
-        
+        const corsi = localStorage.getItem('CORSI');
+        if(!corsi){ 
+          localStorage.setItem('CORSI' , JSON.stringify(next.corsi))
+        }
         this.ds.sbjSpinner.next(false)
         if(!next.success){
           this.ds.sbjErrorsNotification.next(next.error)
@@ -120,6 +123,7 @@ export class SuPageComponent implements OnInit {
   }
 
   save(){
+    localStorage.removeItem('CORSI');
     this.corso_service.save(this.corso).subscribe(next => {
       this.corsi = next.corsi;
       

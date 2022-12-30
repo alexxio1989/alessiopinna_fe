@@ -21,7 +21,7 @@
 <div *ngFor="let value of mapCorsi | keyvalue" class="row mb-4 bg-light rounded p-2">
   <div  class="col-12 d-flex justify-content-center pt-3 pb-3">
     <p class="text-h3"><strong>Lezioni di {{value.key}}</strong></p>
-  </div>
+  </div> 
   
   <div *ngIf="'BACK-END' === value.key" class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12  inner-info d-flex justify-content-center">
     
@@ -29,20 +29,24 @@
       <img role="presentation" alt="" src="/assets/svg/be.svg">
     </div>
   </div>
-  <div *ngIf="'BACK-END' === value.key" class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12  inner-info">
-    <h3 class="text-h3 content-info">Chi è il Back-End developer ?</h3>
+  <div *ngIf="'BACK-END' === value.key" class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 {{isMobile ? '':'py-5 info-fixed-height'}} inner-info">
+    <div class="text-center">
+      <h3 class="text-h3 content-info">Chi è il Back-End developer ?</h3>
 
-    <p class="text-p-base content-info">Il Back-End Web Developer si occupa di far funzionare tutto quello che c’è “dietro le quinte” di un sito o di un’applicazione web e del suo funzionamento lato dati e server, quindi tutto ciò che gli utenti non vedono visitando il sito.</p>
-
+      <p class="text-p-base content-info">Il Back-End Web Developer si occupa di far funzionare tutto quello che c’è “dietro le quinte” di un sito o di un’applicazione web e del suo funzionamento lato dati e server, quindi tutto ciò che gli utenti non vedono visitando il sito.</p>
+    </div>
   </div>
   <div *ngIf="'FRONT-END' === value.key" class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12  inner-info d-flex justify-content-center">
     <div class="container-image">
       <img role="presentation" alt="" src="/assets/svg/fe.svg">
     </div>
   </div>
-  <div *ngIf="'FRONT-END' === value.key" class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12  inner-info">
-    <h3 class="text-h3 content-info">Chi è il Front-End developer ?</h3>
-    <p class="text-p-base content-info">Il Front-End Web Developer si occupa della parte visibile di un sito o di un’applicazione ed è la figura che fa da tramite tra il web designer e il back-end web developer. Grazie alle sue competenze tecniche, è in grado di rendere la UX (User Experience) semplice ed interattiva.</p>
+  <div *ngIf="'FRONT-END' === value.key" class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 {{isMobile ? '':'py-5 info-fixed-height'}} inner-info">
+    <div class="text-center">
+      <h3 class="text-h3 content-info">Chi è il Front-End developer ?</h3>
+      <p class="text-p-base content-info">Il Front-End Web Developer si occupa della parte visibile di un sito o di un’applicazione ed è la figura che fa da tramite tra il web designer e il back-end web developer. Grazie alle sue competenze tecniche, è in grado di rendere la UX (User Experience) semplice ed interattiva.</p>
+    </div>
+   
 
   </div>
   
