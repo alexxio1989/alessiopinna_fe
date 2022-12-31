@@ -4,10 +4,12 @@
     left: 0; 
     z-index: 9999; 
     width: 100%; 
-    padding-left: 15px; 
-    padding-right: 15px;
+    padding-left: 10px; 
+    padding-right: 10px;
     color: rgba(0,0,0,.87);
     box-shadow: 0 3px 2px -2px #e3e3e3;
+    justify-content: center !important;
+
 }
 
 
@@ -21,6 +23,7 @@
     color: rgba(0,0,0,.87);
     box-shadow: 0 3px 2px -2px #e3e3e3;
     margin-right: 0px;
+    max-height: 163px;
 }
 
 .img-button{
