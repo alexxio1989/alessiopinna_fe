@@ -11,7 +11,6 @@ import { SidebarService } from './service/sidebar.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  @ViewChild('drawer') drawerComp: MatDrawer;
 
   showFiller = false;
 
@@ -33,13 +32,6 @@ export class AppComponent implements OnInit{
         this.spinner.hide()
       }
     })
-    this.navService.sbjOpenSide.asObservable().subscribe(next=>{
-      this.openSide = next;
-      if(this.openSide){
-        this.drawerComp.open()
-      } else{
-        this.drawerComp.close()
-      }
-    })
+ 
   }
 }

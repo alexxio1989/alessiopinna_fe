@@ -1,47 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-nav-bar pr-4 pl-4">
-  <button mat-button class="px-0" (click)="goTo('')"><img src="/assets/logo.png" class="logo" height="30px" alt="image"></button>
-  
-  <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav"
-    aria-controls="navbarNav" (click)="openSideBar()" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse text-right" id="navbarNav">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <div class="row w-100">
+    <div class="col-6 px-0">
+      <button mat-button class="px-0" (click)="goTo('')"><img src="/assets/logo.png" class="logo" height="25px" alt="image"></button>
 
-    </ul>
-    <ul class="navbar-nav">
-      <li *ngIf="isUtenteLogged && !isSU" class="nav-item active">
-        <button mat-button><strong>Il mio profilo </strong> <img class="img-button" width="20" height="20"
-            src="/assets/icons/svgs/regular/user-com.svg"></button>
-      </li>
-      <li style="margin-left: 55px;" *ngIf="isSU" class="nav-item ml-55">
-        <button mat-button (click)="goTo('su')"><strong>SUPER_USER</strong> <img class="img-button"
-          width="18" height="18" src="/assets/icons/svgs/regular/gem.svg"></button>
-      </li>
-      <li *ngIf="isUtenteLogged" class="nav-item">
-        <button mat-button (click)="logout()" >Disconnetti <img class="img-button" width="18" height="18"
-            src="/assets/icons/svgs/regular/logout.svg"></button>
-      </li>
-      
-      <li style="margin-left: 55px;" *ngIf="!isUtenteLogged" class="nav-item ml-55">
-        <button mat-button (click)="openLogin()"><strong>Accedi | Registrati</strong> <img class="img-button"
-          width="18" height="18" src="/assets/icons/svgs/regular/login.svg"></button>
-      </li>
-
-    </ul>
+    </div>
+    <div class="col-6 d-flex flex-row-reverse px-0">
+      <button class="navbar-toggler d-block" type="button"(click)="openSideBar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
   </div>
 </nav>
 
-<div *ngIf="openSide" class=" top-bar bg-light d-flex my-auto  justify-content-end top_bottom_top_bar">
-  <ul class="navbar-nav delay_one_sec my-auto ">
-    <li *ngIf="!isUtenteLogged" class="nav-item ml-55">
-      <button mat-button (click)="openLogin()"><strong>Accedi | Registrati</strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/login.svg"></button>
-    </li>
-    <li *ngIf="isUtenteLogged" class="nav-item active">
-      <button mat-button ><strong>Il mio profilo </strong> <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/user-com.svg"></button>
-    </li>
-    <li *ngIf="isUtenteLogged" class="nav-item">
-      <button mat-button (click)="logout()">Disconnetti <img class="img-button" width="20" height="20" src="/assets/icons/svgs/regular/logout.svg"></button>
-    </li>
-  </ul>
+<div *ngIf="openSide" class=" top-bar bg-light top_bottom_top_bar">
+  <div class="row delay_one_sec w-100 p-4 mr-0">
+    
+    <div class="col-6 d-flex justify-content-center bg-white py-2">
+      <img role="presentation" width="150px" alt="" class="c-icon" src="/assets/svg/study.svg">
+    </div>
+    <div class="col-6 d-flex justify-content-center bg-white py-2">
+      <button *ngIf="isUtenteLogged && !isSU" mat-button>Il mio profilo</button>
+      <button *ngIf="isUtenteLogged && isSU" mat-button (click)="goTo('su')">ADMIN</button>
+      <button *ngIf="isUtenteLogged" mat-button (click)="logout()" >Disconnetti</button>
+      <button *ngIf="!isUtenteLogged" mat-button (click)="openLogin()">Accedi | Registrati</button>
+   
+    </div>
+  </div>
+
+
 </div>

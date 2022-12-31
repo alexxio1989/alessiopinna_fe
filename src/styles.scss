@@ -176,3 +176,20 @@ body { margin: 0; font-family: Poppins,sans-serif !important}
 }
 
 
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+    font-weight: 400 !important;
+    font-size: 13px;
+}
+.navbar-toggler {
+    border: 0px !important;
+    
+}
+
+.navbar-toggler-icon{
+    height: 25px;
+    width: 25px;
+}
+
+thead, tbody, tfoot, tr, td, th {
+    height: 50px;
+}
