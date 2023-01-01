@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RequestLogin } from 'src/app/dto/requestLogin';
 import { Utente } from 'src/app/dto/utente';
 import { DelegateService } from 'src/app/service/delegate.service';
 import { UtenteService } from 'src/app/service/utente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  SocialAuthService,
-  GoogleLoginProvider,
-  SocialUser,
-} from 'angularx-social-login';
+
 
 @Component({
   selector: 'app-dialog-login',
@@ -18,7 +14,8 @@ import {
 })
 export class DialogLoginComponent implements OnInit {
 
-
+  auth2: any;
+  @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
   requestLogin:RequestLogin
   utente:Utente
   passwordConfirm = ''
@@ -27,20 +24,13 @@ export class DialogLoginComponent implements OnInit {
 
   login = true
   loginForm!: FormGroup;
-  socialUser!: SocialUser;
   isLoggedin?: boolean;
 
   constructor(private user_service:UtenteService,
               private ds:DelegateService , 
               private dialogRef: MatDialogRef<DialogLoginComponent>,
-              private formBuilder: FormBuilder,
-              private socialAuthService: SocialAuthService) { 
-                console.log(JSON.stringify(this.socialAuthService))
-                this.socialAuthService.authState.subscribe((user) => {
-                  this.socialUser = user;
-                  this.isLoggedin = user != null;
-                  console.log(this.socialUser);
-                });
+              private formBuilder: FormBuilder) { 
+                
               }
 
   getValidPassword():boolean{
@@ -75,11 +65,51 @@ export class DialogLoginComponent implements OnInit {
     this.requestLogin = new RequestLogin();
     this.utente = new Utente();
 
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-    });
+    this.googleSDK();
   
+  }
+
+  prepareLoginButton() {
+ 
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleUser:any) => {
+ 
+        let profile = googleUser.getBasicProfile();
+        console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        //YOUR CODE HERE
+        //this.router.navigateByUrl('/google.com');
+ 
+      }, (error:any) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+ 
+  }
+  googleSDK() {
+ 
+    window['googleSDKLoaded'] = () => {
+      window['gapi'].load('auth2', () => {
+        this.auth2 = window['gapi'].auth2.init({
+          client_id: '870651648800-pq8mbb5285trh0hfdlbfub2u24unkt8f.apps.googleusercontent.com',
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email'
+        });
+        this.prepareLoginButton();
+      });
+    }
+ 
+    (function(d:any, s:any, id:any){
+
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
+ 
   }
 
   getTab(event:any){
@@ -120,11 +150,7 @@ export class DialogLoginComponent implements OnInit {
     })
   }
 
-  loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-  logOut(): void {
-    this.socialAuthService.signOut();
-  }
+
+
 
 }

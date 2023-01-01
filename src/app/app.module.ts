@@ -32,11 +32,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { SuPageComponent } from './pages/su-page/su-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-} from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
 
 
 export const AppRoutes: Routes = [
@@ -74,7 +69,6 @@ export const AppRoutes: Routes = [
     MatDialogModule,
     MatTabsModule,
     FormsModule,
-    SocialLoginModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -87,18 +81,7 @@ export const AppRoutes: Routes = [
     AngularEditorModule
 
   ],
-  providers: [{
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider('870651648800-pq8mbb5285trh0hfdlbfub2u24unkt8f.apps.googleusercontent.com'),
-        },
-      ],
-    } as SocialAuthServiceConfig,
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

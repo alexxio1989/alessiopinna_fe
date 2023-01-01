@@ -52,7 +52,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
+              "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -69,6 +69,14 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "development": { 
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "buildOptimizer": false,
+              "sourceMap": true,
+              "optimization": false,
+              "namedChunks": true
             }
           }
         },
@@ -80,8 +88,12 @@
           "configurations": {
             "production": {
               "browserTarget": "alessiopinna-fe:build:production"
+            },
+            "development": {
+              "browserTarget": "alessiopinna-fe:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
