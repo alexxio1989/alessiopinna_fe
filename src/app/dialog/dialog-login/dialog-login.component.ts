@@ -4,6 +4,12 @@ import { RequestLogin } from 'src/app/dto/requestLogin';
 import { Utente } from 'src/app/dto/utente';
 import { DelegateService } from 'src/app/service/delegate.service';
 import { UtenteService } from 'src/app/service/utente.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  SocialAuthService,
+  GoogleLoginProvider,
+  SocialUser,
+} from 'angularx-social-login';
 
 @Component({
   selector: 'app-dialog-login',
@@ -20,8 +26,22 @@ export class DialogLoginComponent implements OnInit {
   maintab = 0;
 
   login = true
+  loginForm!: FormGroup;
+  socialUser!: SocialUser;
+  isLoggedin?: boolean;
 
-  constructor(private user_service:UtenteService,private ds:DelegateService , public dialogRef: MatDialogRef<DialogLoginComponent>) { }
+  constructor(private user_service:UtenteService,
+              private ds:DelegateService , 
+              private dialogRef: MatDialogRef<DialogLoginComponent>,
+              private formBuilder: FormBuilder,
+              private socialAuthService: SocialAuthService) { 
+                console.log(JSON.stringify(this.socialAuthService))
+                this.socialAuthService.authState.subscribe((user) => {
+                  this.socialUser = user;
+                  this.isLoggedin = user != null;
+                  console.log(this.socialUser);
+                });
+              }
 
   getValidPassword():boolean{
     return this.requestLogin.password !== undefined &&
@@ -54,6 +74,12 @@ export class DialogLoginComponent implements OnInit {
     this.login = true
     this.requestLogin = new RequestLogin();
     this.utente = new Utente();
+
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  
   }
 
   getTab(event:any){
@@ -92,6 +118,13 @@ export class DialogLoginComponent implements OnInit {
       this.ds.sbjSpinner.next(false)
       this.ds.sbjErrorsNotification.next("Errore durante la signin")
     })
+  }
+
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+  logOut(): void {
+    this.socialAuthService.signOut();
   }
 
 }

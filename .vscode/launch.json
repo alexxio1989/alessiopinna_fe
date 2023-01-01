@@ -7,8 +7,9 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
-            "name": "Open home.component.html",
-            "url": "http://localhost:4200"
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
