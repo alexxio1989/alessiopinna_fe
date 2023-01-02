@@ -97,7 +97,7 @@
               type="text"
               mwlFlatpickr
               [(ngModel)]="event.start"
-              (ngModelChange)="refresh.next()"
+              (ngModelChange)="refresh.next(event)"
               [altInput]="true"
               [convertModelValue]="true"
               [enableTime]="true"
