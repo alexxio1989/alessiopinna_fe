@@ -5,6 +5,7 @@ import { Utente } from 'src/app/dto/utente';
 import { DelegateService } from 'src/app/service/delegate.service';
 import { UtenteService } from 'src/app/service/utente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 
 @Component({
@@ -26,10 +27,13 @@ export class DialogLoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoggedin?: boolean;
 
+  user: SocialUser;
+  loggedIn: boolean;
+
   constructor(private user_service:UtenteService,
               private ds:DelegateService , 
               private dialogRef: MatDialogRef<DialogLoginComponent>,
-              private formBuilder: FormBuilder) { 
+              private formBuilder: FormBuilder,private authService: SocialAuthService) { 
                 
               }
 
@@ -65,52 +69,15 @@ export class DialogLoginComponent implements OnInit {
     this.requestLogin = new RequestLogin();
     this.utente = new Utente();
 
-    this.googleSDK();
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(JSON.stringify(this.user))
+      this.loggedIn = (user != null);
+    });
   
   }
 
-  prepareLoginButton() {
- 
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleUser:any) => {
- 
-        let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        //YOUR CODE HERE
-        //this.router.navigateByUrl('/google.com');
- 
-      }, (error:any) => {
-        alert(JSON.stringify(error, undefined, 2));
-      });
- 
-  }
-  googleSDK() {
- 
-    window['googleSDKLoaded'] = () => {
-      window['gapi'].load('auth2', () => {
-        this.auth2 = window['gapi'].auth2.init({
-          client_id: '870651648800-pq8mbb5285trh0hfdlbfub2u24unkt8f.apps.googleusercontent.com',
-          cookiepolicy: 'single_host_origin',
-          scope: 'profile email'
-        });
-        this.prepareLoginButton();
-      });
-    }
- 
-    (function(d:any, s:any, id:any){
 
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'google-jssdk'));
- 
-  }
 
   getTab(event:any){
     this.login = event.index === 0 ? true : false
@@ -150,7 +117,9 @@ export class DialogLoginComponent implements OnInit {
     })
   }
 
-
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
 
 
 }

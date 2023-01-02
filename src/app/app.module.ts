@@ -32,7 +32,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { SuPageComponent } from './pages/su-page/su-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider
+} from '@abacritt/angularx-social-login';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -78,10 +81,29 @@ export const AppRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    AngularEditorModule
+    AngularEditorModule,
+    SocialLoginModule
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '870651648800-pq8mbb5285trh0hfdlbfub2u24unkt8f.apps.googleusercontent.com'
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
       });
     } else {
       this.dialog.open(DialogLoginComponent, {
-        height: '82%',
+        height: 'auto',
         width: '40%'
       });
     }
