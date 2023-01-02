@@ -6,4 +6,5 @@ export class Utente{
     skypeID:string;
     email:string;
     tipo:Dominio;
+    photoUrl: string;
 }

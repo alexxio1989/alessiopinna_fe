@@ -5,27 +5,30 @@
 
     </div>
     <div class="col-6 d-flex flex-row-reverse px-0">
-      <button class="navbar-toggler d-block" type="button"(click)="openSideBar()">
-        <span class="navbar-toggler-icon"></span>
+      
+      <button  *ngIf="!isUtenteLogged" mat-button (click)="openLogin()">
+        <img  height="28px" alt="" class="c-icon" src="/assets/icons/svgs/regular/user-com.svg">
+      </button>
+      <button *ngIf="isUtenteLogged" mat-button  [matMenuTriggerFor]="menu" (click)="openSideBar()">
+        <img *ngIf="!userLogged.photoUrl" height="28px" alt="" class="c-icon" src="/assets/icons/svgs/regular/user-com.svg">
+        <img *ngIf="userLogged.photoUrl" height="28px" alt="" class="c-icon rounded-circle" src="{{userLogged.photoUrl}}">
       </button>
     </div>
   </div>
 </nav>
 
-<div *ngIf="openSide" class=" top-bar bg-light top_bottom_top_bar">
-  <div class="row delay_one_sec w-100 p-4 mr-0">
-    
-    <div class="col-6 d-flex justify-content-center bg-white py-2">
-      <img  height="100px" alt="" class="c-icon" src="/assets/svg/study.svg">
+<mat-menu class="mt-2 bg-light" #menu="matMenu">
+  <div class="row">
+    <div *ngIf="!isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
+      <button mat-button>Il mio profilo</button>
     </div>
-    <div class="col-6 d-flex justify-content-center bg-white py-2">
-      <button *ngIf="isUtenteLogged && !isSU" mat-button>Il mio profilo</button>
-      <button *ngIf="isUtenteLogged && isSU" mat-button (click)="goTo('su')">ADMIN</button>
-      <button *ngIf="isUtenteLogged" mat-button (click)="logout()" >Disconnetti</button>
-      <button *ngIf="!isUtenteLogged" mat-button (click)="openLogin()">Accedi | Registrati</button>
-   
+    <div *ngIf="isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
+      <button mat-button (click)="goTo('su')">ADMIN</button>
     </div>
+    <mat-divider class="mb-2"></mat-divider>
+    <div *ngIf="isUtenteLogged" class="col-12 d-flex justify-content-center  bg-white">
+      <button  mat-button color="accent" (click)="logout()">Disconnetti</button>
+    </div>
+
   </div>
-
-
-</div>
+</mat-menu>

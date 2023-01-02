@@ -85,6 +85,8 @@ export class DialogLoginComponent implements OnInit {
             this.ds.sbjErrorsNotification.next(next.error)
           } else {
             this.ds.sbjErrorsNotification.next("Login avvenuta con successo")
+            this.utente = next.utente;
+            this.utente.photoUrl = this.user.photoUrl
             this.user_service.setUtente(next.utente)
             this.dialogRef.close();
           }

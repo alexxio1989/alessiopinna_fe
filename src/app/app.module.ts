@@ -33,6 +33,8 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 import { SuPageComponent } from './pages/su-page/su-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {MatDividerModule} from '@angular/material/divider';
+
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
@@ -71,6 +73,7 @@ export const AppRoutes: Routes = [
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
+    MatDividerModule,
     FormsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
