@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -20,7 +21,12 @@ export class NavbarComponent implements OnInit {
   isUtenteLogged = false;
   isSU = false;
 
-  constructor(private route: Router,private navService: SidebarService,private user_service:UtenteService , public dialog: MatDialog , private deviceService: DeviceDetectorService) { }
+  constructor(private route: Router,
+              private navService: SidebarService,
+              private user_service:UtenteService , 
+              public dialog: MatDialog , 
+              private deviceService: DeviceDetectorService,
+              private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -60,6 +66,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.user_service.removeUtente();
+    this.logoutSocial() 
   }
 
   goTo(path:string){
@@ -67,6 +74,12 @@ export class NavbarComponent implements OnInit {
       this.route.navigate(['/' + path]);
     } else {
       this.route.navigate(['']);
+    }
+  }
+
+  logoutSocial() {
+    if(this.authService !== null) {
+       this.authService.signOut();
     }
   }
 

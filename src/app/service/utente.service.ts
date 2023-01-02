@@ -45,4 +45,9 @@ export class UtenteService {
     this.ds.sbjSpinner.next(true)
     return this.http.post(environment.utente + '/login',req); 
   }
+
+  socialSignin(req:RequestLogin): Observable<any>{
+    this.ds.sbjSpinner.next(true)
+    return this.http.post(environment.utente + '/socialSignin',req); 
+  }
 }

@@ -73,6 +73,27 @@ export class DialogLoginComponent implements OnInit {
       this.user = user;
       console.log(JSON.stringify(this.user))
       this.loggedIn = (user != null);
+      if(this.user){
+        this.utente = new Utente();
+        this.utente.email = this.user.email
+        this.requestLogin.utente = this.utente
+        this.requestLogin.password = this.user.id
+
+        this.user_service.socialSignin(this.requestLogin).subscribe(next => {
+          this.ds.sbjSpinner.next(false)
+          if(!next.success){
+            this.ds.sbjErrorsNotification.next(next.error)
+          } else {
+            this.ds.sbjErrorsNotification.next("Login avvenuta con successo")
+            this.user_service.setUtente(next.utente)
+            this.dialogRef.close();
+          }
+        }, error => {
+          this.ds.sbjSpinner.next(false)
+          this.ds.sbjErrorsNotification.next("Errore durante la login")
+        })
+      }
+      
     });
   
   }
