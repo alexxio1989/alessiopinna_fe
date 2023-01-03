@@ -39,6 +39,7 @@ import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
 import { DescrizioniComponent } from './descrizioni/descrizioni.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -60,7 +61,8 @@ export const AppRoutes: Routes = [
     IncrementerComponent,
     UserPageComponent,
     SuPageComponent,
-    DescrizioniComponent
+    DescrizioniComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
