@@ -102,6 +102,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.prenotazione_service.getAllByUtenteAndCorso(this.user_service.getUtente(),this.corso).subscribe(next =>{
       this.ds.sbjSpinner.next(false)
+
+      let utente = this.user_service.getUtente();
+      utente.prenotazioni = next.prenotazioni
+      this.user_service.removeUtente()
+      this.user_service.setUtente(utente)
       next.prenotazioni.forEach(prenotazione => {
         this.events.push(this.getEvent(prenotazione,true))
         this.eventsNotConfirmed.push(this.getEvent(prenotazione,true))
@@ -225,6 +230,10 @@ export class CalendarComponent implements OnInit {
         this.ds.sbjErrorsNotification.next(next.error)
       } else {
         this.events = []
+        let utente = this.user_service.getUtente();
+      utente.prenotazioni = next.prenotazioni
+      this.user_service.removeUtente()
+      this.user_service.setUtente(utente)
         next.prenotazioni.forEach(prenotazione => {
           this.events.push(this.getEvent(prenotazione,true))
           this.refresh.next(this.getEvent(prenotazione,true))
@@ -264,6 +273,10 @@ export class CalendarComponent implements OnInit {
       } else {
         this.events = []
         this.eventsNotConfirmed = []
+        let utente = this.user_service.getUtente();
+      utente.prenotazioni = next.prenotazioni
+      this.user_service.removeUtente()
+      this.user_service.setUtente(utente)
         next.prenotazioni.forEach(prenotazione => {
           this.events.push(this.getEvent(prenotazione,true))
           this.eventsNotConfirmed.push(this.getEvent(prenotazione,true))

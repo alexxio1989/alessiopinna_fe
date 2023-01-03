@@ -21,6 +21,8 @@ export class NavbarComponent implements OnInit {
   isUtenteLogged = false;
   isSU = false;
 
+  prenotazioniArePresents : boolean
+
   constructor(private route: Router,
               private navService: SidebarService,
               private user_service:UtenteService , 
@@ -32,11 +34,16 @@ export class NavbarComponent implements OnInit {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
       this.userLogged = next;
       this.isUtenteLogged = next !== undefined && next !== null;
+      if(this.isUtenteLogged){
+        this.prenotazioniArePresents = this.userLogged.prenotazioni && this.userLogged.prenotazioni.length > 0
+        this.isSU = 'SU' ===  this.userLogged.tipo.codice
+      } 
     })
 
     this.userLogged = this.user_service.getUtente();
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
     if(this.isUtenteLogged){
+      this.prenotazioniArePresents = this.userLogged.prenotazioni && this.userLogged.prenotazioni.length > 0
       this.isSU = 'SU' ===  this.userLogged.tipo.codice
     } 
   }

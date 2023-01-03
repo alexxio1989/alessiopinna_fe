@@ -34,6 +34,8 @@ import { SuPageComponent } from './pages/su-page/su-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 import {
   GoogleLoginProvider
@@ -89,7 +91,8 @@ export const AppRoutes: Routes = [
     MatInputModule,
     MatMenuModule,
     AngularEditorModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatBadgeModule
 
   ],
   providers: [

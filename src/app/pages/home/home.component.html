@@ -25,8 +25,8 @@
   
   <app-descrizioni [code] = "value.key"></app-descrizioni>
   
-  <div class="col-12 d-flex justify-content-around px-0 bg-white mt-2">
-    <div *ngFor="let corso of value.value" class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 d-flex justify-content-center inner-corsi rounded mt-2">
+  <div class="col-12 px-5 {{isMobile ? '' : 'd-flex justify-content-around'  }} bg-white mt-2">
+    <div *ngFor="let corso of value.value" class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 d-flex justify-content-center inner-corsi rounded mt-2">
       <app-card-corso [corso]="corso"></app-card-corso>
     </div>
   </div>

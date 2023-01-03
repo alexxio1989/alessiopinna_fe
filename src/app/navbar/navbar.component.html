@@ -6,10 +6,13 @@
     </div>
     <div class="col-6 d-flex flex-row-reverse px-0">
       
+      <button class="px-0 prenotazioni" mat-button matBadge="{{userLogged.prenotazioni.length}}" *ngIf="userLogged && userLogged.prenotazioni && userLogged.prenotazioni.length >  0" [disabled] = "true">
+        <img height="28px" class="info-calendar" src="/assets/svg/calendar.svg" alt="Card image cap">
+      </button>
       <button  *ngIf="!isUtenteLogged" mat-button (click)="openLogin()">
         <img  height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
       </button>
-      <button *ngIf="isUtenteLogged" mat-button  [matMenuTriggerFor]="menu" (click)="openSideBar()">
+      <button *ngIf="isUtenteLogged" mat-button [matMenuTriggerFor]="menu" (click)="openSideBar()">
         <img *ngIf="!userLogged.photoUrl" height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
         <img *ngIf="userLogged.photoUrl" height="28px" alt="" class="c-icon rounded-circle border border-white" src="{{userLogged.photoUrl}}">
       </button>

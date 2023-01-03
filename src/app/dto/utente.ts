@@ -1,4 +1,5 @@
 import { Dominio } from "./dominio";
+import { Prenotazione } from "./prenotazione";
 
 export class Utente{
     id:number;
@@ -7,4 +8,5 @@ export class Utente{
     email:string;
     tipo:Dominio;
     photoUrl: string;
+    prenotazioni: Prenotazione[]
 }

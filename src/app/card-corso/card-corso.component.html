@@ -1,5 +1,25 @@
 
 
+<div class="row card-corso ml-2" >
+  <div class="col-4 px-0 my-auto">
+    
+    <img class="img_corso img-shadow my-auto" src="/assets/svg/{{corso.imgName}}.svg" alt="Card image cap">
+    
+  </div>
+  <div class="col-8 d-flex flex-column">
+    <h3 class="text-h5 text-center mb-0 mt-2"><strong>{{corso.titolo}}</strong></h3>
+    <h4 class="text-p-base-sm mb-2 mt-2 title-ext text-center">{{corso.titoloExt}}</h4>
+    <div class="price-box mb-3 ">
+      <p class="price">{{corso.prezzo | currency:'EUR':true }}</p>
+      <p class="info-price"> / h</p>
+    </div>
+    <button  mat-button class="px-0" (click)="goToDetail()">
+      <p class="card-text p-small text-primary text-center"><img height="25px" class="info-calendar" src="/assets/svg/calendar.svg" alt="Card image cap"> <strong >PRENOTA ORA</strong></p>
+    </button>
+
+  </div>
+</div>
+<!-- 
 <div class="card card-corso" (click)="goToDetail()">
   <div class="price-box">
     <p class="price">{{corso.prezzo | currency:'EUR':true }}</p>
@@ -23,4 +43,4 @@
 
     </div>
   </div>
-</div>
+</div> -->
