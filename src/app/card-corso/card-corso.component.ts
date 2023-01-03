@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { Corso } from '../dto/corso';
 import { Utente } from '../dto/utente';
 import { CorsoService } from '../service/corso.service';
@@ -17,7 +18,10 @@ export class CardCorsoComponent implements OnInit {
 
   @Input() corso: Corso;
 
-  constructor(private user_service:UtenteService , private corso_service:CorsoService ,private route: Router) { }
+  constructor(private user_service:UtenteService , 
+              private corso_service:CorsoService ,
+              private route: Router,
+              private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{

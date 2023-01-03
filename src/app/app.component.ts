@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DelegateService } from './service/delegate.service';
-import { SidebarService } from './service/sidebar.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +14,9 @@ export class AppComponent implements OnInit{
 
   openSide = false;
 
-  constructor(private navService: SidebarService , private spinner: NgxSpinnerService , private ds:DelegateService , private _snackBar: MatSnackBar) { }
+  constructor(private spinner: NgxSpinnerService , 
+              private ds:DelegateService , 
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.ds.sbjErrorsNotification.asObservable().subscribe(next => {

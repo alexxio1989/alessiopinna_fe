@@ -1,10 +1,10 @@
 .card-corso {
-  width: 270px;
+  width: 100%;
 }
 
 .img_corso {
   width: 100%;
-  height: 9.5rem;
+  height: 8.5rem;
 }
 
 
@@ -23,18 +23,18 @@
 }
 .infoTutorOnline{
   height: 30px;
-  width: 110px;
+  width: 135px;
   padding-top: 5px;
   border-radius: 10px;
-  background-color: rgba(244, 177, 84, 0.457);
+  background-color: rgba(255, 239, 214, 0.457);
 }
 
 .price-box{
   background-color: white;
-  height: 38px;
-  width: 98px;
-  margin-top: 105px;
-  margin-left: 161px;
+  height: 33px;
+    width: 79px;
+    margin-top: 107px;
+    left: 55%;
   position: absolute;
   border: 0px solid #555;
   border-radius: 20px;
@@ -44,17 +44,18 @@ z-index: 8;
 }
 
 .price{
-  font-size: 18px;
-    margin-left: 13px;
-    margin-top: 7px;
+  font-size: 14px;
+    margin-left: 8px;
+    margin-top: 5px;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: 700!important;
   }
 
 .info-price{
-  margin-left: 66px;
-  margin-top: -25px;
-  color: rgb(134, 134, 134);
+  margin-left: 51px;
+    margin-top: -33px;
+    font-size: 12px;
+    color: rgb(134, 134, 134);
 }
 
 .img-shadow {
@@ -64,4 +65,9 @@ z-index: 8;
 .title-ext{
   color: rgb(110, 110, 110);
   text-align: center;
+}
+
+.info-calendar{
+  margin-right: 8px;
+  margin-top: -3px;
 }

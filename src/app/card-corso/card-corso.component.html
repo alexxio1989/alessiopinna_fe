@@ -1,7 +1,6 @@
 
 
-
-<div class="card card-corso" (click) = "goToDetail()">
+<div class="card card-corso" (click)="goToDetail()">
   <div class="price-box">
     <p class="price">{{corso.prezzo | currency:'EUR':true }}</p>
     <p class="info-price"> / h</p>
@@ -9,19 +8,19 @@
   <img class="img_corso img-shadow " src="/assets/svg/{{corso.imgName}}.svg" alt="Card image cap">
   <div class="card-body pt-1 pb-1">
     <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <h3 class="card-title mb-0 mt-2"><strong>{{corso.titolo}}</strong></h3>
+      <div class="col-12 p-0 d-flex justify-content-center">
+        <h3 class="text-h5 mb-0 mt-2"><strong>{{corso.titolo}}</strong></h3>
       </div>
       <div class="col-12 d-flex justify-content-center">
-        <h4 class="card-title mb-0 mt-2 title-ext">{{corso.titoloExt}}</h4>
+        <h4 class="text-p-base-sm mb-0 mt-2 title-ext">{{corso.titoloExt}}</h4>
       </div>
-      
+
       <div class="col-12 mt-2 d-flex justify-content-center">
         <div class="infoTutorOnline d-flex justify-content-center">
-          <p class="card-text p-small"><strong>TUTOR ONLINE</strong></p>
+          <p class="card-text p-small text-success"><img height="20px" class="info-calendar" src="/assets/svg/calendar.svg" alt="Card image cap"> <strong >PRENOTA ORA</strong></p>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>

@@ -38,6 +38,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
+import { DescrizioniComponent } from './descrizioni/descrizioni.component';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,7 +59,8 @@ export const AppRoutes: Routes = [
     CalendarComponent,
     IncrementerComponent,
     UserPageComponent,
-    SuPageComponent
+    SuPageComponent,
+    DescrizioniComponent
   ],
   imports: [
     BrowserModule,

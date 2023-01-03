@@ -1,0 +1,100 @@
+.info {
+    text-align: center;
+}
+
+.info ul{
+    list-style-position: inside;
+  }
+
+.info ul li{
+    margin-bottom: 10px;
+}
+
+.info ul font{
+    font: caption;
+}
+
+.info ul li::marker {
+    content: '✓';
+    font-size: 25px;
+    padding: 10px;
+    color: #3db591;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #dba96c;
+}
+
+
+.form-control {
+    height: 52px !important;
+    margin-top: 3px !important;
+}
+
+.cal-month-view .cal-day-cell {
+    min-height: 70px !important;
+}
+
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.slick-dots li.slick-active button:before {
+    color: black;
+    opacity: 0.75;
+    font-size: 9px;
+}
+
+.card {
+    --bs-card-border-width: 0px !important;
+}
+
+
+
+.mat-dialog-container{
+    margin-top: 20px !important;
+}
+
+.mat-tab-body-content {
+    padding-top: 15px !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+}
+
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+    font-weight: 700 !important;
+}
+
+
+
+
+
+
+.mat-form-field-appearance-outline .mat-form-field-flex {
+   padding: 0px !important;
+}
+
+::ng-deep.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none !important;
+}
+
+.mat-menu-content:not(:empty) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding: 20px;
+}
+
+
+.modal.show .modal-dialog {
+    margin-top: 75px !important;
+}
+
+
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+    font-weight: 400 !important;
+    font-size: 13px;
+}
