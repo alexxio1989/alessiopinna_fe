@@ -7,11 +7,11 @@
     <div class="col-6 d-flex flex-row-reverse px-0">
       
       <button  *ngIf="!isUtenteLogged" mat-button (click)="openLogin()">
-        <img  height="28px" alt="" class="c-icon" src="/assets/icons/svgs/regular/user-com.svg">
+        <img  height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
       </button>
       <button *ngIf="isUtenteLogged" mat-button  [matMenuTriggerFor]="menu" (click)="openSideBar()">
-        <img *ngIf="!userLogged.photoUrl" height="28px" alt="" class="c-icon" src="/assets/icons/svgs/regular/user-com.svg">
-        <img *ngIf="userLogged.photoUrl" height="28px" alt="" class="c-icon rounded-circle" src="{{userLogged.photoUrl}}">
+        <img *ngIf="!userLogged.photoUrl" height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
+        <img *ngIf="userLogged.photoUrl" height="28px" alt="" class="c-icon rounded-circle border border-white" src="{{userLogged.photoUrl}}">
       </button>
     </div>
   </div>
