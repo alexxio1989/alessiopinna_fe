@@ -92,6 +92,7 @@ export class PrenotazioniComponent implements OnInit {
   }
 
   conferma(event: CalendarEvent<EventInfo>){
+    this.deleteNotConfirmed(event)
     event.meta.confirmed = true
     let endDate = addHours(event.start,event.meta.ore)
     let prenotazione = new Prenotazione();
@@ -161,6 +162,11 @@ export class PrenotazioniComponent implements OnInit {
       this.ds.sbjSpinner.next(false)
       this.ds.sbjErrorsNotification.next("Errore durante l'eliminazione della prenotazione")
     })
+  }
+
+  deleteNotConfirmed(eventToDelete: CalendarEvent<EventInfo>) {
+
+    this.eventsNotConfirmed = this.eventsNotConfirmed.filter((element) => { element.meta.id !== eventToDelete.meta.id})
   }
 
 }

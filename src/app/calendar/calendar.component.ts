@@ -73,6 +73,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cs.eventsSBJ.asObservable().subscribe(next => {
+      this.events = []
       this.events = next;
     });
     this.cs.activeDayIsOpenSBJ.asObservable().subscribe(next => {

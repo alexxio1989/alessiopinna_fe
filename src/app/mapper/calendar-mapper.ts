@@ -18,7 +18,10 @@ export const colors: any = {
   };
 
 export function  getEvent(prenotazione:Prenotazione, confirmed:boolean):CalendarEvent<EventInfo>{
-    let startEvent = prenotazione.dataPrenotazione;
+    let startEvent:Date;
+    if (typeof prenotazione.dataPrenotazione === 'string' || prenotazione.dataPrenotazione instanceof String){
+      startEvent = new Date(prenotazione.dataPrenotazione)
+    }
     let endEvent = addHours(startEvent,prenotazione.qntOre);
     return {
       title: prenotazione.corso.titolo,

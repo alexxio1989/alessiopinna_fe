@@ -8,4 +8,27 @@ mat-form-field {
   input::-webkit-inner-spin-button {
     display: none;
   }
+
+  .number{
+    font-size: 30px !important;
+  }
+
+
+.incrementer-button {
+  background-color: silver;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.incrementer-button-disabled {
+  height: 40px;
+  width: 40px;
+}
   
+
+.incrementer-box{
+  max-width: fit-content;
+  padding: 2px;
+  background-color: white;
+}
