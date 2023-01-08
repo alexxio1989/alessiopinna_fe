@@ -1,6 +1,5 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
   Input,
@@ -8,14 +7,8 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
   isSameDay,
-  isSameMonth,
-  addHours
+  isSameMonth
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,27 +20,10 @@ import {
 } from 'angular-calendar';
 import { EventInfo } from '../dto/EventInfo';
 import { Corso } from '../dto/corso';
-import { PrenotazioneService } from '../service/prenotazione.service';
-import { Prenotazione } from '../dto/prenotazione';
 import { DelegateService } from '../service/delegate.service';
 import { UtenteService } from '../service/utente.service';
-import { ResponsePrenotazione } from '../dto/responsePrenotazione';
+import { CalendarService } from '../service/calendar.service';
 
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
 
 @Component({
   selector: 'app-calendar',
@@ -56,12 +32,14 @@ const colors: any = {
 })
 export class CalendarComponent implements OnInit {
 
-  @Input() corso: Corso;
-  private yesterday: Date;
+  yesterday: Date;
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
+  
+  events: CalendarEvent<EventInfo>[];
+  activeDayIsOpen: boolean = false;
 
   modalData: {
     event: CalendarEvent
@@ -83,63 +61,25 @@ export class CalendarComponent implements OnInit {
     }
   ];
 
-  refresh: Subject<any> = new Subject();
-  events: CalendarEvent<EventInfo>[];
-  eventsNotConfirmed: CalendarEvent<EventInfo>[];
-  activeDayIsOpen: boolean = false;
+  
 
-  constructor(private modal: NgbModal , 
-              private prenotazione_service : PrenotazioneService , 
-              private ds:DelegateService , 
-              private user_service:UtenteService,
+  constructor(private modal: NgbModal ,
+              public ds:DelegateService , 
+              public cs:CalendarService,
               private changeDetectorRef: ChangeDetectorRef) {
     this.initializeYesterday();
-    //this.initializeEvents();
     this.events = []
-    this.eventsNotConfirmed =[]
   }
 
   ngOnInit(): void {
-    this.prenotazione_service.getAllByUtenteAndCorso(this.user_service.getUtente(),this.corso).subscribe(next =>{
-      this.ds.sbjSpinner.next(false)
-
-      let utente = this.user_service.getUtente();
-      utente.prenotazioni = next.prenotazioni
-      this.user_service.removeUtente()
-      this.user_service.setUtente(utente)
-      next.prenotazioni.forEach(prenotazione => {
-        this.events.push(this.getEvent(prenotazione,true))
-        this.eventsNotConfirmed.push(this.getEvent(prenotazione,true))
-        this.changeDetectorRef.detectChanges();
-        this.refresh.next(this.getEvent(prenotazione,true))
-      });
-      
-    }, error => {
-      this.ds.sbjSpinner.next(false)
-      this.ds.sbjErrorsNotification.next("Errore il recupero delle prenotazioni")
-    })
+    this.cs.eventsSBJ.asObservable().subscribe(next => {
+      this.events = next;
+    });
+    this.cs.activeDayIsOpenSBJ.asObservable().subscribe(next => {
+      this.activeDayIsOpen = next;
+    });
   }
 
-  private getEvent(prenotazione:Prenotazione, confirmed:boolean):CalendarEvent<EventInfo>{
-    let startEvent = prenotazione.dataPrenotazione;
-    let endEvent = addHours(startEvent,prenotazione.qntOre);
-    return {
-      title: prenotazione.corso.titolo,
-      start: startEvent,
-      end: endEvent,
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      meta:{
-        id:prenotazione.id,
-        confirmed:confirmed,
-        ore:prenotazione.qntOre
-      }
-    };
-  }
 
   private initializeYesterday() {
     this.yesterday = new Date();
@@ -184,132 +124,13 @@ export class CalendarComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-
-    let count = 0
-    if(this.events.length > 0){
-      count = this.events[this.events.length -1].meta.id + 1
-    } else {
-      count = 1
-    }
-
-    let today = new Date();
-    
-    this.eventsNotConfirmed = [
-      ...this.eventsNotConfirmed,
-      {
-        title: 'New event',
-        start: today,
-        end: today,
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        },
-        meta:{
-          id:count,
-          confirmed:false,
-          ore:0
-        }
-      }
-    ];
-  }
-
-  conferma(event: CalendarEvent<EventInfo>){
-    event.meta.confirmed = true
-    let endDate = addHours(event.start,event.meta.ore)
-    let prenotazione = new Prenotazione();
-    prenotazione.corso = this.corso;
-    prenotazione.utente = this.user_service.getUtente()
-    prenotazione.dataPrenotazione = event.start;
-    prenotazione.qntOre = event.meta.ore;
-    prenotazione.fromDetail = true
-    this.prenotazione_service.save(prenotazione).subscribe((next:ResponsePrenotazione) => {
-      if(!next.success){
-        this.ds.sbjErrorsNotification.next(next.error)
-      } else {
-        this.events = []
-        let utente = this.user_service.getUtente();
-      utente.prenotazioni = next.prenotazioni
-      this.user_service.removeUtente()
-      this.user_service.setUtente(utente)
-        next.prenotazioni.forEach(prenotazione => {
-          this.events.push(this.getEvent(prenotazione,true))
-          this.refresh.next(this.getEvent(prenotazione,true))
-        });
-        this.changeDetectorRef.detectChanges();
-        this.ds.sbjErrorsNotification.next("PRENOTAZIONE AVVUNUTA CON SUCCESSO")
-      }
-      this.ds.sbjSpinner.next(false)
-      
-    }, error => {
-      this.ds.sbjSpinner.next(false)
-      this.ds.sbjErrorsNotification.next("Errore durante il salvataggio della prenotazione")
-    })
-
-  }
-
-  addHours(date:Date, hours:number):Date {
-    date.setHours(date.getHours() + hours);
-  
-    return date;
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent<EventInfo>) {
-    
-    this.activeDayIsOpen = false
-
-    let prenotazione = new Prenotazione();
-    prenotazione.id = eventToDelete.meta.id;
-    prenotazione.corso = this.corso;
-    prenotazione.utente = this.user_service.getUtente()
-    prenotazione.dataPrenotazione = eventToDelete.start;
-    prenotazione.qntOre = eventToDelete.meta.ore;
-    prenotazione.fromDetail = true
-    this.prenotazione_service.delete(prenotazione).subscribe(next=>{
-      if(!next.success){
-        this.ds.sbjErrorsNotification.next(next.error)
-      } else {
-        this.events = []
-        this.eventsNotConfirmed = []
-        let utente = this.user_service.getUtente();
-      utente.prenotazioni = next.prenotazioni
-      this.user_service.removeUtente()
-      this.user_service.setUtente(utente)
-        next.prenotazioni.forEach(prenotazione => {
-          this.events.push(this.getEvent(prenotazione,true))
-          this.eventsNotConfirmed.push(this.getEvent(prenotazione,true))
-          this.refresh.next(this.getEvent(prenotazione,true))
-        });
-        this.changeDetectorRef.detectChanges();
-        this.ds.sbjErrorsNotification.next("ELIMINAZIONE AVVUNUTA CON SUCCESSO")
-      }
-      this.ds.sbjSpinner.next(false)
-    }, error => {
-      this.ds.sbjSpinner.next(false)
-      this.ds.sbjErrorsNotification.next("Errore durante l'eliminazione della prenotazione")
-    })
-  }
-
   setView(view: CalendarView) {
     this.view = view;
   }
 
   closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
+    this.cs.activeDayIsOpenSBJ.next(false)
   }
 
-  get allConfirmed():boolean{
-    let allConfirmed : boolean;
-     this.eventsNotConfirmed
-     if(this.eventsNotConfirmed.length === 0){
-      allConfirmed = true
-     } else {
-      allConfirmed = this.eventsNotConfirmed.length === this.eventsNotConfirmed.filter(item => item.meta.confirmed).length;
-     }
-
-     return allConfirmed;
-  }
 
 }

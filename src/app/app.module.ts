@@ -42,6 +42,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { DescrizioniComponent } from './descrizioni/descrizioni.component';
 import { FooterComponent } from './footer/footer.component';
+import { PrenotazioniComponent } from './prenotazioni/prenotazioni.component';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -64,7 +65,8 @@ export const AppRoutes: Routes = [
     UserPageComponent,
     SuPageComponent,
     DescrizioniComponent,
-    FooterComponent
+    FooterComponent,
+    PrenotazioniComponent
   ],
   imports: [
     BrowserModule,
