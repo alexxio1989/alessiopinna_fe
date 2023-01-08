@@ -10,25 +10,34 @@ mat-form-field {
   }
 
   .number{
-    font-size: 30px !important;
+    font-size: 17px !important;
+    padding: 5px;
   }
 
 
 .incrementer-button {
   background-color: silver;
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
+  margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .incrementer-button-disabled {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
+  margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.icon-incrementer{
+  margin-top: -6px;
 }
   
 
 .incrementer-box{
   max-width: fit-content;
-  padding: 2px;
+  padding: 6px;
   background-color: white;
 }

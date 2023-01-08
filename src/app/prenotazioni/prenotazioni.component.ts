@@ -101,6 +101,7 @@ export class PrenotazioniComponent implements OnInit {
     prenotazione.dataPrenotazione = event.start;
     prenotazione.qntOre = event.meta.ore;
     prenotazione.fromDetail = true
+    this.cs.refreshCalendar.next()
     this.prenotazione_service.save(prenotazione).subscribe((next:ResponsePrenotazione) => {
       if(!next.success){
         this.ds.sbjErrorsNotification.next(next.error)
@@ -112,9 +113,10 @@ export class PrenotazioniComponent implements OnInit {
         this.user_service.setUtente(utente)
         next.prenotazioni.forEach(prenotazione => {
           this.events.push(getEvent(prenotazione,true))
-          this.cs.eventsSBJ.next(this.events);
-          this.cs.refreshCalendar.next(getEvent(prenotazione,true))
+          
+          this.cs.refreshCalendar.next()
         });
+        this.cs.eventsSBJ.next(this.events);
         this.changeDetectorRef.detectChanges();
         this.ds.sbjErrorsNotification.next("PRENOTAZIONE AVVUNUTA CON SUCCESSO")
       }
@@ -138,6 +140,7 @@ export class PrenotazioniComponent implements OnInit {
     prenotazione.dataPrenotazione = eventToDelete.start;
     prenotazione.qntOre = eventToDelete.meta.ore;
     prenotazione.fromDetail = true
+    this.cs.refreshCalendar.next()
     this.prenotazione_service.delete(prenotazione).subscribe(next=>{
       if(!next.success){
         this.ds.sbjErrorsNotification.next(next.error)
@@ -150,10 +153,11 @@ export class PrenotazioniComponent implements OnInit {
         this.user_service.setUtente(utente)
         next.prenotazioni.forEach(prenotazione => {
           this.events.push(getEvent(prenotazione,true))
-          this.cs.eventsSBJ.next(this.events);
+          
           this.eventsNotConfirmed.push(getEvent(prenotazione,true))
-          this.cs.refreshCalendar.next(getEvent(prenotazione,true))
+          this.cs.refreshCalendar.next()
         });
+        this.cs.eventsSBJ.next(this.events);
         this.changeDetectorRef.detectChanges();
         this.ds.sbjErrorsNotification.next("ELIMINAZIONE AVVUNUTA CON SUCCESSO")
       }

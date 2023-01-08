@@ -9,7 +9,7 @@ import { EventInfo } from '../dto/EventInfo';
 export class CalendarService { 
 
 
-  refreshCalendar: Subject<any> = new Subject();
+  refreshCalendar: Subject<void> = new Subject();
   eventsSBJ:Subject<CalendarEvent<EventInfo>[]> = new Subject();
   activeDayIsOpenSBJ:Subject<boolean> = new Subject();
 

@@ -24,7 +24,7 @@
 <div *ngFor="let event of eventsNotConfirmed" class="row">
   <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-7 col-7 py-0 row-height">
     <input class="form-control input-calendar" type="text" mwlFlatpickr [(ngModel)]="event.start"
-      (ngModelChange)="cs.refreshCalendar.next(event)" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+      (ngModelChange)="cs.refreshCalendar.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
       dateFormat="Y-m-d H:i" altFormat="F j, Y H:i" placeholder="Not set" [minDate]="'today'"
       [disabled]="event.meta.confirmed" />
 

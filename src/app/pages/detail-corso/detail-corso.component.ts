@@ -59,7 +59,7 @@ export class DetailCorsoComponent implements OnInit {
       next.prenotazioni.forEach(prenotazione => {
         this.events.push(getEvent(prenotazione,true))
         this.changeDetectorRef.detectChanges();
-        this.cs.refreshCalendar.next(getEvent(prenotazione,true))
+        this.cs.refreshCalendar.next()
       });
       this.cs.eventsSBJ.next(this.events);
       

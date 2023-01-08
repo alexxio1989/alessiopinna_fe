@@ -19,9 +19,7 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { EventInfo } from '../dto/EventInfo';
-import { Corso } from '../dto/corso';
 import { DelegateService } from '../service/delegate.service';
-import { UtenteService } from '../service/utente.service';
 import { CalendarService } from '../service/calendar.service';
 
 
@@ -75,6 +73,7 @@ export class CalendarComponent implements OnInit {
     this.cs.eventsSBJ.asObservable().subscribe(next => {
       this.events = []
       this.events = next;
+      this.cs.refreshCalendar.next()
     });
     this.cs.activeDayIsOpenSBJ.asObservable().subscribe(next => {
       this.activeDayIsOpen = next;
