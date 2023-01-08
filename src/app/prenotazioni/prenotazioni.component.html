@@ -22,7 +22,7 @@
 
 
 <div *ngFor="let event of eventsNotConfirmed" class="row">
-  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-7 col-7 py-0 row-height">
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 py-0 row-height my-auto">
     <input class="form-control input-calendar" type="text" mwlFlatpickr [(ngModel)]="event.start"
       (ngModelChange)="cs.refreshCalendar.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
       dateFormat="Y-m-d H:i" altFormat="F j, Y H:i" placeholder="Not set" [minDate]="'today'"
@@ -30,7 +30,7 @@
 
 
   </div>
-  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5 py-0 row-height  my-auto">
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 py-0 px-0 row-height  my-auto">
     <app-incrementer *ngIf="!event.meta.confirmed" (counterEmitter)="event.meta.ore = $event" [value]="0" [step]="1"
       [min]="0" [max]="10"></app-incrementer>
     <p *ngIf="event.meta.confirmed" class="fst-italic Bio-font mt-3 ml-3">{{event.meta.ore}} ore</p>
