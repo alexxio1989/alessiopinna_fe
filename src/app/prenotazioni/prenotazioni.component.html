@@ -23,7 +23,7 @@
   <div class="col-12 d-flex flex-row">
     <input class="form-control input-calendar form-data-prenotazione" type="text" mwlFlatpickr [(ngModel)]="event.start"
       (ngModelChange)="cs.refreshCalendar.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
-      dateFormat="Y-m-d H:i" altFormat="F j, Y H:i" placeholder="Not set" [minDate]="'today'"
+      dateFormat="Y-m-d H:i" altFormat="F j, Y H:i" placeholder="Data / ora lezione" [minDate]="today | json"
       [disabled]="event.meta.confirmed" />
       <app-incrementer (counterEmitter)="event.meta.ore = $event" [value]="0" [step]="1"
       [min]="0" [max]="9"></app-incrementer>

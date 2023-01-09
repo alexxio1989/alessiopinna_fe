@@ -1,11 +1,10 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { addHours } from 'date-fns';
 import { Corso } from '../dto/corso';
 import { EventInfo } from '../dto/EventInfo';
 import { Prenotazione } from '../dto/prenotazione';
 import { ResponsePrenotazione } from '../dto/responsePrenotazione';
-import { getEvent } from '../mapper/calendar-mapper';
+import { addHours, getEvent } from '../mapper/calendar-mapper';
 import { CalendarService } from '../service/calendar.service';
 import { DelegateService } from '../service/delegate.service';
 import { PrenotazioneService } from '../service/prenotazione.service';
@@ -37,6 +36,8 @@ export class PrenotazioniComponent implements OnInit {
   @Input() corso: Corso;
   @Input() events: CalendarEvent<EventInfo>[];
   eventsNotConfirmed: CalendarEvent<EventInfo>[] = [];
+
+  today = new Date();
   
 
   constructor(public ds:DelegateService , 
@@ -46,6 +47,7 @@ export class PrenotazioniComponent implements OnInit {
               private prenotazione_service : PrenotazioneService) { }
 
   ngOnInit(): void {
+    this.today = addHours(this.today, 3);
   }
 
   addEvent(): void {
@@ -63,8 +65,8 @@ export class PrenotazioniComponent implements OnInit {
       ...this.eventsNotConfirmed,
       {
         title: 'New event',
-        start: today,
-        end: today,
+        start: this.today,
+        end: this.today,
         color: colors.red,
         draggable: true,
         resizable: {
