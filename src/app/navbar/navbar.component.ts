@@ -108,6 +108,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.user_service.removeUtente();
     this.logoutSocial() 
+    this.route.navigate(['']);
   }
 
   goTo(path:string){

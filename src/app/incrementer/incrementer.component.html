@@ -1,14 +1,20 @@
-<div class="d-flex justify-content-start border incrementer-box rounded">
-  <button mat-button mat-icon-button matPrefix class="{{shouldDisableDecrement(_value) ? 'incrementer-button-disabled' : 'incrementer-button' }} mx-4 my-auto px-0" aria-label="Remove" [color]="getColor()"
+<div class="row d-flex justify-content-start border incrementer-box rounded">
+  <div class="col-4 px-0">
+    <button mat-button mat-icon-button matPrefix class="{{shouldDisableDecrement(_value) ? 'incrementer-button-disabled' : 'incrementer-button' }} mx-4 my-auto px-0" aria-label="Remove" [color]="getColor()"
     (click)="incrementValue(-_step)" [disabled]="shouldDisableDecrement(_value)">
     <mat-icon class="icon-incrementer">remove</mat-icon>
   </button>
-  <p class="fst-italic Bio-font number my-auto">{{_value}} ore</p>
-  <button mat-button mat-icon-button matSuffix class="{{shouldDisableIncrement(_value) ? 'incrementer-button-disabled' : 'incrementer-button' }} mx-4 my-auto px-0" aria-label="Add" [color]="getColor()"
+  </div>
+  <div class="col-4 px-0 my-auto">
+    <p class="number my-auto">{{_value}}</p>
+    <p class="ore my-auto">ore</p>
+  </div>
+  <div class="col-4 px-0">
+    <button mat-button mat-icon-button matSuffix class="{{shouldDisableIncrement(_value) ? 'incrementer-button-disabled' : 'incrementer-button' }} mx-4 px-0" aria-label="Add" [color]="getColor()"
     (click)="incrementValue(_step)" [disabled]="shouldDisableIncrement(_value)">
     <mat-icon class="icon-incrementer">add</mat-icon>
-  </button>
-
+    </button>
+  </div>
 </div>
     
     

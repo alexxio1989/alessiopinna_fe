@@ -49,6 +49,22 @@ export class DetailCorsoComponent implements OnInit {
     this.userLogged = this.user_service.getUtente();
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
 
+/* 
+    this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
+      this.userLogged = next;
+      this.isUtenteLogged = next !== undefined && next !== null;
+      if(this.isUtenteLogged){
+        this.userLogged.prenotazioni.forEach(prenotazione => {
+          this.events = []
+          this.events.push(getEvent(prenotazione,true))
+          this.changeDetectorRef.detectChanges();
+          this.cs.refreshCalendar.next()
+        });
+        this.cs.eventsSBJ.next(this.events);
+        
+      } 
+    }) */
+
     this.prenotazione_service.getAllByUtenteAndCorso(this.user_service.getUtente(),this.corso).subscribe(next =>{
       this.ds.sbjSpinner.next(false)
 
@@ -67,7 +83,7 @@ export class DetailCorsoComponent implements OnInit {
     }, error => {
       this.ds.sbjSpinner.next(false)
       this.ds.sbjErrorsNotification.next("Errore il recupero delle prenotazioni")
-    })
+    }) 
   }
 
   indietro(){
