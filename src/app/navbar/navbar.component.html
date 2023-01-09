@@ -33,6 +33,11 @@
     <div *ngIf="isUtenteLogged" class="col-12 d-flex justify-content-center  bg-white">
       <button  mat-button color="accent" (click)="logout()">Disconnetti</button>
     </div>
+    <mat-divider class="mb-2"></mat-divider>
+    <div *ngFor="let value of mapCorsi | keyvalue" class="col-12 d-flex justify-content-center  bg-white">
+      <app-prenotazioni [dettaglio] = "false" [corso]="value.key" [events]="value.value"></app-prenotazioni>
+      
+    </div>
 
   </div>
 </mat-menu>

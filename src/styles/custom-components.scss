@@ -112,3 +112,9 @@
 .mat-form-field-underline {
     display: none;
 }
+
+
+.mat-menu-panel {
+    max-width: 410px !important;
+    overflow: auto;
+}
