@@ -17,7 +17,7 @@
                 </div>
             </mat-tab>
             <mat-tab *ngIf="isUtenteLogged" label="Prenota">
-                <app-prenotazioni [corso]="corso" [events]="events"></app-prenotazioni>
+                <app-prenotazioni [dettaglio] = "true" [corso]="corso" [events]="events"></app-prenotazioni>
                 <app-calendar></app-calendar> 
             </mat-tab>
           </mat-tab-group>

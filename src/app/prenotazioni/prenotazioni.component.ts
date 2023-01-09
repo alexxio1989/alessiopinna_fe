@@ -33,6 +33,7 @@ const colors: any = {
 })
 export class PrenotazioniComponent implements OnInit {
 
+  @Input() dettaglio: boolean;
   @Input() corso: Corso;
   @Input() events: CalendarEvent<EventInfo>[];
   eventsNotConfirmed: CalendarEvent<EventInfo>[] = [];
@@ -108,7 +109,7 @@ export class PrenotazioniComponent implements OnInit {
       } else {
         this.events = []
         let utente = this.user_service.getUtente();
-        utente.prenotazioni = next.prenotazioni
+        utente.prenotazioni = next.prenotazioniUtente
         this.user_service.removeUtente()
         this.user_service.setUtente(utente)
         next.prenotazioni.forEach(prenotazione => {
@@ -148,7 +149,7 @@ export class PrenotazioniComponent implements OnInit {
         this.events = []
         this.eventsNotConfirmed = []
         let utente = this.user_service.getUtente();
-        utente.prenotazioni = next.prenotazioni
+        utente.prenotazioni = next.prenotazioniUtente
         this.user_service.removeUtente()
         this.user_service.setUtente(utente)
         next.prenotazioni.forEach(prenotazione => {

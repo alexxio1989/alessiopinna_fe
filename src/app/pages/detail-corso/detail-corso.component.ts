@@ -53,7 +53,8 @@ export class DetailCorsoComponent implements OnInit {
       this.ds.sbjSpinner.next(false)
 
       let utente = this.user_service.getUtente();
-      utente.prenotazioni = next.prenotazioni
+      utente.prenotazioni = next.prenotazioniUtente
+      
       this.user_service.removeUtente()
       this.user_service.setUtente(utente)
       next.prenotazioni.forEach(prenotazione => {

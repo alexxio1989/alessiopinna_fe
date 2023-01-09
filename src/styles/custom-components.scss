@@ -29,6 +29,9 @@
 .form-control {
     height: 52px !important;
     margin-top: 3px !important;
+    width: 250px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .cal-month-view .cal-day-cell {
