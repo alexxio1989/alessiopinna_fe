@@ -6,10 +6,10 @@
     </div>
     <div class="col-6 d-flex flex-row-reverse px-0">
       
-      
-      <button  *ngIf="!isUtenteLogged" mat-button (click)="openLogin()">
+      <button  *ngIf="!isUtenteLogged" mat-button [matMenuTriggerFor]="menuLogin">
         <img  height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
       </button>
+ 
       <button class="px-0 prenotazioni" [matMenuTriggerFor]="menu"  mat-button matBadge="{{userLogged.prenotazioni.length}}" (click)="openSideBar()" *ngIf="userLogged && userLogged.prenotazioni && userLogged.prenotazioni.length >  0" >
         <img height="28px" class="info-calendar" src="/assets/svg/calendar.svg" alt="Card image cap">
       </button>
@@ -23,10 +23,11 @@
 
 <mat-menu class="mt-2 bg-light" #menu="matMenu">
   <div class="row">
-    <div *ngIf="!isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
+
+    <div *ngIf="isUtenteLogged && !isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
       <button mat-button>Il mio profilo</button>
     </div>
-    <div *ngIf="isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
+    <div *ngIf="isUtenteLogged && isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
       <button mat-button (click)="goTo('su')">ADMIN</button>
     </div>
     <mat-divider class="mb-2"></mat-divider>
@@ -38,6 +39,18 @@
       <app-prenotazioni [dettaglio] = "false" [corso]="value.key" [events]="value.value"></app-prenotazioni>
       
     </div>
+
+  </div>
+</mat-menu>
+
+<mat-menu class="mt-2 bg-light" #menuLogin="matMenu">
+  <div class="row">
+    <div  class="col-12 d-flex justify-content-center mb-2 bg-white p-3">
+      <a href="http://localhost:8080/login/google" class="login-with-google-btn">
+        Accedi con google
+      </a>
+    </div>
+
 
   </div>
 </mat-menu>

@@ -144,5 +144,15 @@ export class DialogLoginComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
+  googleLogin(){
+    this.user_service.googleLogin().subscribe(next => {
+      this.ds.sbjSpinner.next(false)
+      
+    }, error => {
+      this.ds.sbjSpinner.next(false)
+      this.ds.sbjErrorsNotification.next("Errore durante la login tramite google")
+    })
+  }
+
 
 }

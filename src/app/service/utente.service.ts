@@ -5,6 +5,8 @@ import { Observable, Subject } from "rxjs";
 import { DelegateService } from './delegate.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import Token from '../../assets/mock/token.json';
+import { TokenResponse } from '../dto/tokenResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +51,12 @@ export class UtenteService {
   socialSignin(req:RequestLogin): Observable<any>{
     this.ds.sbjSpinner.next(true)
     return this.http.post(environment.utente + '/socialSignin',req); 
+  }
+
+  googleLogin(): Observable<any>{
+    this.ds.sbjSpinner.next(true)
+    let token = new TokenResponse()
+    token = Token;
+    return this.http.post(environment.path + '/login/google',token); 
   }
 }
