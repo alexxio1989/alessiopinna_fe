@@ -1,5 +1,6 @@
 import { Dominio } from "./dominio";
 import { Prenotazione } from "./prenotazione";
+import { TokenResponse } from "./tokenResponse";
 
 export class Utente{
     id:number;
@@ -9,4 +10,6 @@ export class Utente{
     tipo:Dominio;
     photoUrl: string;
     prenotazioni: Prenotazione[]
+    tokens: TokenResponse[] = [];
+    provider:string;
 }

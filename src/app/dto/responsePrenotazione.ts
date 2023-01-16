@@ -5,4 +5,5 @@ export class ResponsePrenotazione{
     prenotazioniUtente: Prenotazione[];
     success:boolean;
     error:string;
+    code:number;
 }

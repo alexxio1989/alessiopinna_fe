@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DelegateService } from './service/delegate.service';
@@ -9,8 +9,6 @@ import { DelegateService } from './service/delegate.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-
-  showFiller = false;
 
   openSide = false;
 

@@ -18,9 +18,9 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
-import { EventInfo } from '../dto/EventInfo';
-import { DelegateService } from '../service/delegate.service';
-import { CalendarService } from '../service/calendar.service';
+import { EventInfo } from '../../dto/EventInfo';
+import { DelegateService } from '../../service/delegate.service';
+import { CalendarService } from '../../service/calendar.service';
 
 
 @Component({

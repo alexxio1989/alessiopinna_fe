@@ -54,17 +54,25 @@ export class DetailCorsoComponent implements OnInit {
     this.prenotazione_service.getAllByUtenteAndCorso(this.user_service.getUtente(),this.corso).subscribe(next =>{
       this.ds.sbjSpinner.next(false)
 
-      let utente = this.user_service.getUtente();
-      utente.prenotazioni = next.prenotazioniUtente
-      this.events = []
-      this.user_service.removeUtente()
-      this.user_service.setUtente(utente)
-      next.prenotazioni.forEach(prenotazione => {
-        this.events.push(getEvent(prenotazione,true))
-        this.changeDetectorRef.detectChanges();
-        this.cs.refreshCalendar.next()
-      });
-      this.cs.eventsSBJ.next(this.events);
+      if(!next.success){
+        this.ds.sbjErrorsNotification.next(next.error)
+        if(999 === next.code){
+          this.user_service.removeUtente()
+          this.route.navigate(['']);
+        }
+      } else {
+        let utente = this.user_service.getUtente();
+        utente.prenotazioni = next.prenotazioniUtente
+        this.events = []
+        this.user_service.removeUtente()
+        this.user_service.setUtente(utente)
+        next.prenotazioni.forEach(prenotazione => {
+          this.events.push(getEvent(prenotazione,true))
+          this.changeDetectorRef.detectChanges();
+          this.cs.refreshCalendar.next()
+        });
+        this.cs.eventsSBJ.next(this.events);
+      }
       
     }, error => {
       this.ds.sbjSpinner.next(false)

@@ -5,7 +5,6 @@ import { Utente } from 'src/app/dto/utente';
 import { DelegateService } from 'src/app/service/delegate.service';
 import { UtenteService } from 'src/app/service/utente.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 
 @Component({
@@ -27,13 +26,12 @@ export class DialogLoginComponent implements OnInit {
   loginForm!: FormGroup;
   isLoggedin?: boolean;
 
-  user: SocialUser;
   loggedIn: boolean;
 
   constructor(private user_service:UtenteService,
               private ds:DelegateService , 
               private dialogRef: MatDialogRef<DialogLoginComponent>,
-              private formBuilder: FormBuilder,private authService: SocialAuthService) { 
+              private formBuilder: FormBuilder) { 
                 
               }
 
@@ -68,35 +66,6 @@ export class DialogLoginComponent implements OnInit {
     this.login = true
     this.requestLogin = new RequestLogin();
     this.utente = new Utente();
-
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      console.log(JSON.stringify(this.user))
-      this.loggedIn = (user != null);
-      if(this.user){
-        this.utente = new Utente();
-        this.utente.email = this.user.email
-        this.requestLogin.utente = this.utente
-        this.requestLogin.password = this.user.id
-
-        this.user_service.socialSignin(this.requestLogin).subscribe(next => {
-          this.ds.sbjSpinner.next(false)
-          if(!next.success){
-            this.ds.sbjErrorsNotification.next(next.error)
-          } else {
-            this.ds.sbjErrorsNotification.next("Login avvenuta con successo")
-            this.utente = next.utente;
-            this.utente.photoUrl = this.user.photoUrl
-            this.user_service.setUtente(next.utente)
-            this.dialogRef.close();
-          }
-        }, error => {
-          this.ds.sbjSpinner.next(false)
-          this.ds.sbjErrorsNotification.next("Errore durante la login")
-        })
-      }
-      
-    });
   
   }
 
@@ -137,20 +106,6 @@ export class DialogLoginComponent implements OnInit {
     }, error => {
       this.ds.sbjSpinner.next(false)
       this.ds.sbjErrorsNotification.next("Errore durante la signin")
-    })
-  }
-
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  googleLogin(){
-    this.user_service.googleLogin().subscribe(next => {
-      this.ds.sbjSpinner.next(false)
-      
-    }, error => {
-      this.ds.sbjSpinner.next(false)
-      this.ds.sbjErrorsNotification.next("Errore durante la login tramite google")
     })
   }
 

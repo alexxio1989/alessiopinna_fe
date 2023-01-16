@@ -1,14 +1,15 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { Corso } from '../dto/corso';
-import { EventInfo } from '../dto/EventInfo';
-import { Prenotazione } from '../dto/prenotazione';
-import { ResponsePrenotazione } from '../dto/responsePrenotazione';
-import { addHours, getEvent } from '../mapper/calendar-mapper';
-import { CalendarService } from '../service/calendar.service';
-import { DelegateService } from '../service/delegate.service';
-import { PrenotazioneService } from '../service/prenotazione.service';
-import { UtenteService } from '../service/utente.service';
+import { Router } from '@angular/router';
+import { Corso } from '../../dto/corso';
+import { EventInfo } from '../../dto/EventInfo';
+import { Prenotazione } from '../../dto/prenotazione';
+import { ResponsePrenotazione } from '../../dto/responsePrenotazione';
+import { addHours, getEvent } from '../../mapper/calendar-mapper';
+import { CalendarService } from '../../service/calendar.service';
+import { DelegateService } from '../../service/delegate.service';
+import { PrenotazioneService } from '../../service/prenotazione.service';
+import { UtenteService } from '../../service/utente.service';
 
 const colors: any = {
   red: {
@@ -42,6 +43,7 @@ export class PrenotazioniComponent implements OnInit {
 
   constructor(public ds:DelegateService , 
               public cs:CalendarService,
+              private route: Router,
               private user_service:UtenteService,
               private changeDetectorRef: ChangeDetectorRef,
               private prenotazione_service : PrenotazioneService) { }
@@ -108,6 +110,10 @@ export class PrenotazioniComponent implements OnInit {
     this.prenotazione_service.save(prenotazione).subscribe((next:ResponsePrenotazione) => {
       if(!next.success){
         this.ds.sbjErrorsNotification.next(next.error)
+        if(999 === next.code){
+          this.user_service.removeUtente()
+          this.route.navigate(['']);
+        }
       } else {
         this.events = []
         let utente = this.user_service.getUtente();
@@ -147,6 +153,10 @@ export class PrenotazioniComponent implements OnInit {
     this.prenotazione_service.delete(prenotazione).subscribe(next=>{
       if(!next.success){
         this.ds.sbjErrorsNotification.next(next.error)
+        if(999 === next.code){
+          this.user_service.removeUtente()
+          this.route.navigate(['']);
+        }
       } else {
         this.events = []
         this.eventsNotConfirmed = []

@@ -1,16 +1,16 @@
-import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CalendarEvent } from 'angular-calendar';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { environment } from 'src/environments/environment';
 import { DialogLoginComponent } from '../dialog/dialog-login/dialog-login.component';
-import { Corso } from '../dto/corso';
-import { EventInfo } from '../dto/EventInfo';
-import { Utente } from '../dto/utente';
-import { getEvent } from '../mapper/calendar-mapper';
-import { SidebarService } from '../service/sidebar.service';
-import { UtenteService } from '../service/utente.service';
+import { Corso } from '../../dto/corso';
+import { EventInfo } from '../../dto/EventInfo';
+import { Utente } from '../../dto/utente';
+import { getEvent } from '../../mapper/calendar-mapper';
+import { SidebarService } from '../../service/sidebar.service';
+import { UtenteService } from '../../service/utente.service';
 
 @Component({
   selector: 'app-navbar',
@@ -32,8 +32,7 @@ export class NavbarComponent implements OnInit {
               private navService: SidebarService,
               private user_service:UtenteService , 
               public dialog: MatDialog , 
-              private deviceService: DeviceDetectorService,
-              private authService: SocialAuthService) { }
+              private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -58,7 +57,7 @@ export class NavbarComponent implements OnInit {
           });
         }
         
-      } 
+      }  
     })
 
     this.userLogged = this.user_service.getUtente();
@@ -88,26 +87,13 @@ export class NavbarComponent implements OnInit {
   }
 
   openLogin(){
-    this.openSide = false;
-    if(this.deviceService.isMobile()){
-      this.dialog.open(DialogLoginComponent, {
-        height: 'auto',
-        width: '95%',
-        maxWidth:'95vw'
-
-      });
-    } else {
-      this.dialog.open(DialogLoginComponent, {
-        height: 'auto',
-        width: '40%'
-      });
-    }
+    window.open(environment.path + "/login/google");
+    window.self.close();
     
   }
 
   logout(){
     this.user_service.removeUtente();
-    this.logoutSocial() 
     this.route.navigate(['']);
   }
 
@@ -119,10 +105,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  logoutSocial() {
-    if(this.authService !== null) {
-       this.authService.signOut();
-    }
-  }
+
 
 }

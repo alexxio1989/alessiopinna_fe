@@ -33,7 +33,18 @@ export class UtenteService {
     return this.utente;
   }
 
+  getGoogleToken(): TokenResponse{
+    if(this.getUtente() && this.getUtente().tokens && this.getUtente().tokens.length > 0){
+      let filtred =  this.getUtente().tokens.filter(item => 'GOOGLE' === item.provider);
+      if(filtred && filtred.length > 0){
+        return filtred[0];
+      }
+    }
+    return null;
+  }
+
   removeUtente(){
+    this.utente = undefined
     localStorage.removeItem('USER');
     this.notifyUtenteLogged.next(undefined)
   }
@@ -51,12 +62,5 @@ export class UtenteService {
   socialSignin(req:RequestLogin): Observable<any>{
     this.ds.sbjSpinner.next(true)
     return this.http.post(environment.utente + '/socialSignin',req); 
-  }
-
-  googleLogin(): Observable<any>{
-    this.ds.sbjSpinner.next(true)
-    let token = new TokenResponse()
-    token = Token;
-    return this.http.post(environment.path + '/login/google',token); 
   }
 }

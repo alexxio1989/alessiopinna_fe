@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './components/pages/home/home.component';
 import { RouterModule,Routes } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { BioComponent } from './bio/bio.component';
-import { CardCorsoComponent } from './card-corso/card-corso.component';
+import { BioComponent } from './components/bio/bio.component';
+import { CardCorsoComponent } from './components/card-corso/card-corso.component';
 import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
@@ -16,33 +16,27 @@ import {MatIconModule} from '@angular/material/icon';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogLoginComponent } from './dialog/dialog-login/dialog-login.component';
+import { DialogLoginComponent } from './components/dialog/dialog-login/dialog-login.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
-import { DetailCorsoComponent } from './pages/detail-corso/detail-corso.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { DetailCorsoComponent } from './components/pages/detail-corso/detail-corso.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { IncrementerComponent } from './incrementer/incrementer.component';
+import { IncrementerComponent } from './components/incrementer/incrementer.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
-import { UserPageComponent } from './pages/user-page/user-page.component';
-import { SuPageComponent } from './pages/su-page/su-page.component';
+import { UserPageComponent } from './components/pages/user-page/user-page.component';
+import { SuPageComponent } from './components/pages/su-page/su-page.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatBadgeModule} from '@angular/material/badge';
-
-
-import {
-  GoogleLoginProvider
-} from '@abacritt/angularx-social-login';
-import { DescrizioniComponent } from './descrizioni/descrizioni.component';
-import { FooterComponent } from './footer/footer.component';
-import { PrenotazioniComponent } from './prenotazioni/prenotazioni.component';
+import { DescrizioniComponent } from './components/descrizioni/descrizioni.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PrenotazioniComponent } from './components/prenotazioni/prenotazioni.component';
 
 export const AppRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -93,29 +87,10 @@ export const AppRoutes: Routes = [
     MatInputModule,
     MatMenuModule,
     AngularEditorModule,
-    SocialLoginModule,
     MatBadgeModule
 
   ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '870651648800-pq8mbb5285trh0hfdlbfub2u24unkt8f.apps.googleusercontent.com'
-            )
-          }
-        ],
-        onError: (err) => {
-          console.error(err);
-        }
-      } as SocialAuthServiceConfig,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

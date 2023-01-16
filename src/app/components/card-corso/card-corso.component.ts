@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { environment } from 'src/environments/environment';
 import { DialogLoginComponent } from '../dialog/dialog-login/dialog-login.component';
-import { Corso } from '../dto/corso';
-import { Utente } from '../dto/utente';
-import { CorsoService } from '../service/corso.service';
-import { UtenteService } from '../service/utente.service';
+import { Corso } from '../../dto/corso';
+import { Utente } from '../../dto/utente';
+import { CorsoService } from '../../service/corso.service';
+import { UtenteService } from '../../service/utente.service';
 
 @Component({
   selector: 'app-card-corso',
@@ -27,11 +28,13 @@ export class CardCorsoComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
+      console.log("utente from card : " + JSON.stringify(next))
       this.userLogged = next;
       this.isUtenteLogged = next !== undefined && next !== null;
     })
 
     this.userLogged = this.user_service.getUtente();
+    console.log("utente from card ngOnInit: " + JSON.stringify(this.userLogged))
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
   }
 
@@ -47,19 +50,8 @@ export class CardCorsoComponent implements OnInit {
   }
 
   openLogin(){
-    if(this.deviceService.isMobile()){
-      this.dialog.open(DialogLoginComponent, {
-        height: 'auto',
-        width: '95%',
-        maxWidth:'95vw'
-
-      });
-    } else {
-      this.dialog.open(DialogLoginComponent, {
-        height: 'auto',
-        width: '40%'
-      });
-    }
+    window.open(environment.path + "/login/google");
+    window.self.close();
     
   }
  

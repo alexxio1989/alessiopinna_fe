@@ -21,8 +21,7 @@ export class HomeComponent implements OnInit {
 
   mapCorsi = new Map<string, Corso[]>();
 
-  slideConfig = {
-  };
+
 
   utente:Utente;
   requestLogin:RequestLogin;
@@ -37,46 +36,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.corso_service.rmvCorso();
     this.isMobile = this.deviceService.isMobile();
-    this.slideConfig = {
-      "slidesToShow": 3,
-      "slidesToScroll": 1,
-      "dots": true,
-      "infinite": false,
-      "centerMode": true,
-      "variableWidth": true,
-      "responsive": [
-        {
-          "breakpoint": 1024,
-          "settings": {
-            "slidesToShow": 3,
-            "slidesToScroll": 3,
-            "centerMode": true,
-            "variableWidth": true,
-            "infinite": true,
-            "dots": true
-          }
-        },
-        {
-          "breakpoint": 600,
-          "settings": {
-            "slidesToShow": 2,
-            "slidesToScroll": 2,
-            "centerMode": true,
-            "variableWidth": true
-          }
-        },
-        {
-          "breakpoint": 480,
-          "settings": {
-            "slidesToShow": 1,
-            "slidesToScroll": 1,
-            "centerMode": true,
-            "variableWidth": true
-          }
-        }
-      ]
-    
-    };
+
     this.route.queryParams
       .subscribe(params => {
         if(params.email && params.id){
