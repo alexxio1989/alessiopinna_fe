@@ -49,7 +49,7 @@ export class PrenotazioniComponent implements OnInit {
               private prenotazione_service : PrenotazioneService) { }
 
   ngOnInit(): void {
-    this.today = addHours(this.today, 3);
+    this.today = addHours(this.today, 1);
   }
 
   addEvent(): void {
@@ -78,7 +78,8 @@ export class PrenotazioniComponent implements OnInit {
         meta:{
           id:count,
           confirmed:false,
-          ore:0
+          ore:0,
+          idEvent:''
         }
       }
     ];
@@ -99,7 +100,6 @@ export class PrenotazioniComponent implements OnInit {
   conferma(event: CalendarEvent<EventInfo>){
     this.deleteNotConfirmed(event)
     event.meta.confirmed = true
-    let endDate = addHours(event.start,event.meta.ore)
     let prenotazione = new Prenotazione();
     prenotazione.corso = this.corso;
     prenotazione.utente = this.user_service.getUtente()
@@ -149,6 +149,7 @@ export class PrenotazioniComponent implements OnInit {
     prenotazione.dataPrenotazione = eventToDelete.start;
     prenotazione.qntOre = eventToDelete.meta.ore;
     prenotazione.fromDetail = true
+    prenotazione.idEvent = eventToDelete.meta.idEvent;
     this.cs.refreshCalendar.next()
     this.prenotazione_service.delete(prenotazione).subscribe(next=>{
       if(!next.success){

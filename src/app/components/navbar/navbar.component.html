@@ -9,10 +9,10 @@
       <button  *ngIf="!user_service.isUtenteLogged" mat-button [matMenuTriggerFor]="menuLogin">
         <img  height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
       </button>
-      <button class="px-0 prenotazioni" [matMenuTriggerFor]="menu"  mat-button matBadge="{{user_service.utente.prenotazioni.length}}" (click)="openSideBar()" *ngIf="user_service.utente && user_service.utente.prenotazioni && user_service.utente.prenotazioni.length >  0" >
+      <button class="px-0 prenotazioni" [matMenuTriggerFor]="menu"  mat-button matBadge="{{user_service.utente.prenotazioni.length}}" *ngIf="user_service.utente && user_service.utente.prenotazioni && user_service.utente.prenotazioni.length >  0" >
         <img height="28px" class="info-calendar" src="/assets/svg/calendar.svg" alt="Card image cap">
       </button>
-      <button *ngIf="user_service.isUtenteLogged && (!user_service.utente.prenotazioni || user_service.utente.prenotazioni.length ===  0)" mat-button [matMenuTriggerFor]="menu" (click)="openSideBar()">
+      <button *ngIf="user_service.isUtenteLogged && (!user_service.utente.prenotazioni || user_service.utente.prenotazioni.length ===  0)" mat-button [matMenuTriggerFor]="menu" >
         <img *ngIf="!user_service.utente.photoUrl" height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
         <img *ngIf="user_service.utente.photoUrl" height="28px" alt="" class="c-icon rounded-circle border border-white" src="{{user_service.utente.photoUrl}}">
       </button>

@@ -2,7 +2,6 @@ import {
   Component,
   ViewChild,
   TemplateRef,
-  Input,
   OnInit,
   ChangeDetectorRef
 } from '@angular/core';
@@ -10,7 +9,6 @@ import {
   isSameDay,
   isSameMonth
 } from 'date-fns';
-import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -59,12 +57,9 @@ export class CalendarComponent implements OnInit {
     }
   ];
 
-  
-
   constructor(private modal: NgbModal ,
               public ds:DelegateService , 
-              public cs:CalendarService,
-              private changeDetectorRef: ChangeDetectorRef) {
+              public cs:CalendarService) {
     this.initializeYesterday();
     this.events = []
   }

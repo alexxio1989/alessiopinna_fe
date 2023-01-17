@@ -22,7 +22,9 @@ export function  getEvent(prenotazione:Prenotazione, confirmed:boolean):Calendar
     if (typeof prenotazione.dataPrenotazione === 'string' || prenotazione.dataPrenotazione instanceof String){
       startEvent = new Date(prenotazione.dataPrenotazione)
     }
-    let endEvent = addHours(startEvent,prenotazione.qntOre);
+
+    let newDate= startEvent
+    let endEvent = addHours(newDate,prenotazione.qntOre);
     return {
       title: prenotazione.corso.titolo,
       start: startEvent,
@@ -36,7 +38,8 @@ export function  getEvent(prenotazione:Prenotazione, confirmed:boolean):Calendar
       meta:{
         id:prenotazione.id,
         confirmed:confirmed,
-        ore:prenotazione.qntOre
+        ore:prenotazione.qntOre,
+        idEvent:prenotazione.idEvent
       }
     };
 }

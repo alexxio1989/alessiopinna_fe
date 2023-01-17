@@ -20,6 +20,8 @@
 
 
 <div *ngFor="let event of eventsNotConfirmed" class="row">
+
+  {{event.start}}
   <div class="col-12 d-flex flex-row">
     <input class="form-control input-calendar form-data-prenotazione" type="text" mwlFlatpickr [(ngModel)]="event.start"
       (ngModelChange)="cs.refreshCalendar.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
