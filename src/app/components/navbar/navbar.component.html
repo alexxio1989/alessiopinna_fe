@@ -6,15 +6,15 @@
     </div>
     <div class="col-6 d-flex flex-row-reverse px-0">
       
-      <button  *ngIf="!isUtenteLogged" mat-button [matMenuTriggerFor]="menuLogin">
+      <button  *ngIf="!user_service.isUtenteLogged" mat-button [matMenuTriggerFor]="menuLogin">
         <img  height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
       </button>
-      <button class="px-0 prenotazioni" [matMenuTriggerFor]="menu"  mat-button matBadge="{{userLogged.prenotazioni.length}}" (click)="openSideBar()" *ngIf="userLogged && userLogged.prenotazioni && userLogged.prenotazioni.length >  0" >
+      <button class="px-0 prenotazioni" [matMenuTriggerFor]="menu"  mat-button matBadge="{{user_service.utente.prenotazioni.length}}" (click)="openSideBar()" *ngIf="user_service.utente && user_service.utente.prenotazioni && user_service.utente.prenotazioni.length >  0" >
         <img height="28px" class="info-calendar" src="/assets/svg/calendar.svg" alt="Card image cap">
       </button>
-      <button *ngIf="isUtenteLogged && (!userLogged.prenotazioni || userLogged.prenotazioni.length ===  0)" mat-button [matMenuTriggerFor]="menu" (click)="openSideBar()">
-        <img *ngIf="!userLogged.photoUrl" height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
-        <img *ngIf="userLogged.photoUrl" height="28px" alt="" class="c-icon rounded-circle border border-white" src="{{userLogged.photoUrl}}">
+      <button *ngIf="user_service.isUtenteLogged && (!user_service.utente.prenotazioni || user_service.utente.prenotazioni.length ===  0)" mat-button [matMenuTriggerFor]="menu" (click)="openSideBar()">
+        <img *ngIf="!user_service.utente.photoUrl" height="28px" alt="" class="c-icon border border-white" src="/assets/icons/svgs/regular/user-com.svg">
+        <img *ngIf="user_service.utente.photoUrl" height="28px" alt="" class="c-icon rounded-circle border border-white" src="{{user_service.utente.photoUrl}}">
       </button>
     </div>
   </div>
@@ -23,18 +23,18 @@
 <mat-menu class="mt-2 bg-light" #menu="matMenu">
   <div class="row">
 
-    <div *ngIf="isUtenteLogged && !isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
+    <div *ngIf="user_service.isUtenteLogged && !user_service.isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
       <button mat-button>Il mio profilo</button>
     </div>
-    <div *ngIf="isUtenteLogged && isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
+    <div *ngIf="user_service.isUtenteLogged && user_service.isSU" class="col-12 d-flex justify-content-center mb-2 bg-white">
       <button mat-button (click)="goTo('su')">ADMIN</button>
     </div>
     <mat-divider class="mb-2"></mat-divider>
-    <div *ngIf="isUtenteLogged" class="col-12 d-flex justify-content-center  bg-white">
+    <div *ngIf="user_service.isUtenteLogged" class="col-12 d-flex justify-content-center  bg-white">
       <button  mat-button color="accent" (click)="logout()">Disconnetti</button>
     </div>
     <mat-divider class="mb-2"></mat-divider>
-    <div *ngFor="let value of mapCorsi | keyvalue" class="col-12 d-flex justify-content-center  bg-white">
+    <div *ngFor="let value of user_service.mapPrenotazioniUtente | keyvalue" class="col-12 d-flex justify-content-center  bg-white">
       <app-prenotazioni [dettaglio] = "false" [corso]="value.key" [events]="value.value"></app-prenotazioni>
       
     </div>

@@ -48,36 +48,37 @@ export class DetailCorsoComponent implements OnInit {
     })
     this.userLogged = this.user_service.getUtente();
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
+    this.getPrenotazioni(); 
+  }
 
- 
+  private getPrenotazioni() {
+    this.prenotazione_service.getAllByUtenteAndCorso(this.user_service.getUtente(), this.corso).subscribe(next => {
+      this.ds.sbjSpinner.next(false);
 
-    this.prenotazione_service.getAllByUtenteAndCorso(this.user_service.getUtente(),this.corso).subscribe(next =>{
-      this.ds.sbjSpinner.next(false)
-
-      if(!next.success){
-        this.ds.sbjErrorsNotification.next(next.error)
-        if(999 === next.code){
-          this.user_service.removeUtente()
+      if (!next.success) {
+        this.ds.sbjErrorsNotification.next(next.error);
+        if (999 === next.code) {
+          this.user_service.removeUtente();
           this.route.navigate(['']);
         }
       } else {
         let utente = this.user_service.getUtente();
-        utente.prenotazioni = next.prenotazioniUtente
-        this.events = []
-        this.user_service.removeUtente()
-        this.user_service.setUtente(utente)
+        utente.prenotazioni = next.prenotazioniUtente;
+        this.events = [];
+        this.user_service.removeUtente();
+        this.user_service.setUtente(utente);
         next.prenotazioni.forEach(prenotazione => {
-          this.events.push(getEvent(prenotazione,true))
+          this.events.push(getEvent(prenotazione, true));
           this.changeDetectorRef.detectChanges();
-          this.cs.refreshCalendar.next()
+          this.cs.refreshCalendar.next();
         });
         this.cs.eventsSBJ.next(this.events);
       }
-      
+
     }, error => {
-      this.ds.sbjSpinner.next(false)
-      this.ds.sbjErrorsNotification.next("Errore il recupero delle prenotazioni")
-    }) 
+      this.ds.sbjSpinner.next(false);
+      this.ds.sbjErrorsNotification.next("Errore il recupero delle prenotazioni");
+    });
   }
 
   indietro(){

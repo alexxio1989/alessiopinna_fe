@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { RequestLogin } from 'src/app/dto/requestLogin';
+import { RequestLogin } from 'src/app/dto/request/requestLogin';
 import { Utente } from 'src/app/dto/utente';
 import { DelegateService } from 'src/app/service/delegate.service';
 import { UtenteService } from 'src/app/service/utente.service';

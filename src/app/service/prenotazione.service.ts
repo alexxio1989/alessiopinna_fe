@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Corso } from '../dto/corso';
 import { Prenotazione } from '../dto/prenotazione';
-import { ResponsePrenotazione } from '../dto/responsePrenotazione';
+import { ResponsePrenotazione } from '../dto/response/responsePrenotazione';
 import { Utente } from '../dto/utente';
 import { DelegateService } from './delegate.service';
 import { UtenteService } from './utente.service';

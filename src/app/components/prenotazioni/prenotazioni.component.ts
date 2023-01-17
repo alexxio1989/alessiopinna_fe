@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Corso } from '../../dto/corso';
 import { EventInfo } from '../../dto/EventInfo';
 import { Prenotazione } from '../../dto/prenotazione';
-import { ResponsePrenotazione } from '../../dto/responsePrenotazione';
+import { ResponsePrenotazione } from '../../dto/response/responsePrenotazione';
 import { addHours, getEvent } from '../../mapper/calendar-mapper';
 import { CalendarService } from '../../service/calendar.service';
 import { DelegateService } from '../../service/delegate.service';

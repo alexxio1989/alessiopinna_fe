@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RequestLogin } from '../dto/requestLogin';
+import { RequestLogin } from '../dto/request/requestLogin';
 import { Utente } from '../dto/utente';
 import { Observable, Subject } from "rxjs";
 import { DelegateService } from './delegate.service';
@@ -7,17 +7,58 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import Token from '../../assets/mock/token.json';
 import { TokenResponse } from '../dto/tokenResponse';
+import { Corso } from '../dto/corso';
+import { CalendarEvent } from 'angular-calendar';
+import { EventInfo } from '../dto/EventInfo';
+import { getEvent } from '../mapper/calendar-mapper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtenteService {
 
-  private utente: Utente;
+  public utente: Utente;
+  public isUtenteLogged = false;
+  public isSU = false;
 
   notifyUtenteLogged = new Subject<Utente>();
+  prenotazioniArePresents : boolean
+  public mapPrenotazioniUtente = new Map<Corso, CalendarEvent<EventInfo>[]>();
 
-  constructor(private http: HttpClient , private ds:DelegateService) { }
+  constructor(private http: HttpClient , private ds:DelegateService) {
+    this.notifyUtenteLogged.asObservable().subscribe(next=>{
+      if(next){
+        this.utente = next;
+        this.isUtenteLogged = next !== undefined && next !== null;
+        localStorage.removeItem('USER');
+        localStorage.setItem('USER',JSON.stringify(next))
+        this.isSU = 'SU' ===  this.utente.tipo.codice
+        this.prenotazioniArePresents = next.prenotazioni && next.prenotazioni.length > 0
+
+        if(next.prenotazioni && next.prenotazioni.length > 0){
+          next.prenotazioni .forEach(prenotazione => {
+            const listFiltred = this.mapPrenotazioniUtente.get(prenotazione.corso);
+            if(listFiltred){
+              listFiltred.push(getEvent(prenotazione, true))
+            } else {
+              let newListFiltred = [];
+              newListFiltred.push(getEvent(prenotazione, true))
+              this.mapPrenotazioniUtente.set(prenotazione.corso,newListFiltred);
+            }
+          });
+        }
+
+      } else {
+        this.isUtenteLogged = false;
+        this.utente = undefined
+        localStorage.removeItem('USER');
+        this.mapPrenotazioniUtente = new Map<Corso, CalendarEvent<EventInfo>[]>();
+      }
+    })
+
+    this.getUtente()
+    this.isUtenteLogged = this.utente !== undefined && this.utente !== null;
+  }
 
   setUtente(utente: Utente){
     localStorage.setItem('USER',JSON.stringify(utente))

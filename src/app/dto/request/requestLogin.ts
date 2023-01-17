@@ -1,4 +1,4 @@
-import { Utente } from "./utente";
+import { Utente } from "../utente";
 
 
 export class RequestLogin{
