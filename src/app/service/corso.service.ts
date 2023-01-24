@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Corso } from '../dto/corso';
 import CorsiJson from '../../assets/mock/Corsi.json';
 import { HttpClient } from '@angular/common/http';
-import { ResponseCorso } from '../dto/response/responseCorso';
+import { ResponseProdotto } from '../dto/response/responseProdotto';
 import { environment } from 'src/environments/environment';
 import { DelegateService } from './delegate.service';
 
@@ -19,22 +19,22 @@ export class CorsoService {
 
   constructor(private http: HttpClient ,  private ds:DelegateService) { }
 
-  getCorsi(full: boolean): Observable<ResponseCorso>{
+  getCorsi(full: boolean): Observable<ResponseProdotto>{
     this.ds.sbjSpinner.next(true)
     const corsi = localStorage.getItem('CORSI');
     if(corsi){ 
       this.corsi = JSON.parse(corsi);
-      let response = new ResponseCorso();
+      let response = new ResponseProdotto();
       response.corsi = this.corsi;
       response.success = true
       return new Observable(obs => {
         obs.next(response)
       })
     } else {
-      let basePath = environment.corso
+      let basePath = environment.prodotto
       let fullPAth = full ? '1' : '0'
       let url = basePath + '/all/' + fullPAth;
-      return this.http.get<ResponseCorso>(url);
+      return this.http.get<ResponseProdotto>(url);
     }
   }
 
@@ -80,11 +80,11 @@ export class CorsoService {
 
   save(corso:Corso): Observable<any>{
     this.ds.sbjSpinner.next(true)
-    return this.http.post(environment.corso + '/save' , corso);
+    return this.http.post(environment.prodotto + '/save' , corso);
   }
 
   delete(corso:Corso): Observable<any>{
     this.ds.sbjSpinner.next(true)
-    return this.http.delete(environment.corso + '/delete/'+ corso.id);
+    return this.http.delete(environment.prodotto + '/delete/'+ corso.id);
   }
 }

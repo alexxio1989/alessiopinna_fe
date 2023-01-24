@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
   path:"https://alessiopinna-be.herokuapp.com",
-  corso: "https://alessiopinna-be.herokuapp.com/corso",
+  prodotto: "https://alessiopinna-be.herokuapp.com/prodotto",
   utente: "https://alessiopinna-be.herokuapp.com/utente",
-  prenotazione: "https://alessiopinna-be.herokuapp.com/prenotazione",
+  acquisto: "https://alessiopinna-be.herokuapp.com/acquisto",
   tpl: "https://alessiopinna-be.herokuapp.com/tpl",
   mock:true
 };

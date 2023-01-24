@@ -2,8 +2,8 @@ import { Dominio } from "./dominio";
 
 export class Corso{
     id:number;
-    titolo:string;
-    titoloExt:string;
+    nome:string;
+    nomeExt:string;
     descrizione:string;
     imgName:string;
     tipo:Dominio;

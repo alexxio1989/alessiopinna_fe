@@ -33,17 +33,17 @@ export class UtenteService {
         localStorage.removeItem('USER');
         localStorage.setItem('USER',JSON.stringify(next))
         this.isSU = 'SU' ===  this.utente.tipo.codice
-        this.prenotazioniArePresents = next.prenotazioni && next.prenotazioni.length > 0
+        this.prenotazioniArePresents = next.acquisti && next.acquisti.length > 0
 
-        if(next.prenotazioni && next.prenotazioni.length > 0){
-          next.prenotazioni .forEach(prenotazione => {
-            const listFiltred = this.mapPrenotazioniUtente.get(prenotazione.corso);
+        if(next.acquisti && next.acquisti.length > 0){
+          next.acquisti .forEach(acquisto => {
+            const listFiltred = this.mapPrenotazioniUtente.get(acquisto.prodotto);
             if(listFiltred){
-              listFiltred.push(getEvent(prenotazione, true))
+              listFiltred.push(getEvent(acquisto, true))
             } else {
               let newListFiltred = [];
-              newListFiltred.push(getEvent(prenotazione, true))
-              this.mapPrenotazioniUtente.set(prenotazione.corso,newListFiltred);
+              newListFiltred.push(getEvent(acquisto, true))
+              this.mapPrenotazioniUtente.set(acquisto.prodotto,newListFiltred);
             }
           });
         }
@@ -100,8 +100,4 @@ export class UtenteService {
     return this.http.post(environment.utente + '/login',req); 
   }
 
-  socialSignin(req:RequestLogin): Observable<any>{
-    this.ds.sbjSpinner.next(true)
-    return this.http.post(environment.utente + '/socialSignin',req); 
-  }
 }

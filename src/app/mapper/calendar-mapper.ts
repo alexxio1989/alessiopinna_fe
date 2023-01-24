@@ -1,6 +1,6 @@
 import { CalendarEvent } from "angular-calendar";
+import { Acquisto } from "../dto/acquisto";
 import { EventInfo } from "../dto/EventInfo";
-import { Prenotazione } from "../dto/prenotazione";
 
 export const colors: any = {
     red: {
@@ -17,16 +17,16 @@ export const colors: any = {
     }
   };
 
-export function  getEvent(prenotazione:Prenotazione, confirmed:boolean):CalendarEvent<EventInfo>{
+export function  getEvent(acquisto:Acquisto, confirmed:boolean):CalendarEvent<EventInfo>{
     let startEvent:Date;
-    if (typeof prenotazione.dataPrenotazione === 'string' || prenotazione.dataPrenotazione instanceof String){
-      startEvent = new Date(prenotazione.dataPrenotazione)
+    if (typeof acquisto.datiEvento.dataInizio === 'string' || acquisto.datiEvento.dataInizio instanceof String){
+      startEvent = new Date(acquisto.datiEvento.dataInizio)
     }
 
     let newDate= startEvent
-    let endEvent = addHours(newDate,prenotazione.qntOre);
+    let endEvent = addHours(newDate,acquisto.quantita);
     return {
-      title: prenotazione.corso.titolo,
+      title: acquisto.prodotto.nome,
       start: startEvent,
       end: endEvent,
       color: colors.red,
@@ -36,16 +36,17 @@ export function  getEvent(prenotazione:Prenotazione, confirmed:boolean):Calendar
         afterEnd: true
       },
       meta:{
-        id:prenotazione.id,
+        id:acquisto.id,
         confirmed:confirmed,
-        ore:prenotazione.qntOre,
-        idEvent:prenotazione.idEvent
+        ore:acquisto.quantita,
+        idEvent:acquisto.datiEvento.idEvent
       }
     };
 }
 
   
 export function addHours(date:Date, hours:number):Date {
-    date.setHours(date.getHours() + hours);
-    return date;
+  let newDate = date;
+  newDate.setHours(date.getHours() + hours);
+  return newDate;
 }

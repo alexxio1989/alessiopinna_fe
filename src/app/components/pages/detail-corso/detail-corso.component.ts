@@ -63,12 +63,12 @@ export class DetailCorsoComponent implements OnInit {
         }
       } else {
         let utente = this.user_service.getUtente();
-        utente.prenotazioni = next.prenotazioniUtente;
+        utente.acquisti = next.acquistiUtente;
         this.events = [];
         this.user_service.removeUtente();
         this.user_service.setUtente(utente);
-        next.prenotazioni.forEach(prenotazione => {
-          this.events.push(getEvent(prenotazione, true));
+        next.acquisti.forEach(acquisto => {
+          this.events.push(getEvent(acquisto, true));
           this.changeDetectorRef.detectChanges();
           this.cs.refreshCalendar.next();
         });

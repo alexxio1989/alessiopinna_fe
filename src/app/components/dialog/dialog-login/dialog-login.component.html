@@ -1,13 +1,7 @@
 <div mat-dialog-content>
   <div class="row">
- 
-    
 
-    <div class="col-12 px-0 pt-4 pb-4 bg-light d-flex justify-content-center mb-3">
-    
-    </div>
-
-    <p class="text-center">oppure con email:</p>
+    <p class="text-center">Accedi come amministratore</p>
 
     
     <div class="col-12 px-0">
@@ -30,54 +24,9 @@
               <label class="form-label" for="loginPassword">Password</label>
             </div>
 
-            <!-- 2 column grid layout -->
-            <div class="row mb-4">
-              <div class="col-md-6 d-flex justify-content-center">
-                <!-- Checkbox -->
-                <div class="form-check mb-3 mb-md-0">
-                  <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                  <label class="form-check-label" for="loginCheck"> Ricordami </label>
-                </div>
-              </div>
-
-              <div class="col-md-6 d-flex justify-content-center">
-                <!-- Simple link -->
-                <a href="#!">Password dimenticata?</a>
-              </div>
-            </div>
-
 
         </mat-tab>
-        <mat-tab label="Registrati">
-       
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="registerEmail"  [(ngModel)]="utente.email" class="form-control" />
-              <label class="form-label" for="registerEmail">Email</label>
-            </div>
 
-            <!-- Username input -->
-            <div class="form-outline mb-4">
-              <input type="text" id="registerSkype"  [(ngModel)]="utente.skypeID" class="form-control" />
-              <label class="form-label" for="registerUsername">skypeID</label>
-            </div>
-
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="registerPassword" [(ngModel)]="requestLogin.password" class="form-control" />
-              <label class="form-label" for="registerPassword">Password</label>
-            </div>
-
-            <!-- Repeat Password input -->
-            <div *ngIf="requestLogin.password !== undefined &&
-            requestLogin.password !== null &&
-             '' !== requestLogin.password" class="form-outline mb-4">
-              <input type="password" id="registerRepeatPassword" [(ngModel)]="passwordConfirm" class="form-control" />
-              <label class="form-label" for="registerRepeatPassword">Ripeti password</label>
-            </div>
-
-
-        </mat-tab>
       </mat-tab-group>
 
       <!-- Pills content -->

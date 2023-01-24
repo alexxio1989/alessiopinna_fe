@@ -17,6 +17,7 @@ export class AppComponent implements OnInit{
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    //localStorage.removeItem('CORSI')
     this.ds.sbjErrorsNotification.asObservable().subscribe(next => {
       this._snackBar.open(next,'',
         { 

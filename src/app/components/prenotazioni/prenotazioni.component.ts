@@ -3,13 +3,14 @@ import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { Router } from '@angular/router';
 import { Corso } from '../../dto/corso';
 import { EventInfo } from '../../dto/EventInfo';
-import { Prenotazione } from '../../dto/prenotazione';
-import { ResponsePrenotazione } from '../../dto/response/responsePrenotazione';
+import { ResponseAcquisto } from '../../dto/response/responseAcquisto';
 import { addHours, getEvent } from '../../mapper/calendar-mapper';
 import { CalendarService } from '../../service/calendar.service';
 import { DelegateService } from '../../service/delegate.service';
 import { PrenotazioneService } from '../../service/prenotazione.service';
 import { UtenteService } from '../../service/utente.service';
+import { Acquisto } from 'src/app/dto/acquisto';
+import { DatiEvento } from 'src/app/dto/datiEvento';
 
 const colors: any = {
   red: {
@@ -100,14 +101,18 @@ export class PrenotazioniComponent implements OnInit {
   conferma(event: CalendarEvent<EventInfo>){
     this.deleteNotConfirmed(event)
     event.meta.confirmed = true
-    let prenotazione = new Prenotazione();
-    prenotazione.corso = this.corso;
-    prenotazione.utente = this.user_service.getUtente()
-    prenotazione.dataPrenotazione = event.start;
-    prenotazione.qntOre = event.meta.ore;
-    prenotazione.fromDetail = true
+    let acquisto = new Acquisto();
+    acquisto.prodotto = this.corso;
+    acquisto.utente = this.user_service.getUtente()
+    acquisto.dataAcquisto = new Date();
+    acquisto.quantita = event.meta.ore;
+    acquisto.fromDetail = true
+    let datiEvento = new DatiEvento();
+    datiEvento.dataInizio = event.start;
+    datiEvento.idEvent = event.meta.idEvent;
+    acquisto.datiEvento = datiEvento;
     this.cs.refreshCalendar.next()
-    this.prenotazione_service.save(prenotazione).subscribe((next:ResponsePrenotazione) => {
+    this.prenotazione_service.save(acquisto).subscribe((next:ResponseAcquisto) => {
       if(!next.success){
         this.ds.sbjErrorsNotification.next(next.error)
         if(999 === next.code){
@@ -117,11 +122,11 @@ export class PrenotazioniComponent implements OnInit {
       } else {
         this.events = []
         let utente = this.user_service.getUtente();
-        utente.prenotazioni = next.prenotazioniUtente
+        utente.acquisti = next.acquistiUtente
         this.user_service.removeUtente()
         this.user_service.setUtente(utente)
-        next.prenotazioni.forEach(prenotazione => {
-          this.events.push(getEvent(prenotazione,true))
+        next.acquisti.forEach(acquisto => {
+          this.events.push(getEvent(acquisto,true))
           
           this.cs.refreshCalendar.next()
         });
@@ -142,16 +147,19 @@ export class PrenotazioniComponent implements OnInit {
     
     this.cs.activeDayIsOpenSBJ.next(false);
 
-    let prenotazione = new Prenotazione();
-    prenotazione.id = eventToDelete.meta.id;
-    prenotazione.corso = this.corso;
-    prenotazione.utente = this.user_service.getUtente()
-    prenotazione.dataPrenotazione = eventToDelete.start;
-    prenotazione.qntOre = eventToDelete.meta.ore;
-    prenotazione.fromDetail = true
-    prenotazione.idEvent = eventToDelete.meta.idEvent;
+    let acquisto = new Acquisto();
+    acquisto.id = eventToDelete.meta.id;
+    acquisto.prodotto = this.corso;
+    acquisto.utente = this.user_service.getUtente()
+    acquisto.dataAcquisto = new Date();
+    acquisto.quantita = eventToDelete.meta.ore;
+    acquisto.fromDetail = true
+    let datiEvento = new DatiEvento();
+    datiEvento.dataInizio = eventToDelete.start;
+    datiEvento.idEvent = eventToDelete.meta.idEvent;
+    acquisto.datiEvento = datiEvento;
     this.cs.refreshCalendar.next()
-    this.prenotazione_service.delete(prenotazione).subscribe(next=>{
+    this.prenotazione_service.delete(acquisto).subscribe(next=>{
       if(!next.success){
         this.ds.sbjErrorsNotification.next(next.error)
         if(999 === next.code){
@@ -162,13 +170,13 @@ export class PrenotazioniComponent implements OnInit {
         this.events = []
         this.eventsNotConfirmed = []
         let utente = this.user_service.getUtente();
-        utente.prenotazioni = next.prenotazioniUtente
+        utente.acquisti = next.acquisti
         this.user_service.removeUtente()
         this.user_service.setUtente(utente)
-        next.prenotazioni.forEach(prenotazione => {
-          this.events.push(getEvent(prenotazione,true))
+        next.acquisti.forEach(acquisto => {
+          this.events.push(getEvent(acquisto,true))
           
-          this.eventsNotConfirmed.push(getEvent(prenotazione,true))
+          this.eventsNotConfirmed.push(getEvent(acquisto,true))
           this.cs.refreshCalendar.next()
         });
         this.cs.eventsSBJ.next(this.events);

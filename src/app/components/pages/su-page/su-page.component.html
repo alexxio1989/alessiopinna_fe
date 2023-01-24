@@ -41,8 +41,8 @@
                         <div class="col-12 d-flex justify-content-center ">
                             <mat-form-field class="example-form-field w-100">
                                 <mat-label>Titolo</mat-label>
-                                <input matInput type="text" [(ngModel)]="corso.titolo">
-                                <button *ngIf="corso.titolo" matSuffix mat-icon-button aria-label="Clear" (click)="corso.titolo=''">
+                                <input matInput type="text" [(ngModel)]="corso.nome">
+                                <button *ngIf="corso.nome" matSuffix mat-icon-button aria-label="Clear" (click)="corso.nome=''">
                                   <mat-icon>close</mat-icon>
                                 </button>
                             </mat-form-field>
@@ -51,8 +51,8 @@
                         <div class="col-12 d-flex justify-content-center ">
                             <mat-form-field class="example-form-field w-100">
                                 <mat-label>Titolo Ext</mat-label>
-                                <input matInput type="text" [(ngModel)]="corso.titoloExt">
-                                <button *ngIf="corso.titoloExt" matSuffix mat-icon-button aria-label="Clear" (click)="corso.titoloExt=''">
+                                <input matInput type="text" [(ngModel)]="corso.nomeExt">
+                                <button *ngIf="corso.nomeExt" matSuffix mat-icon-button aria-label="Clear" (click)="corso.nomeExt=''">
                                   <mat-icon>close</mat-icon>
                                 </button>
                             </mat-form-field>

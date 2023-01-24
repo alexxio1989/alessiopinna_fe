@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params.email && params.id) {
         let requestLogin = mapLoginUtente(params.email, params.id);
-        this.user_service.socialSignin(requestLogin).subscribe(next => {
+        this.user_service.login(requestLogin).subscribe(next => {
           this.ds.sbjSpinner.next(false);
           if (!next.success) {
             this.ds.sbjErrorsNotification.next(next.error);

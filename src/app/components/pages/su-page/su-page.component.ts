@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { DeviceDetectorService } from 'ngx-device-detector';
@@ -9,6 +10,7 @@ import { CorsoService } from 'src/app/service/corso.service';
 import { DelegateService } from 'src/app/service/delegate.service';
 import { TlpService } from 'src/app/service/tlp.service';
 import { UtenteService } from 'src/app/service/utente.service';
+import { DialogLoginComponent } from '../../dialog/dialog-login/dialog-login.component';
 
 @Component({
   selector: 'app-su-page',
@@ -21,7 +23,7 @@ export class SuPageComponent implements OnInit {
   isUtenteLogged = false;
   isSU = false;
 
-  corso: Corso;
+  corso: Corso = new Corso();
 
   tplCorsi: Dominio[];
 
@@ -29,7 +31,13 @@ export class SuPageComponent implements OnInit {
 
   maintab = 0;
 
-  constructor(private corso_service: CorsoService , private ds:DelegateService,private route: Router,private user_service:UtenteService,private tpl_service:TlpService) { }
+  constructor(private corso_service: CorsoService , 
+    private deviceService: DeviceDetectorService,
+    private ds:DelegateService,
+    private route: Router,
+    private user_service:UtenteService,
+    private tpl_service:TlpService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.user_service.notifyUtenteLogged.asObservable().subscribe(next=>{
@@ -45,7 +53,7 @@ export class SuPageComponent implements OnInit {
     this.isUtenteLogged = this.userLogged !== undefined && this.userLogged !== null;
     
     if(!this.isUtenteLogged){
-      this.route.navigate(['']);
+      this.openLogin()
     } else {
       this.isSU = 'SU' ===  this.userLogged.tipo.codice
       if(!this.isSU){
@@ -137,6 +145,23 @@ export class SuPageComponent implements OnInit {
       this.ds.sbjSpinner.next(false)
       this.ds.sbjErrorsNotification.next("Errore durante il salvataggio")
     })
+  }
+
+  openLogin(){
+    if(this.deviceService.isMobile()){
+      this.dialog.open(DialogLoginComponent, {
+        height: 'auto',
+        width: '95%',
+        maxWidth:'95vw'
+
+      });
+    } else {
+      this.dialog.open(DialogLoginComponent, {
+        height: 'auto',
+        width: '40%'
+      });
+    }
+
   }
 
   

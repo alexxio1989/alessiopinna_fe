@@ -1,7 +1,6 @@
 import { Corso } from "../corso";
 import { ResponseCore } from "../core/responseCore";
 
-export class ResponseCorso extends ResponseCore{
+export class ResponseProdotto extends ResponseCore{
     corsi:Corso[]
-    success:boolean
 }

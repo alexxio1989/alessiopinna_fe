@@ -1,5 +1,5 @@
+import { Acquisto } from "./acquisto";
 import { Dominio } from "./dominio";
-import { Prenotazione } from "./prenotazione";
 import { TokenResponse } from "./tokenResponse";
 
 export class Utente{
@@ -9,7 +9,7 @@ export class Utente{
     email:string;
     tipo:Dominio;
     photoUrl: string;
-    prenotazioni: Prenotazione[]
+    acquisti: Acquisto[]
     tokens: TokenResponse[] = [];
     provider:string;
 }
