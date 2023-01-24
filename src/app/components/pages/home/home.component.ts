@@ -61,7 +61,9 @@ export class HomeComponent implements OnInit {
       if (!next.success) {
         this.ds.sbjErrorsNotification.next(next.error);
       } else {
-        this.corso_service.setMapCorsi(next.corsi);
+        if(next && next.corsi){
+          this.corso_service.setMapCorsi(next.corsi);
+        }
       }
       
     }, error => {

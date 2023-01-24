@@ -1,11 +1,16 @@
 <div class="row mt-5 pb-5">
     <div class="col-12">
         <mat-tab-group [(selectedIndex)]="maintab" (selectedTabChange)="getTab($event)" [disablePagination] = true [disableRipple] = true mat-stretch-tabs="false" mat-align-tabs="start">
-            <mat-tab label="Prenotazioni">
+            <mat-tab label="Acquisti">
                 
             </mat-tab>
-            <mat-tab label="Corsi">
+            <mat-tab label="Prodotti">
                
+                <div *ngIf="!corsi || corsi.length === 0" class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        Nessun prodotto 
+                    </div>
+                </div>
                 <div *ngFor="let corso of corsi" class="row mb-3">
                     <div class="col-4 d-flex justify-content-center">
                         <app-card-corso [corso]="corso"></app-card-corso>
@@ -20,7 +25,7 @@
                 </div>
               
             </mat-tab>
-            <mat-tab label="Corso editor">
+            <mat-tab label="Editor prodotto">
                 <div class="row">
                     <div class="col-6 d-flex justify-content-center bg-light p-3">
                         <button mat-stroked-button (click)="reset()" color="accent"><strong>RESET CORSO</strong> </button>

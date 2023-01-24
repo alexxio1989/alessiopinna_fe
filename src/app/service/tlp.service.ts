@@ -12,7 +12,7 @@ export class TlpService {
   constructor(private http: HttpClient ,  private ds:DelegateService) { }
 
   getTlpCorsi(): Observable<any>{
-    return this.http.get(environment.tpl + '/all/corsi');
+    return this.http.get(environment.tpl + '/all/prodotti');
   }
 
 }

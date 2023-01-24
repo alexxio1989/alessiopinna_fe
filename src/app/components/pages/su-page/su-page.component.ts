@@ -68,15 +68,19 @@ export class SuPageComponent implements OnInit {
       })
 
       this.corso_service.getCorsi(false).subscribe(next=>{
-        this.corsi = next.corsi;
-        const corsi = localStorage.getItem('CORSI');
-        if(!corsi){ 
-          localStorage.setItem('CORSI' , JSON.stringify(next.corsi))
+        if(next && next.corsi){
+          this.corsi = next.corsi;
+          const corsi = localStorage.getItem('CORSI');
+          if(!corsi){ 
+            localStorage.setItem('CORSI' , JSON.stringify(next.corsi))
+          }
+          
+          if(!next.success){
+            this.ds.sbjErrorsNotification.next(next.error)
+          }
         }
         this.ds.sbjSpinner.next(false)
-        if(!next.success){
-          this.ds.sbjErrorsNotification.next(next.error)
-        }
+        
       },error =>{
         this.ds.sbjSpinner.next(false)
         this.ds.sbjErrorsNotification.next("Errore durante il recupero delle lezioni")

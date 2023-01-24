@@ -43,7 +43,7 @@ export class PrenotazioneService {
 
   getAllByUtente(utente:Utente): Observable<ResponseAcquisto>{
     this.ds.sbjSpinner.next(true)
-    return this.http.get<ResponseAcquisto>(environment.acquisto + '/getAllByUtente/'+utente.id);
+    return this.http.get<ResponseAcquisto>(environment.acquisto + '/getAll/'+utente.id);
   }
 
   getAllByUtenteAndCorso(utente:Utente,corso:Corso): Observable<ResponseAcquisto>{
@@ -57,6 +57,6 @@ export class PrenotazioneService {
       })
     };
 
-    return this.http.get<ResponseAcquisto>(environment.acquisto + '/getAllByUtenteAndCorso/'+utente.id+'/'+corso.id ,httpOptions);
+    return this.http.get<ResponseAcquisto>(environment.acquisto + '/getAll/'+utente.id+'/'+corso.id ,httpOptions);
   }
 }
